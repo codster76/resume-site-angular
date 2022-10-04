@@ -1,0 +1,9 @@
+.result {
+    width: 500px;
+    border: black solid 2px;
+}
+
+.inputButton {
+    width: 30px;
+    height: 30px;
+}

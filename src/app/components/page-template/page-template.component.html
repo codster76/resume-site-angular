@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign=" stretch" style="height: 100vh">
+  <div style="background-color: red; width: 150px; height: 100vh">sidebar</div>
+  <perfect-scrollbar class="scrollingContent" fxLayout="column" fxLayoutAlign="space-between stretch" style="background-color: yellow; min-height: 90vh">
+    <div style="background-color: aqua; min-height: 10vh">Header</div>
+    <div style="height: 100vh">
+      <ng-content></ng-content>
+    </div>
+    <div style="background-color: green; padding-top: 50px"> footer </div>
+  </perfect-scrollbar>
+</div>
