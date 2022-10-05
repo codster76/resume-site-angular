@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
+  currentOperation: Operation = Operation.operationArray([]);
+  currentValue: string = '';
+
   operation1: Operation = Operation.operationArray([Operation.operationArray([
     Operation.singleValue(6, OperationType.Add),
     Operation.singleValue(4, OperationType.Subtract)
@@ -45,13 +48,76 @@ export class CalculatorComponent implements OnInit {
       Operation.singleValue(10, OperationType.None),
     ])
 
+  operation7: Operation = Operation.operationArray([
+    Operation.singleValue(5, OperationType.Divide),
+    Operation.operationArray([
+      Operation.singleValue(3, OperationType.Subtract),
+      Operation.singleValue(1, OperationType.Multiply),
+    ]),
+  ])
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   someFunction() {
-    console.log(this.calculate(this.operation5));
+    console.log(this.currentOperation);
+  }
+
+  performCalculation() {
+    console.log(this.calculate(this.currentOperation));
+  }
+
+  addToOperation(thingToAdd: string) {
+    if(thingToAdd.charCodeAt(0) >= 48 && thingToAdd.charCodeAt(0) <= 57) {
+      this.currentValue += thingToAdd;
+    } else if (thingToAdd === '+' || thingToAdd === '-' || thingToAdd === '*' || thingToAdd === '/') {
+      let symbolToAdd: OperationType;
+      switch(thingToAdd) {
+        case '+':
+          symbolToAdd = OperationType.Add;
+          break;
+        case '-':
+          symbolToAdd = OperationType.Subtract;
+          break;
+        case '*':
+          symbolToAdd = OperationType.Multiply;
+          break;
+        case '/':
+          symbolToAdd = OperationType.Divide;
+          break;
+      }
+      const operationToInsert = Operation.singleValue(parseInt(this.currentValue), symbolToAdd);
+      this.insertAtDeepestLevel(this.currentOperation, operationToInsert);
+      this.currentValue = "";
+    } else if (thingToAdd === '(') {
+      if(this.currentValue !== "") {
+        this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
+        this.currentValue = "";
+      }
+      this.insertAtDeepestLevel(this.currentOperation, Operation.operationArray([]))
+    } else if (thingToAdd == ')') {
+
+    }
+  }
+
+  insertAtDeepestLevel(operationToInsertInto: Operation, operationToInsert: Operation) {
+    // If the the value in the array is not a number
+    if(!(operationToInsertInto.value as Operation[]).at(-1)?.isNumber) {
+      if((operationToInsertInto.value as Operation[]).length === 0) {
+        console.log("AAAA");
+        (operationToInsertInto.value as Operation[]).push(operationToInsert);
+      } else {
+        // If the last value is a bracket, go into that bracket
+        // .at won't work here for some reason, so I have to type it all out
+        this.insertAtDeepestLevel((operationToInsertInto.value as Operation[])[(operationToInsertInto.value as Operation[]).length-1], operationToInsert);
+      }
+    } else {
+      // Once you're in the deepest possible level, insert the operation
+      console.log("inserted");
+      (operationToInsertInto.value as Operation[]).push(operationToInsert);
+    }
   }
 
   calculate(operationToCalculate: Operation) {

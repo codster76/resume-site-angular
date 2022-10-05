@@ -3,30 +3,30 @@
   <div class="result">0</div>
   <div fxLayout="column" fxLayoutAlign="start start">
     <div fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton">1</button>
-      <button class="inputButton">2</button>
-      <button class="inputButton">3</button>
-      <button class="inputButton">+</button>
+      <button class="inputButton" (click)="addToOperation('1')">1</button>
+      <button class="inputButton" (click)="addToOperation('2')">2</button>
+      <button class="inputButton" (click)="addToOperation('3')">3</button>
+      <button class="inputButton" (click)="addToOperation('+')">+</button>
     </div>
     <div fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton">4</button>
-      <button class="inputButton">5</button>
-      <button class="inputButton">6</button>
-      <button class="inputButton">-</button>
+      <button class="inputButton" (click)="addToOperation('4')">4</button>
+      <button class="inputButton" (click)="addToOperation('5')">5</button>
+      <button class="inputButton" (click)="addToOperation('6')">6</button>
+      <button class="inputButton" (click)="addToOperation('-')">-</button>
     </div>
     <div fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton">7</button>
-      <button class="inputButton">8</button>
-      <button class="inputButton">9</button>
-      <button class="inputButton">x</button>
+      <button class="inputButton" (click)="addToOperation('7')">7</button>
+      <button class="inputButton" (click)="addToOperation('8')">8</button>
+      <button class="inputButton" (click)="addToOperation('9')">9</button>
+      <button class="inputButton" (click)="addToOperation('*')">x</button>
     </div>
     <div fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton">0</button>
-      <button class="inputButton">(</button>
-      <button class="inputButton">)</button>
-      <button class="inputButton">/</button>
+      <button class="inputButton" (click)="addToOperation('0')">0</button>
+      <button class="inputButton" (click)="addToOperation('(')">(</button>
+      <button class="inputButton" (click)="addToOperation(')')">)</button>
+      <button class="inputButton" (click)="addToOperation('/')">/</button>
     </div>
-    <button class="inputButton">=</button>
+    <button class="inputButton" (click)="performCalculation()">=</button>
   </div>
 
   <button (click)="someFunction()" class="inputButton">Test</button>
