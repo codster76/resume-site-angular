@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
-  currentOperation: Operation = Operation.operationArray([]);
+  currentOperation: Operation = Operation.createTop();
   currentValue: string = '';
   valueToDisplay: string = '0';
 
@@ -30,12 +30,12 @@ export class CalculatorComponent implements OnInit {
       Operation.singleValue(2, OperationType.None),
     ]);
 
-  operation5: Operation = Operation.operationArray(
+  operation5: Operation = Operation.testingConstructor(
     [
-      Operation.operationArray([
+      Operation.testingConstructor([
         Operation.singleValue(8, OperationType.Divide),
         Operation.singleValue(4, OperationType.Add),
-        Operation.operationArray([
+        Operation.testingConstructor([
           Operation.singleValue(14, OperationType.Divide),
           Operation.singleValue(2, OperationType.Add),
           Operation.singleValue(3, OperationType.Subtract),
@@ -49,7 +49,7 @@ export class CalculatorComponent implements OnInit {
   operation6: Operation = Operation.operationArray([
       Operation.singleValue(5, OperationType.Divide),
       Operation.singleValue(10, OperationType.None),
-    ])
+    ]);
 
   operation7: Operation = Operation.operationArray([
     Operation.singleValue(5, OperationType.Divide),
@@ -57,7 +57,37 @@ export class CalculatorComponent implements OnInit {
       Operation.singleValue(3, OperationType.Subtract),
       Operation.singleValue(1, OperationType.Multiply),
     ]),
-  ])
+  ]);
+
+  operation8: Operation = Operation.testingConstructor(
+    [
+      Operation.singleValue(4, OperationType.Multiply),
+      Operation.testingConstructor([
+        Operation.testingConstructor([
+          Operation.singleValue(3, OperationType.Subtract),
+          Operation.singleValue(2, OperationType.Divide),
+        ]),
+        Operation.testingConstructor([
+          Operation.testingConstructor([
+            Operation.singleValue(1, OperationType.Add),
+            Operation.singleValue(3, OperationType.Multiply),
+          ]),
+          Operation.testingConstructor([
+            Operation.singleValue(4, OperationType.Subtract),
+            Operation.singleValue(2, OperationType.Subtract),
+          ]),
+          Operation.singleValue(2, OperationType.Add),
+        ]),
+        Operation.testingConstructor([
+          Operation.singleValue(2, OperationType.Multiply),
+          Operation.testingConstructor([
+            Operation.singleValue(4, OperationType.Subtract),
+            Operation.singleValue(3, OperationType.Add),
+          ]),
+          Operation.singleValue(1, OperationType.None),
+        ]),
+      ]),
+    ]);
 
   constructor() { }
 
@@ -71,8 +101,10 @@ export class CalculatorComponent implements OnInit {
     // testVariable.push(Operation.singleValue(123412423, OperationType.Divide));
     // console.log(this.operation4);
     // console.log(this.operationToString(this.operation4));
-    console.log(this.operationToString(this.operation5, ""));
-    console.log(this.calculate(this.operation5));
+    console.log(this.operationToString(this.operation8));
+    console.time();
+    console.log(this.calculate(this.operation8));
+    console.timeEnd();
   }
 
   performCalculation() {
@@ -80,18 +112,26 @@ export class CalculatorComponent implements OnInit {
       this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
       this.currentValue = "";
     }
-    console.log(this.calculate(this.currentOperation));
+    this.valueToDisplay = this.operationToString(this.calculate(this.currentOperation));
+  }
+
+  buttonPressed(thingToAdd: string) {
+    this.addToOperation(thingToAdd);
+    this.valueToDisplay = `${this.operationToString(this.currentOperation)}${this.currentValue}`;
   }
 
   clear() {
-    this.currentOperation = Operation.operationArray([]);
+    this.currentOperation = Operation.createTop();
     this.currentValue = "";
+    this.valueToDisplay = "0"
   }
 
-  operationToString(operationToConvert: Operation, stringToReturn: string) {
+  operationToString(operationToConvert: Operation) {
+    let stringToReturn = "";
+
     if(operationToConvert.isNumber) {
       stringToReturn = operationToConvert.value.toString();
-      return;
+      return stringToReturn;
     }
 
     const operationToConvertAsArray: Operation[] = operationToConvert.value as Operation[];
@@ -101,7 +141,7 @@ export class CalculatorComponent implements OnInit {
         stringToReturn += operationToConvertAsArray[i].value;
 
         // If it is the last item, add a closing bracket before the symbol
-        if(i === operationToConvertAsArray.length-1) {
+        if(i === operationToConvertAsArray.length-1 && operationToConvert.bracketClosed && !operationToConvert.isTop) {
           stringToReturn += ')';
         }
 
@@ -121,10 +161,9 @@ export class CalculatorComponent implements OnInit {
         }
       } else {
         stringToReturn += '(';
-        stringToReturn += this.operationToString(operationToConvertAsArray[i], stringToReturn);
+        stringToReturn += this.operationToString(operationToConvertAsArray[i]);
       }
     }
-
     return stringToReturn;
   }
 
@@ -134,24 +173,28 @@ export class CalculatorComponent implements OnInit {
       console.log(thingToAdd);
     } else if (thingToAdd === '+' || thingToAdd === '-' || thingToAdd === '*' || thingToAdd === '/') {
       let symbolToAdd: OperationType;
-      switch(thingToAdd) {
-        case '+':
-          symbolToAdd = OperationType.Add;
-          break;
-        case '-':
-          symbolToAdd = OperationType.Subtract;
-          break;
-        case '*':
-          symbolToAdd = OperationType.Multiply;
-          break;
-        case '/':
-          symbolToAdd = OperationType.Divide;
-          break;
+        switch(thingToAdd) {
+          case '+':
+            symbolToAdd = OperationType.Add;
+            break;
+          case '-':
+            symbolToAdd = OperationType.Subtract;
+            break;
+          case '*':
+            symbolToAdd = OperationType.Multiply;
+            break;
+          case '/':
+            symbolToAdd = OperationType.Divide;
+            break;
+        }
+        const operationToInsert = Operation.singleValue(parseInt(this.currentValue), symbolToAdd);
+      if(this.currentValue !== "") {
+        this.insertAtDeepestLevel(this.currentOperation, operationToInsert);
+        this.currentValue = "";
+        console.log(this.currentOperation);
+      } else {
+        this.changeSymbolOfLastNumber(this.currentOperation, symbolToAdd);
       }
-      const operationToInsert = Operation.singleValue(parseInt(this.currentValue), symbolToAdd);
-      this.insertAtDeepestLevel(this.currentOperation, operationToInsert);
-      this.currentValue = "";
-      console.log(this.currentOperation);
     } else if (thingToAdd === '(') {
       // If you've started inputting a number, but haven't given it a symbol, automatically add it and give it a multiplication symbol
       if(this.currentValue !== "") {
@@ -165,9 +208,8 @@ export class CalculatorComponent implements OnInit {
       if(this.currentValue !== "") {
         this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
         this.currentValue = "";
-      } else {
-        this.closeBracket(this.currentOperation);
       }
+      this.closeBracket(this.currentOperation);
       console.log(this.currentOperation);
     }
   }
@@ -180,7 +222,7 @@ export class CalculatorComponent implements OnInit {
         // If the array is empty, add the operation immediately
         operationToInsertIntoAsArray.push(operationToInsert);
         return;
-      } else if(operationToInsertIntoAsArray[operationToInsertIntoAsArray.length-1].closed) {
+      } else if(operationToInsertIntoAsArray[operationToInsertIntoAsArray.length-1].bracketClosed) {
         // If the array is not empty and the last element is a closed bracket, add the operation immediately
         operationToInsertIntoAsArray.push(operationToInsert);
         return;
@@ -195,12 +237,21 @@ export class CalculatorComponent implements OnInit {
     }
   }
 
+  changeSymbolOfLastNumber(operationToModify: Operation, operationSymbolToModifyTo: OperationType) {
+    const operationToModifyArray: Operation[] = operationToModify.value as Operation[];
+    if(!operationToModifyArray[operationToModifyArray.length-1].isNumber) {
+      this.changeSymbolOfLastNumber(operationToModifyArray[operationToModifyArray.length-1], operationSymbolToModifyTo);
+    } else {
+      operationToModifyArray[operationToModifyArray.length-1].operationSymbol = operationSymbolToModifyTo;
+    }
+  }
+
   closeBracket(operationToTraverse: Operation) {
     const operationToTraverseAsArray: Operation[] = operationToTraverse.value as Operation[];
     if(!operationToTraverseAsArray[operationToTraverseAsArray.length-1].isNumber) {
       this.closeBracket(operationToTraverseAsArray[operationToTraverseAsArray.length-1]);
     } else {
-      operationToTraverse.closed = true;
+      operationToTraverse.bracketClosed = true;
     }
   }
 
@@ -288,7 +339,8 @@ export class Operation {
   value: Operation[] | number = [];
   operationSymbol: OperationType = OperationType.None;
   isNumber: boolean = false;
-  closed: boolean = false;
+  bracketClosed: boolean = false;
+  isTop: boolean = false;
 
   static singleValue(value: number, operationType: OperationType): Operation {
     const operation = new Operation();
@@ -303,6 +355,19 @@ export class Operation {
     operation.value = values;
     return operation;
   }
+
+  static createTop() {
+    const operation = new Operation();
+    operation.isTop = true;
+    return operation;
+  }
+
+  static testingConstructor(values: Operation[]): Operation {
+    const operation = new Operation();
+    operation.value = values;
+    operation.bracketClosed = true;
+    return operation;
+  } 
 }
 
 export enum OperationType {
