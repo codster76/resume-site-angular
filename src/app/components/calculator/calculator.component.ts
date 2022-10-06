@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+// Recursion hell
+
 @Component({
   selector: 'app-calculator',
   templateUrl: './calculator.component.html',
@@ -8,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class CalculatorComponent implements OnInit {
   currentOperation: Operation = Operation.operationArray([]);
   currentValue: string = '';
+  valueToDisplay: string = '0';
 
   operation1: Operation = Operation.operationArray([Operation.operationArray([
     Operation.singleValue(6, OperationType.Add),
@@ -62,7 +65,12 @@ export class CalculatorComponent implements OnInit {
   }
 
   someFunction() {
-    console.log(this.currentOperation);
+    // console.log(this.currentOperation);
+    // console.log(this.operation4);
+    // const testVariable = (this.operation4.value as Operation[]);
+    // testVariable.push(Operation.singleValue(123412423, OperationType.Divide));
+    // console.log(this.operation4);
+    console.log(this.operationToString(this.operation4));
   }
 
   performCalculation() {
@@ -76,6 +84,38 @@ export class CalculatorComponent implements OnInit {
   clear() {
     this.currentOperation = Operation.operationArray([]);
     this.currentValue = "";
+  }
+
+  operationToString(operationToConvert: Operation) {
+    this.valueToDisplay = "";
+
+    if(operationToConvert.isNumber) {
+      this.valueToDisplay = operationToConvert.value.toString();
+      return;
+    }
+
+    for(let operationItem of (operationToConvert.value as Operation[])) {
+      if(operationItem.isNumber) {
+        this.valueToDisplay += operationItem.value;
+        switch(operationItem.operationSymbol) {
+          case OperationType.Add:
+            this.valueToDisplay += '+';
+            break;
+          case OperationType.Subtract:
+            this.valueToDisplay += '-';
+            break;
+          case OperationType.Multiply:
+            this.valueToDisplay += '*';
+            break;
+          case OperationType.Divide:
+            this.valueToDisplay += '/';
+            break;
+        }
+      } else {
+        this.valueToDisplay += "(";
+        this.operationToString(operationItem);
+      }
+    }
   }
 
   addToOperation(thingToAdd: string) {
@@ -124,6 +164,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   insertAtDeepestLevel(operationToInsertInto: Operation, operationToInsert: Operation) {
+    // const operationToInsertIntoAsArray: Operation[] = operationToInsertInto.value as Operation[];
     // If the the value in the array is not a number
     if(!(operationToInsertInto.value as Operation[]).at(-1)?.isNumber) {
       if((operationToInsertInto.value as Operation[]).length === 0) {
