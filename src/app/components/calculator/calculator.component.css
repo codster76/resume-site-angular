@@ -4,6 +4,11 @@
 }
 
 .inputButton {
-    width: 30px;
-    height: 30px;
+    width: var(--button-size);
+    height: var(--button-size);
+    --button-size: 30px;
+}
+
+.buttonGroup {
+    width: calc(var(--button-size) * 4);
 }

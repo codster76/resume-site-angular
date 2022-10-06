@@ -1,32 +1,35 @@
 <app-page-template>
   <div>Calculator</div>
   <div class="result">0</div>
-  <div fxLayout="column" fxLayoutAlign="start start">
-    <div fxLayout="row" fxLayoutAlign="start start">
+  <div fxLayout="column" fxLayoutAlign="start start" style="width: 120px;">
+    <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
       <button class="inputButton" (click)="addToOperation('1')">1</button>
       <button class="inputButton" (click)="addToOperation('2')">2</button>
       <button class="inputButton" (click)="addToOperation('3')">3</button>
       <button class="inputButton" (click)="addToOperation('+')">+</button>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
       <button class="inputButton" (click)="addToOperation('4')">4</button>
       <button class="inputButton" (click)="addToOperation('5')">5</button>
       <button class="inputButton" (click)="addToOperation('6')">6</button>
       <button class="inputButton" (click)="addToOperation('-')">-</button>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
       <button class="inputButton" (click)="addToOperation('7')">7</button>
       <button class="inputButton" (click)="addToOperation('8')">8</button>
       <button class="inputButton" (click)="addToOperation('9')">9</button>
       <button class="inputButton" (click)="addToOperation('*')">x</button>
     </div>
-    <div fxLayout="row" fxLayoutAlign="start start">
+    <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
       <button class="inputButton" (click)="addToOperation('0')">0</button>
       <button class="inputButton" (click)="addToOperation('(')">(</button>
       <button class="inputButton" (click)="addToOperation(')')">)</button>
       <button class="inputButton" (click)="addToOperation('/')">/</button>
     </div>
-    <button class="inputButton" (click)="performCalculation()">=</button>
+    <div class="buttonGroup" fxLayout="row" fxLayoutAlign="space-between start">
+      <button class="inputButton" (click)="clear()">C</button>
+      <button class="inputButton" (click)="performCalculation()">=</button>
+    </div>
   </div>
 
   <button (click)="someFunction()" class="inputButton">Test</button>

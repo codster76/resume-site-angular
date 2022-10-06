@@ -66,12 +66,22 @@ export class CalculatorComponent implements OnInit {
   }
 
   performCalculation() {
+    if(this.currentValue !== "") {
+      this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
+      this.currentValue = "";
+    }
     console.log(this.calculate(this.currentOperation));
+  }
+
+  clear() {
+    this.currentOperation = Operation.operationArray([]);
+    this.currentValue = "";
   }
 
   addToOperation(thingToAdd: string) {
     if(thingToAdd.charCodeAt(0) >= 48 && thingToAdd.charCodeAt(0) <= 57) {
       this.currentValue += thingToAdd;
+      console.log(thingToAdd);
     } else if (thingToAdd === '+' || thingToAdd === '-' || thingToAdd === '*' || thingToAdd === '/') {
       let symbolToAdd: OperationType;
       switch(thingToAdd) {
@@ -91,14 +101,25 @@ export class CalculatorComponent implements OnInit {
       const operationToInsert = Operation.singleValue(parseInt(this.currentValue), symbolToAdd);
       this.insertAtDeepestLevel(this.currentOperation, operationToInsert);
       this.currentValue = "";
+      console.log(this.currentOperation);
     } else if (thingToAdd === '(') {
+      // If you've started inputting a number, but haven't given it a symbol, automatically add it and give it a multiplication symbol
       if(this.currentValue !== "") {
         this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
         this.currentValue = "";
+      } else {
+        this.insertAtDeepestLevel(this.currentOperation, Operation.operationArray([]))
       }
-      this.insertAtDeepestLevel(this.currentOperation, Operation.operationArray([]))
+      console.log(this.currentOperation);
     } else if (thingToAdd == ')') {
-
+      // If you've started inputting a number, but haven't given it a symbol, automatically add it and give it a multiplication symbol
+      if(this.currentValue !== "") {
+        this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
+        this.currentValue = "";
+      } else {
+        this.closeBracket(this.currentOperation);
+      }
+      console.log(this.currentOperation);
     }
   }
 
@@ -106,8 +127,13 @@ export class CalculatorComponent implements OnInit {
     // If the the value in the array is not a number
     if(!(operationToInsertInto.value as Operation[]).at(-1)?.isNumber) {
       if((operationToInsertInto.value as Operation[]).length === 0) {
-        console.log("AAAA");
+        // If the array is empty, add the operation immediately
         (operationToInsertInto.value as Operation[]).push(operationToInsert);
+        return;
+      } else if((operationToInsertInto.value as Operation[])[(operationToInsertInto.value as Operation[]).length-1].closed) {
+        // If the array is not empty and the last element is a closed bracket, add the operation immediately
+        (operationToInsertInto.value as Operation[]).push(operationToInsert);
+        return;
       } else {
         // If the last value is a bracket, go into that bracket
         // .at won't work here for some reason, so I have to type it all out
@@ -115,8 +141,15 @@ export class CalculatorComponent implements OnInit {
       }
     } else {
       // Once you're in the deepest possible level, insert the operation
-      console.log("inserted");
       (operationToInsertInto.value as Operation[]).push(operationToInsert);
+    }
+  }
+
+  closeBracket(operationToTraverse: Operation) {
+    if(!(operationToTraverse.value as Operation[])[(operationToTraverse.value as Operation[]).length-1].isNumber) {
+      this.closeBracket((operationToTraverse.value as Operation[])[(operationToTraverse.value as Operation[]).length-1]);
+    } else {
+      operationToTraverse.closed = true;
     }
   }
 
@@ -204,6 +237,7 @@ class Operation {
   value: Operation[] | number = [];
   operationSymbol: OperationType = OperationType.None;
   isNumber: boolean = false;
+  closed: boolean = false;
 
   static singleValue(value: number, operationType: OperationType): Operation {
     const operation = new Operation();
