@@ -70,7 +70,9 @@ export class CalculatorComponent implements OnInit {
     // const testVariable = (this.operation4.value as Operation[]);
     // testVariable.push(Operation.singleValue(123412423, OperationType.Divide));
     // console.log(this.operation4);
-    console.log(this.operationToString(this.operation4));
+    // console.log(this.operationToString(this.operation4));
+    console.log(this.operationToString(this.operation5, ""));
+    console.log(this.calculate(this.operation5));
   }
 
   performCalculation() {
@@ -86,36 +88,44 @@ export class CalculatorComponent implements OnInit {
     this.currentValue = "";
   }
 
-  operationToString(operationToConvert: Operation) {
-    this.valueToDisplay = "";
-
+  operationToString(operationToConvert: Operation, stringToReturn: string) {
     if(operationToConvert.isNumber) {
-      this.valueToDisplay = operationToConvert.value.toString();
+      stringToReturn = operationToConvert.value.toString();
       return;
     }
 
-    for(let operationItem of (operationToConvert.value as Operation[])) {
-      if(operationItem.isNumber) {
-        this.valueToDisplay += operationItem.value;
-        switch(operationItem.operationSymbol) {
+    const operationToConvertAsArray: Operation[] = operationToConvert.value as Operation[];
+
+    for(let i = 0; i < operationToConvertAsArray.length; i++) {
+      if(operationToConvertAsArray[i].isNumber) {
+        stringToReturn += operationToConvertAsArray[i].value;
+
+        // If it is the last item, add a closing bracket before the symbol
+        if(i === operationToConvertAsArray.length-1) {
+          stringToReturn += ')';
+        }
+
+        switch(operationToConvertAsArray[i].operationSymbol) {
           case OperationType.Add:
-            this.valueToDisplay += '+';
+            stringToReturn += '+';
             break;
           case OperationType.Subtract:
-            this.valueToDisplay += '-';
+            stringToReturn += '-';
             break;
           case OperationType.Multiply:
-            this.valueToDisplay += '*';
+            stringToReturn += '*';
             break;
           case OperationType.Divide:
-            this.valueToDisplay += '/';
+            stringToReturn += '/';
             break;
         }
       } else {
-        this.valueToDisplay += "(";
-        this.operationToString(operationItem);
+        stringToReturn += '(';
+        stringToReturn += this.operationToString(operationToConvertAsArray[i], stringToReturn);
       }
     }
+
+    return stringToReturn;
   }
 
   addToOperation(thingToAdd: string) {
@@ -147,9 +157,8 @@ export class CalculatorComponent implements OnInit {
       if(this.currentValue !== "") {
         this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
         this.currentValue = "";
-      } else {
-        this.insertAtDeepestLevel(this.currentOperation, Operation.operationArray([]))
       }
+      this.insertAtDeepestLevel(this.currentOperation, Operation.operationArray([]))
       console.log(this.currentOperation);
     } else if (thingToAdd == ')') {
       // If you've started inputting a number, but haven't given it a symbol, automatically add it and give it a multiplication symbol
@@ -164,31 +173,32 @@ export class CalculatorComponent implements OnInit {
   }
 
   insertAtDeepestLevel(operationToInsertInto: Operation, operationToInsert: Operation) {
-    // const operationToInsertIntoAsArray: Operation[] = operationToInsertInto.value as Operation[];
+    const operationToInsertIntoAsArray: Operation[] = operationToInsertInto.value as Operation[];
     // If the the value in the array is not a number
-    if(!(operationToInsertInto.value as Operation[]).at(-1)?.isNumber) {
-      if((operationToInsertInto.value as Operation[]).length === 0) {
+    if(!operationToInsertIntoAsArray.at(-1)?.isNumber) {
+      if(operationToInsertIntoAsArray.length === 0) {
         // If the array is empty, add the operation immediately
-        (operationToInsertInto.value as Operation[]).push(operationToInsert);
+        operationToInsertIntoAsArray.push(operationToInsert);
         return;
-      } else if((operationToInsertInto.value as Operation[])[(operationToInsertInto.value as Operation[]).length-1].closed) {
+      } else if(operationToInsertIntoAsArray[operationToInsertIntoAsArray.length-1].closed) {
         // If the array is not empty and the last element is a closed bracket, add the operation immediately
-        (operationToInsertInto.value as Operation[]).push(operationToInsert);
+        operationToInsertIntoAsArray.push(operationToInsert);
         return;
       } else {
         // If the last value is a bracket, go into that bracket
         // .at won't work here for some reason, so I have to type it all out
-        this.insertAtDeepestLevel((operationToInsertInto.value as Operation[])[(operationToInsertInto.value as Operation[]).length-1], operationToInsert);
+        this.insertAtDeepestLevel(operationToInsertIntoAsArray[operationToInsertIntoAsArray.length-1], operationToInsert);
       }
     } else {
       // Once you're in the deepest possible level, insert the operation
-      (operationToInsertInto.value as Operation[]).push(operationToInsert);
+      operationToInsertIntoAsArray.push(operationToInsert);
     }
   }
 
   closeBracket(operationToTraverse: Operation) {
-    if(!(operationToTraverse.value as Operation[])[(operationToTraverse.value as Operation[]).length-1].isNumber) {
-      this.closeBracket((operationToTraverse.value as Operation[])[(operationToTraverse.value as Operation[]).length-1]);
+    const operationToTraverseAsArray: Operation[] = operationToTraverse.value as Operation[];
+    if(!operationToTraverseAsArray[operationToTraverseAsArray.length-1].isNumber) {
+      this.closeBracket(operationToTraverseAsArray[operationToTraverseAsArray.length-1]);
     } else {
       operationToTraverse.closed = true;
     }
@@ -274,7 +284,7 @@ export class CalculatorComponent implements OnInit {
   }
 }
 
-class Operation {
+export class Operation {
   value: Operation[] | number = [];
   operationSymbol: OperationType = OperationType.None;
   isNumber: boolean = false;
@@ -295,7 +305,7 @@ class Operation {
   }
 }
 
-enum OperationType {
+export enum OperationType {
   Add,
   Subtract,
   Multiply,
