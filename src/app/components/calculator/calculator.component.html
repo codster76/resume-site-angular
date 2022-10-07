@@ -28,6 +28,8 @@
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="space-between start">
       <button class="inputButton" (click)="clear()">C</button>
+      <button class="inputButton" (click)="buttonPressed('+-')">+-</button>
+      <button class="inputButton" (click)="buttonPressed('.')">.</button>
       <button class="inputButton" (click)="performCalculation()">=</button>
     </div>
   </div>

@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculatorComponent implements OnInit {
   currentOperation: Operation = Operation.createTop();
-  currentValue: string = '';
+  currentValue: string = '0';
   valueToDisplay: string = '0';
 
   operation1: Operation = Operation.operationArray([Operation.operationArray([
@@ -118,7 +118,7 @@ export class CalculatorComponent implements OnInit {
 
   performCalculation() {
     if(this.currentValue !== "") {
-      this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
+      this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseFloat(this.currentValue), OperationType.Multiply));
       this.currentValue = "";
     }
     this.valueToDisplay = this.operationToString(this.calculate(this.currentOperation));
@@ -147,7 +147,7 @@ export class CalculatorComponent implements OnInit {
 
     for(let i = 0; i < operationToConvertAsArray.length; i++) {
       // if(operationToConvertAsArray[i].hidden) {
-      //   stringToReturn = stringToReturn.substring(0,stringToReturn.length);
+      //   stringToReturn = stringToReturn.slice(0,stringToReturn.length-1);
 
       //   switch(operationToConvertAsArray[i].operationSymbol) {
       //     case OperationType.Add:
@@ -197,7 +197,24 @@ export class CalculatorComponent implements OnInit {
 
   addToOperation(thingToAdd: string) {
     if(thingToAdd.charCodeAt(0) >= 48 && thingToAdd.charCodeAt(0) <= 57) {
-      this.currentValue += thingToAdd;
+      if(this.currentValue === '0') {
+        this.currentValue = thingToAdd;
+      } else {
+        this.currentValue += thingToAdd;
+      }
+    } else if(thingToAdd === '+-') {
+      if(this.currentValue.charAt(0) === '-') {
+        this.currentValue = this.currentValue.substring(1);
+        if(this.currentValue === "") {
+          this.currentValue = '0';
+        }
+      } else {
+        this.currentValue = `-${this.currentValue}`
+      }
+    } else if(thingToAdd === '.') {
+      if(!this.currentValue.includes('.')) {
+        this.currentValue += '.';
+      }
     } else if (thingToAdd === '+' || thingToAdd === '-' || thingToAdd === '*' || thingToAdd === '/') {
       let symbolToAdd: OperationType;
         switch(thingToAdd) {
@@ -214,7 +231,7 @@ export class CalculatorComponent implements OnInit {
             symbolToAdd = OperationType.Divide;
             break;
         }
-        const operationToInsert = Operation.singleValue(parseInt(this.currentValue), symbolToAdd);
+        const operationToInsert = Operation.singleValue(parseFloat(this.currentValue), symbolToAdd);
       if(this.currentValue !== "") {
         this.insertAtDeepestLevel(this.currentOperation, operationToInsert);
         this.currentValue = "";
@@ -224,14 +241,14 @@ export class CalculatorComponent implements OnInit {
     } else if (thingToAdd === '(') {
       // If you've started inputting a number, but haven't given it a symbol, automatically add it and give it a multiplication symbol
       if(this.currentValue !== "") {
-        this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
+        this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseFloat(this.currentValue), OperationType.Multiply));
         this.currentValue = "";
       }
       this.insertAtDeepestLevel(this.currentOperation, Operation.operationArray([]))
     } else if (thingToAdd == ')') {
       // If you've started inputting a number, but haven't given it a symbol, automatically add it and give it a multiplication symbol
       if(this.currentValue !== "") {
-        this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseInt(this.currentValue), OperationType.Multiply));
+        this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseFloat(this.currentValue), OperationType.Multiply));
         this.currentValue = "";
       }
       this.closeBracket(this.currentOperation);
