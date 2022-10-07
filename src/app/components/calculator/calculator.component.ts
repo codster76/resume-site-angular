@@ -89,22 +89,31 @@ export class CalculatorComponent implements OnInit {
       ]),
     ]);
 
+    operation9: Operation = Operation.operationArray([
+      Operation.singleValue(1, OperationType.Add),
+      Operation.operationArray([
+        Operation.singleValue(99, OperationType.Divide),
+        Operation.singleValue(3, OperationType.Multiply),
+      ]),
+      Operation.singleValue(6, OperationType.None),
+    ]);
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   someFunction() {
-    // console.log(this.currentOperation);
+    console.log(this.calculate(this.operation9));
     // console.log(this.operation4);
     // const testVariable = (this.operation4.value as Operation[]);
     // testVariable.push(Operation.singleValue(123412423, OperationType.Divide));
     // console.log(this.operation4);
     // console.log(this.operationToString(this.operation4));
-    console.log(this.operationToString(this.operation8));
-    console.time();
-    console.log(this.calculate(this.operation8));
-    console.timeEnd();
+    // console.log(this.operationToString(this.operation8));
+    // console.time();
+    // console.log(this.calculate(this.operation8));
+    // console.timeEnd();
   }
 
   performCalculation() {
@@ -137,32 +146,51 @@ export class CalculatorComponent implements OnInit {
     const operationToConvertAsArray: Operation[] = operationToConvert.value as Operation[];
 
     for(let i = 0; i < operationToConvertAsArray.length; i++) {
-      if(operationToConvertAsArray[i].isNumber) {
-        stringToReturn += operationToConvertAsArray[i].value;
+      // if(operationToConvertAsArray[i].hidden) {
+      //   stringToReturn = stringToReturn.substring(0,stringToReturn.length);
 
-        // If it is the last item, add a closing bracket before the symbol
-        if(i === operationToConvertAsArray.length-1 && operationToConvert.bracketClosed && !operationToConvert.isTop) {
-          stringToReturn += ')';
-        }
+      //   switch(operationToConvertAsArray[i].operationSymbol) {
+      //     case OperationType.Add:
+      //       stringToReturn += '+';
+      //       break;
+      //     case OperationType.Subtract:
+      //       stringToReturn += '-';
+      //       break;
+      //     case OperationType.Multiply:
+      //       stringToReturn += '*';
+      //       break;
+      //     case OperationType.Divide:
+      //       stringToReturn += '/';
+      //       break;
+      //   }
+      // } else {
+        if(operationToConvertAsArray[i].isNumber) {
+          stringToReturn += operationToConvertAsArray[i].value;
 
-        switch(operationToConvertAsArray[i].operationSymbol) {
-          case OperationType.Add:
-            stringToReturn += '+';
-            break;
-          case OperationType.Subtract:
-            stringToReturn += '-';
-            break;
-          case OperationType.Multiply:
-            stringToReturn += '*';
-            break;
-          case OperationType.Divide:
-            stringToReturn += '/';
-            break;
+          // If it is the last item, add a closing bracket before the symbol
+          if(i === operationToConvertAsArray.length-1 && operationToConvert.bracketClosed && !operationToConvert.isTop) {
+            stringToReturn += ')';
+          }
+
+          switch(operationToConvertAsArray[i].operationSymbol) {
+            case OperationType.Add:
+              stringToReturn += '+';
+              break;
+            case OperationType.Subtract:
+              stringToReturn += '-';
+              break;
+            case OperationType.Multiply:
+              stringToReturn += '*';
+              break;
+            case OperationType.Divide:
+              stringToReturn += '/';
+              break;
+          }
+        } else {
+          stringToReturn += '(';
+          stringToReturn += this.operationToString(operationToConvertAsArray[i]);
         }
-      } else {
-        stringToReturn += '(';
-        stringToReturn += this.operationToString(operationToConvertAsArray[i]);
-      }
+      // }
     }
     return stringToReturn;
   }
@@ -170,7 +198,6 @@ export class CalculatorComponent implements OnInit {
   addToOperation(thingToAdd: string) {
     if(thingToAdd.charCodeAt(0) >= 48 && thingToAdd.charCodeAt(0) <= 57) {
       this.currentValue += thingToAdd;
-      console.log(thingToAdd);
     } else if (thingToAdd === '+' || thingToAdd === '-' || thingToAdd === '*' || thingToAdd === '/') {
       let symbolToAdd: OperationType;
         switch(thingToAdd) {
@@ -191,7 +218,6 @@ export class CalculatorComponent implements OnInit {
       if(this.currentValue !== "") {
         this.insertAtDeepestLevel(this.currentOperation, operationToInsert);
         this.currentValue = "";
-        console.log(this.currentOperation);
       } else {
         this.changeSymbolOfLastNumber(this.currentOperation, symbolToAdd);
       }
@@ -202,7 +228,6 @@ export class CalculatorComponent implements OnInit {
         this.currentValue = "";
       }
       this.insertAtDeepestLevel(this.currentOperation, Operation.operationArray([]))
-      console.log(this.currentOperation);
     } else if (thingToAdd == ')') {
       // If you've started inputting a number, but haven't given it a symbol, automatically add it and give it a multiplication symbol
       if(this.currentValue !== "") {
@@ -210,8 +235,35 @@ export class CalculatorComponent implements OnInit {
         this.currentValue = "";
       }
       this.closeBracket(this.currentOperation);
-      console.log(this.currentOperation);
+      if(!this.allBracketsClosed(this.currentOperation)) {
+        const lastSymbol: OperationType = this.changeSymbolOfLastNumber(this.currentOperation, OperationType.Multiply);
+        this.insertAtDeepestLevel(this.currentOperation, Operation.hidden1(OperationType.Multiply));
+      }
     }
+  }
+
+  allBracketsClosed(operationToCheck: Operation) {
+    const operationToCheckAsArray: Operation[] = operationToCheck.value as Operation[];
+    for(const value of operationToCheckAsArray) {
+      if(!value.isNumber) {
+        if(!value.bracketClosed) {
+          return false;
+        }
+        this.allBracketsClosed(value);
+      }
+    }
+    return true;
+  }
+
+  getLatestValue(operationToCheck: Operation) {
+    const operationToCheckAsArray: Operation[] = operationToCheck.value as Operation[];
+    if(operationToCheckAsArray[operationToCheckAsArray.length].isNumber) {
+      return operationToCheckAsArray[operationToCheckAsArray.length];
+    } else {
+      this.getLatestValue(operationToCheckAsArray[operationToCheckAsArray.length]);
+    }
+    console.error("No value at the end of the operations");
+    return Operation.operationArray([]);
   }
 
   insertAtDeepestLevel(operationToInsertInto: Operation, operationToInsert: Operation) {
@@ -237,13 +289,17 @@ export class CalculatorComponent implements OnInit {
     }
   }
 
+  // Returns the previous symbol
   changeSymbolOfLastNumber(operationToModify: Operation, operationSymbolToModifyTo: OperationType) {
     const operationToModifyArray: Operation[] = operationToModify.value as Operation[];
     if(!operationToModifyArray[operationToModifyArray.length-1].isNumber) {
       this.changeSymbolOfLastNumber(operationToModifyArray[operationToModifyArray.length-1], operationSymbolToModifyTo);
     } else {
+      const operationToReturn: OperationType = operationToModifyArray[operationToModifyArray.length-1].operationSymbol;
       operationToModifyArray[operationToModifyArray.length-1].operationSymbol = operationSymbolToModifyTo;
+      return operationToReturn;
     }
+    return OperationType.None;
   }
 
   closeBracket(operationToTraverse: Operation) {
@@ -273,14 +329,16 @@ export class CalculatorComponent implements OnInit {
     while(valueAsArray.length > 1) {
       // First pass for multiplication/division
       for(let i = 0; i < valueAsArray.length-1; i++) {
+        // Basically, look at two adjacent values and check whether they are single values or brackets. If they are in brackets, compute whatever's in the brackets first. Ensures that the deepest levels of brackets always get calculated first.
+        if(!valueAsArray[i].isNumber) {
+          valueAsArray[i] = this.calculate(valueAsArray[i]);
+        }
+        if(!valueAsArray[i+1].isNumber) {
+          valueAsArray[i+1] = this.calculate(valueAsArray[i+1]);
+        }
+
         if(valueAsArray[i].operationSymbol === OperationType.Multiply || valueAsArray[i].operationSymbol === OperationType.Divide) {
-          // Basically, look at two adjacent values and check whether they are single values or brackets. If they are in brackets, compute whatever's in the brackets first. Ensures that the deepest levels of brackets always get calculated first.
-          if(!valueAsArray[i].isNumber) {
-            valueAsArray[i] = this.calculate(valueAsArray[i]);
-          }
-          if(!valueAsArray[i+1].isNumber) {
-            valueAsArray[i+1] = this.calculate(valueAsArray[i+1]);
-          }
+        // if(valueAsArray[i].operationSymbol === OperationType.Divide) {
 
           // Pull the two values you're calculating out of the array and compute them
           const operation1 = valueAsArray.splice(i,1)[0];
@@ -288,6 +346,8 @@ export class CalculatorComponent implements OnInit {
     
           const arrayValue1 = operation1?.value as number;
           const arrayValue2 = operation2?.value as number;
+
+          // console.log(`${arrayValue1} | ${arrayValue2}`);
     
           let calculatedNumber = 0;
           switch(operation1.operationSymbol) {
@@ -303,6 +363,33 @@ export class CalculatorComponent implements OnInit {
           valueAsArray.splice(i, 0, Operation.singleValue(calculatedNumber, operation2.operationSymbol));
         }
       }
+
+      // for(let i = 0; i < valueAsArray.length-1; i++) {
+      //   if(valueAsArray[i].operationSymbol === OperationType.Multiply) {
+      //     // Basically, look at two adjacent values and check whether they are single values or brackets. If they are in brackets, compute whatever's in the brackets first. Ensures that the deepest levels of brackets always get calculated first.
+      //     if(!valueAsArray[i].isNumber) {
+      //       valueAsArray[i] = this.calculate(valueAsArray[i]);
+      //     }
+      //     if(!valueAsArray[i+1].isNumber) {
+      //       valueAsArray[i+1] = this.calculate(valueAsArray[i+1]);
+      //     }
+
+      //     // Pull the two values you're calculating out of the array and compute them
+      //     const operation1 = valueAsArray.splice(i,1)[0];
+      //     const operation2 = valueAsArray.splice(i,1)[0];
+    
+      //     const arrayValue1 = operation1?.value as number;
+      //     const arrayValue2 = operation2?.value as number;
+
+      //     // console.log(`${arrayValue1} | ${arrayValue2}`);
+    
+      //     let calculatedNumber = 0;
+      //     calculatedNumber = arrayValue1 * arrayValue2;
+
+      //     // Once the values have been computed, put them back in the spot they were taken from
+      //     valueAsArray.splice(i, 0, Operation.singleValue(calculatedNumber, operation2.operationSymbol));
+      //   }
+      // }
 
       // Second pass for addition/subtraction. Basically the same as before, but without the multiplication/division check.
       for(let i = 0; i < valueAsArray.length-1; i++) {
@@ -341,6 +428,7 @@ export class Operation {
   isNumber: boolean = false;
   bracketClosed: boolean = false;
   isTop: boolean = false;
+  hidden: boolean = false; // For invisible *1s
 
   static singleValue(value: number, operationType: OperationType): Operation {
     const operation = new Operation();
@@ -359,6 +447,15 @@ export class Operation {
   static createTop() {
     const operation = new Operation();
     operation.isTop = true;
+    return operation;
+  }
+
+  static hidden1(symbol: OperationType) {
+    const operation = new Operation();
+    operation.value = 1;
+    operation.operationSymbol = symbol;
+    operation.isNumber = true;
+    operation.hidden = true;
     return operation;
   }
 
