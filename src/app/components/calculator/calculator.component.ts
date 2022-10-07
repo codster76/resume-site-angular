@@ -361,6 +361,7 @@ export class CalculatorComponent implements OnInit {
 
           // Once the values have been computed, put them back in the spot they were taken from
           valueAsArray.splice(i, 0, Operation.singleValue(calculatedNumber, operation2.operationSymbol));
+          i--;
         }
       }
 
@@ -415,6 +416,7 @@ export class CalculatorComponent implements OnInit {
             break;
         }
         valueAsArray.splice(i, 0, Operation.singleValue(calculatedNumber, operation2.operationSymbol));
+        i--;
       }
     }
 
