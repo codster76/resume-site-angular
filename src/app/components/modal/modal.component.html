@@ -1,0 +1,13 @@
+<div [ngStyle]="{ 'display': modalOpen ? 'block' : 'none' }">
+    <div class="background" (click)="closeModal()"></div>
+    <div class="modal-content" [ngStyle]="{
+    'margin-top': marginHeight,
+    'margin-bottom': marginHeight,
+    'margin-left': marginWidth,
+    'margin-right': marginWidth
+    }">
+    <perfect-scrollbar>
+        <ng-content></ng-content>
+    </perfect-scrollbar>
+    </div>
+</div>

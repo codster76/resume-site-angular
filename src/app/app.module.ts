@@ -11,6 +11,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PageTemplateComponent } from './components/page-template/page-template.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { CalculatorComponent } from './components/calculator/calculator.component';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CalculatorComponent } from './components/calculator/calculator.componen
     PageTemplateComponent,
     HomePageComponent,
     CalculatorComponent,
+    AutocompleteComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

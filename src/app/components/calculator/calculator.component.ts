@@ -197,12 +197,14 @@ export class CalculatorComponent implements OnInit {
 
   addToOperation(thingToAdd: string) {
     if(thingToAdd.charCodeAt(0) >= 48 && thingToAdd.charCodeAt(0) <= 57) {
+      // If the current value has a leading 0, replace it
       if(this.currentValue === '0') {
         this.currentValue = thingToAdd;
       } else {
         this.currentValue += thingToAdd;
       }
     } else if(thingToAdd === '+-') {
+      // Negate the current value
       if(this.currentValue.charAt(0) === '-') {
         this.currentValue = this.currentValue.substring(1);
         if(this.currentValue === "") {
@@ -212,10 +214,12 @@ export class CalculatorComponent implements OnInit {
         this.currentValue = `-${this.currentValue}`
       }
     } else if(thingToAdd === '.') {
+      // Add a decimal. Only one decimal point can be added.
       if(!this.currentValue.includes('.')) {
         this.currentValue += '.';
       }
     } else if (thingToAdd === '+' || thingToAdd === '-' || thingToAdd === '*' || thingToAdd === '/') {
+      // Add the current value to the operation with its symbol.
       let symbolToAdd: OperationType;
         switch(thingToAdd) {
           case '+':
@@ -236,6 +240,7 @@ export class CalculatorComponent implements OnInit {
         this.insertAtDeepestLevel(this.currentOperation, operationToInsert);
         this.currentValue = "";
       } else {
+        // If no value has been typed, you can change the symbol of the last value in the operation.
         this.changeSymbolOfLastNumber(this.currentOperation, symbolToAdd);
       }
     } else if (thingToAdd === '(') {
@@ -252,6 +257,7 @@ export class CalculatorComponent implements OnInit {
         this.currentValue = "";
       }
       this.closeBracket(this.currentOperation);
+      // Add a *1 after closing brackets. You close more than one bracket at a time without something in between, so this is my workaround.
       if(!this.allBracketsClosed(this.currentOperation)) {
         const lastSymbol: OperationType = this.changeSymbolOfLastNumber(this.currentOperation, OperationType.Multiply);
         this.insertAtDeepestLevel(this.currentOperation, Operation.hidden1(OperationType.Multiply));
