@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { Item } from 'src/app/model/data-model';
+import { uid } from 'uid';
 
 @Component({
   selector: 'app-item-form',
@@ -9,8 +10,7 @@ import { Item } from 'src/app/model/data-model';
   styleUrls: ['./item-form.component.css']
 })
 export class ItemFormComponent implements OnInit {
-
-  @Input() defaultItem: Item = {
+  @Input() itemToDisplay: Item = {
     id: '',
     name: '',
     description: '',
@@ -21,16 +21,22 @@ export class ItemFormComponent implements OnInit {
 
   itemFormResults: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, public modalService: ModalService) { }
+  // For opening and closing modals
+  @Input() itemFormID: string = 'itemForm';
+
+  @Output() formSubmittedEvent= new EventEmitter<Item>();
+
+  constructor(private formBuilder: FormBuilder, public modalService: ModalService) {}
 
   ngOnInit(): void {
+    console.log(this.itemFormID);
     this.itemFormResults = this.formBuilder.group({
-      id: [this.defaultItem.id],
-      name: [this.defaultItem.name, [Validators.required]],
-      description: [this.defaultItem.description],
-      value: [this.defaultItem.value],
-      weight: [this.defaultItem.weight],
-      quantity: [this.defaultItem.quantity]
+      id: [this.itemToDisplay.id],
+      name: [this.itemToDisplay.name, [Validators.required]],
+      description: [this.itemToDisplay.description],
+      value: [this.itemToDisplay.value],
+      weight: [this.itemToDisplay.weight],
+      quantity: [this.itemToDisplay.quantity]
     });
   }
 
@@ -58,4 +64,23 @@ export class ItemFormComponent implements OnInit {
     return this.itemFormResults.get('quantity');
   }
 
+  onSubmit() {
+    this.itemFormResults.value.id = uid();
+    this.formSubmittedEvent.emit(this.itemFormResults.value as Item);
+  }
+
+  resetForm() {
+    this.itemFormResults = this.formBuilder.group({
+      id: [this.itemToDisplay.id],
+      name: [this.itemToDisplay.name, [Validators.required]],
+      description: [this.itemToDisplay.description],
+      value: [this.itemToDisplay.value],
+      weight: [this.itemToDisplay.weight],
+      quantity: [this.itemToDisplay.quantity]
+    });
+  }
+
+  testFunction(id: string) {
+    console.log(id);
+  }
 }

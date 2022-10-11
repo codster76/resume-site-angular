@@ -7,27 +7,33 @@ import { Item } from '../model/data-model';
 })
 export class BackendCallsService {
 
-  // const APIUrl = 'http://localhost:5000/api/items';
+  // APIUrl = 'http://localhost:5000/api/items';
   APIUrl = 'https://resume-site-backend.herokuapp.com/api/items';
 
   constructor(private http: HttpClient) { }
 
   // Get items
-  // async getItemList() {
   getItemList() {
     return this.http.get<Item[]>(this.APIUrl);
-    // const res = await fetch(this.APIUrl);
-    // const items = await res.json();
-
-    // return items as Promise<Item[]>;
   }
 
   // Update item
   async updateItem(itemToReplaceWith: Item, IDOfItemToReplace: string) {
+    // Because JSON.stringify converts numbers to strings and zod in the backend can't read the numbers when they're strings, I have to build my own JSON to send.
+    const stringToSend = 
+    `{
+      "id":"${itemToReplaceWith.id}",
+      "name":"${itemToReplaceWith.name}",
+      "description":"${itemToReplaceWith.description}",
+      "value":${itemToReplaceWith.value},
+      "weight":${itemToReplaceWith.weight},
+      "quantity":${itemToReplaceWith.quantity}
+    }`;
+    console.log(stringToSend);
     const header = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...itemToReplaceWith }),
+      body: stringToSend,
     };
     const response = await fetch(`${this.APIUrl}/${IDOfItemToReplace}`, header);
     const data = await response.json();

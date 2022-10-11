@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // My components
 import { PageTemplateComponent } from './components/page-template/page-template.component';
@@ -36,6 +37,7 @@ import { ItemFormComponent } from './components/bad-of-holding/item-form/item-fo
     FlexLayoutModule,
     PerfectScrollbarModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

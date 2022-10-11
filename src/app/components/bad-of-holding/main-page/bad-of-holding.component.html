@@ -1,19 +1,29 @@
 <app-page-template>
-    <button (click)="sortBy('nameAscending')">name a</button>
-    <button (click)="sortBy('descriptionAscending')">description a</button>
-    <button (click)="sortBy('valueAscending')">value a</button>
-    <button (click)="sortBy('weightAscending')">weight a</button>
-    <button (click)="sortBy('quantityAscending')">quantity a</button>
-    <button (click)="sortBy('nameDescending')">name</button>
-    <button (click)="sortBy('descriptionDescending')">description</button>
-    <button (click)="sortBy('valueDescending')">value</button>
-    <button (click)="sortBy('weightDescending')">weight</button>
-    <button (click)="sortBy('quantityDescending')">quantity</button>
-    <button (click)="addNewItem()">Add New</button>
-    <button (click)="deleteItem('2352352345')">Delete</button>
+    <button (click)="modalService.open('itemForm')">Add Item</button>
+    <div fxLayout="row" fxLayoutAlign="space-around start">
+        <div class="heading" fxFlex="1" (click)="sortBy('name')">Name</div>
+        <div class="heading" fxFlex="30" (click)="sortBy('description')">Description</div>
+        <div class="heading" fxFlex="1" (click)="sortBy('value')">Value</div>
+        <div class="heading" fxFlex="1" (click)="sortBy('weight')">Weight</div>
+        <div class="heading" fxFlex="1" (click)="sortBy('quantity')">Quantity</div>
+    </div>
     <ng-container *ngIf="itemSubject | async as items">
         <div *ngFor="let item of items">
-            <div>{{item.name}}</div>
+            <div (click)="modalService.open(item.id)">
+                <div fxLayout="row" fxLayoutAlign="space-around start">
+                    <div fxFlex="1">{{item.name}}</div>
+                    <div fxFlex="30">{{item.description}}</div>
+                    <div fxFlex="1">{{item.value}}</div>
+                    <div fxFlex="1">{{item.weight}}</div>
+                    <div fxFlex="1">{{item.quantity}}</div>
+                </div>
+                <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90">
+                    <app-item-form [itemFormID]="item.id" [itemToDisplay]="item" (formSubmittedEvent)="editItem($event, item.id)"></app-item-form>
+                </app-modal>
+            </div>
         </div>
     </ng-container>
+    <app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90">
+        <app-item-form itemFormID="itemForm" (formSubmittedEvent)="addNewItem($event)"></app-item-form>
+    </app-modal>
 </app-page-template>
