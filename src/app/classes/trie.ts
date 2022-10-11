@@ -1,5 +1,9 @@
 import { TrieNode } from "./trie-node";
 
+// Usage notes
+// Basically, all you need to do is insert your data as strings through the insert method.
+// 
+
 export class Trie {
   root: TrieNode;
 
@@ -25,6 +29,8 @@ export class Trie {
     currentNode.setEnd();
   }
 
+  // Returns true if a full word is found, false otherwise. e.g. "bike" would return true if "bike"
+  // exists in the trie, but "bi" would return false.
   search(wordToFind: string) {
     let currentNode: TrieNode = this.root;
 
@@ -42,6 +48,8 @@ export class Trie {
     return currentNode.isEnd();
   }
 
+  // Returns true if the string exists within any word. e.g. "bike" would return true if "bike"
+  // exists in the trie. "bi" would also return true because it exists within "bike".
   startsWith(wordToFind: string) {
     let currentNode: TrieNode = this.root;
 
@@ -58,6 +66,8 @@ export class Trie {
     return true;
   }
 
+  // Stick a string in as an input, then perform a depth-first search from that node.
+  // Returns the specified number of words starting with the input string.
   getAutoComplete(wordToFind: string, numberToSearch: number) {
     let currentNode: TrieNode = this.root;
 
@@ -113,15 +123,7 @@ export class Trie {
 
       if (node) {
         // Recur
-        this.depthFirstSearch(
-          node,
-          stringToAddTo,
-          String.fromCharCode(
-            startingNode.nodeList.indexOf(node) + 'a'.charCodeAt(0)
-          ),
-          stringList,
-          resultsToSearchFor
-        );
+        this.depthFirstSearch(node, stringToAddTo, String.fromCharCode(startingNode.nodeList.indexOf(node) + 'a'.charCodeAt(0)), stringList, resultsToSearchFor);
       }
     }
 
@@ -129,6 +131,7 @@ export class Trie {
     return stringList;
   }
 
+  // Returns true if the current node is the end of a word.
   checkIfNoMorePaths(node: TrieNode) {
     let isEnd = true;
     for (const childNode of node.nodeList) {

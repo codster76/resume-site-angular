@@ -1,0 +1,8 @@
+<app-page-template>
+    <button (click)="doSomething()">Click</button>
+    <ng-container *ngIf="itemObservable | async as items">
+        <div *ngFor="let item of items">
+            <div>{{item.name}}</div>
+        </div>
+    </ng-container>
+</app-page-template>

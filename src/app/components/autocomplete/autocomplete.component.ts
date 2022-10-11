@@ -1,27 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Trie } from 'src/app/classes/trie.js';
 import { sampleDataAsArray } from 'src/assets/SampleData';
-import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.css']
 })
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent implements OnInit, OnDestroy {
 
-  searchDebounce = new Subject<string>();
-  input: string = "";
+  @ViewChild('textInput') input?: ElementRef;
+  inputSubscription?: Subscription;
 
-  constructor() {
-    this.searchDebounce.pipe(
-      debounceTime(400),
-      distinctUntilChanged()
-    ).subscribe(value => (
-      // Perform search
-      console.log(value)
-    ));
+  constructor() {}
+
+  ngAfterViewInit() {
+    if(this.input) {
+      this.inputSubscription = fromEvent(this.input.nativeElement, 'keyup').pipe(
+        debounceTime(400),
+        distinctUntilChanged(),
+        tap((text) => console.log(this.input?.nativeElement.value))
+      ).subscribe();
+    }
+  }
+
+  ngOnDestroy(): void {
+      this.inputSubscription?.unsubscribe();
   }
 
   ngOnInit(): void {

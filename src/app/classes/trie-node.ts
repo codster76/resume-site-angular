@@ -1,7 +1,9 @@
 export class TrieNode {
     nodeList: TrieNode[] = new Array(26);
-    flag = false;
+    end = false;
   
+    // This currently only works with lower case characters from a to z. If you want to work with more
+    // characters, a lookup table is probably necessary.
     containsKey(character: string) {
       if (this.nodeList[character.charCodeAt(0) - 'a'.charCodeAt(0)]) {
         return true;
@@ -19,11 +21,11 @@ export class TrieNode {
     }
   
     setEnd() {
-      this.flag = true;
+      this.end = true;
     }
   
     isEnd() {
-      return this.flag;
+      return this.end;
     }
   
     printNodeList() {
