@@ -5,5 +5,5 @@ export interface Item {
     value: number,
     weight: number,
     quantity: number,
-    tags: string[]
+    tags?: string[]
 }

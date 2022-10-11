@@ -1,6 +1,17 @@
 <app-page-template>
-    <button (click)="doSomething()">Click</button>
-    <ng-container *ngIf="itemObservable | async as items">
+    <button (click)="sortBy('nameAscending')">name a</button>
+    <button (click)="sortBy('descriptionAscending')">description a</button>
+    <button (click)="sortBy('valueAscending')">value a</button>
+    <button (click)="sortBy('weightAscending')">weight a</button>
+    <button (click)="sortBy('quantityAscending')">quantity a</button>
+    <button (click)="sortBy('nameDescending')">name</button>
+    <button (click)="sortBy('descriptionDescending')">description</button>
+    <button (click)="sortBy('valueDescending')">value</button>
+    <button (click)="sortBy('weightDescending')">weight</button>
+    <button (click)="sortBy('quantityDescending')">quantity</button>
+    <button (click)="addNewItem()">Add New</button>
+    <button (click)="deleteItem('2352352345')">Delete</button>
+    <ng-container *ngIf="itemSubject | async as items">
         <div *ngFor="let item of items">
             <div>{{item.name}}</div>
         </div>
