@@ -16,6 +16,7 @@ import { AutocompleteComponent } from './components/autocomplete/autocomplete.co
 import { ModalComponent } from './components/modal/modal.component';
 import { BadOfHoldingComponent } from './components/bad-of-holding/main-page/bad-of-holding.component';
 import { ItemComponent } from './components/bad-of-holding/item/item.component';
+import { ItemFormComponent } from './components/bad-of-holding/item-form/item-form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ItemComponent } from './components/bad-of-holding/item/item.component';
     ModalComponent,
     BadOfHoldingComponent,
     ItemComponent,
+    ItemFormComponent,
   ],
   imports: [
     BrowserModule,
