@@ -8,13 +8,13 @@ import { Item } from '../model/data-model';
 export class BackendCallsService {
 
   // APIUrl = 'http://localhost:5000/api/items';
-  APIUrl = 'https://resume-site-backend.herokuapp.com/api/items';
+  APIUrl = 'https://resume-site-backend.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 
   // Get items
   getItemList() {
-    return this.http.get<Item[]>(this.APIUrl);
+    return this.http.get<Item[]>(`${this.APIUrl}/items`);
   }
 
   // Update item
@@ -35,7 +35,7 @@ export class BackendCallsService {
       headers: { 'Content-Type': 'application/json' },
       body: stringToSend,
     };
-    const response = await fetch(`${this.APIUrl}/${IDOfItemToReplace}`, header);
+    const response = await fetch(`${this.APIUrl}/items/${IDOfItemToReplace}`, header);
     const data = await response.json();
     console.log(`Item Updated: ${data}`);
   }
@@ -46,7 +46,7 @@ export class BackendCallsService {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...itemToAdd }),
     };
-    const response = await fetch(`${this.APIUrl}`, header);
+    const response = await fetch(`${this.APIUrl}/items`, header);
     const data = await response.json();
     console.log(`Item Added: ${data}`);
   }
@@ -55,8 +55,12 @@ export class BackendCallsService {
     const header = {
       method: 'DELETE',
     };
-    const response = await fetch(`${this.APIUrl}/${idToDelete}`, header);
+    const response = await fetch(`${this.APIUrl}/items/${idToDelete}`, header);
     const data = await response.json();
     console.log(`Item Deleted: ${data}`);
+  }
+
+  getAutocomplete(textInput: string, numberOfResults: number) {
+    return this.http.get<string[]>(`${this.APIUrl}/autocomplete/${textInput}/${numberOfResults}`);
   }
 }
