@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { fromEvent, Observable, Subject, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs/operators';
+import { fromEvent, Observable, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { BackendCallsService } from 'src/app/services/backend-calls.service';
-import { FormControl } from '@angular/forms';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-autocomplete',
@@ -15,6 +15,7 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
   @ViewChild('numberOfSuggestions') numberOfSuggestions?: ElementRef;
 
   inputSubscription?: Subscription;
+  numberChangeSubscription?: Subscription;
   autocompleteOptions: Observable<string[]> = this.backendCalls.getAutocomplete(' ',0);
 
   constructor(private backendCalls: BackendCallsService) {}
@@ -24,20 +25,38 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
       this.inputSubscription = fromEvent(this.input.nativeElement, 'keyup').pipe(
         debounceTime(600),
         distinctUntilChanged()
-      ).subscribe((data) => {
-        if(this.input?.nativeElement.value === '') {
-          this.autocompleteOptions = this.backendCalls.getAutocomplete(' ', this.numberOfSuggestions?.nativeElement.value);
-        } else {
-          this.autocompleteOptions = this.backendCalls.getAutocomplete(this.input?.nativeElement.value, this.numberOfSuggestions?.nativeElement.value);
-        }
+      ).subscribe(() => {
+        this.updateAutocomplete();
+      });
+    }
+
+    if(this.numberOfSuggestions) {
+      const changeObservable = fromEvent(this.numberOfSuggestions.nativeElement, 'change');
+      const keyupObservable = fromEvent(this.numberOfSuggestions.nativeElement, 'keyup');
+
+      const bothEvents = merge(changeObservable, keyupObservable);
+      this.numberChangeSubscription = bothEvents.pipe(
+        debounceTime(600),
+        distinctUntilChanged()
+      ).subscribe(() => {
+        this.updateAutocomplete();
       });
     }
   }
 
   ngOnDestroy(): void {
       this.inputSubscription?.unsubscribe();
+      this.numberChangeSubscription?.unsubscribe();
   }
 
   ngOnInit(): void {
+  }
+
+  updateAutocomplete() {
+    if(this.input?.nativeElement.value === '') {
+      this.autocompleteOptions = this.backendCalls.getAutocomplete(' ', this.numberOfSuggestions?.nativeElement.value);
+    } else {
+      this.autocompleteOptions = this.backendCalls.getAutocomplete(this.input?.nativeElement.value, this.numberOfSuggestions?.nativeElement.value);
+    }
   }
 }

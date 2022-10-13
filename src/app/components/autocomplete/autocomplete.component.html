@@ -4,7 +4,7 @@
 
 <mat-autocomplete #auto="matAutocomplete">
     <ng-container *ngIf="autocompleteOptions | async as options">
-        <mat-option *ngFor="let option of options" [value]="option">
+        <mat-option (click)="updateAutocomplete()" *ngFor="let option of options" [value]="option">
             {{option}}
         </mat-option>
     </ng-container>

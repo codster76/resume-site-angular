@@ -19,6 +19,7 @@ export class ModalService {
   }
 
   open(id: string) {
+    console.log('open');
     const modalToOpen = this.modals.find((modal) => {
       if (modal.id === id) {
         return modal;
@@ -28,6 +29,7 @@ export class ModalService {
   }
 
   close(id: string) {
+    console.log('close2');
     const modalToClose = this.modals.find((modal) => {
       if (modal.id === id) {
         return modal;

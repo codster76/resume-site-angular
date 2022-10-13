@@ -16,10 +16,10 @@
                 <div fxFlex="1">{{item.weight}}</div>
                 <div fxFlex="1">{{item.quantity}}</div>
             </div>
-            <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90">
-                <app-item-form [itemFormID]="item.id" [itemToDisplay]="item" (formSubmittedEvent)="editItem($event, item.id)"></app-item-form>
-            </app-modal>
         </div>
+        <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90">
+            <app-item-form [itemFormID]="item.id" [itemToDisplay]="item" (formSubmittedEvent)="editItem($event, item.id)"></app-item-form>
+        </app-modal>
     </div>
 </ng-container>
 <app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90">
