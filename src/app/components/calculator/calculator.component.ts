@@ -388,33 +388,6 @@ export class CalculatorComponent implements OnInit {
         }
       }
 
-      // for(let i = 0; i < valueAsArray.length-1; i++) {
-      //   if(valueAsArray[i].operationSymbol === OperationType.Multiply) {
-      //     // Basically, look at two adjacent values and check whether they are single values or brackets. If they are in brackets, compute whatever's in the brackets first. Ensures that the deepest levels of brackets always get calculated first.
-      //     if(!valueAsArray[i].isNumber) {
-      //       valueAsArray[i] = this.calculate(valueAsArray[i]);
-      //     }
-      //     if(!valueAsArray[i+1].isNumber) {
-      //       valueAsArray[i+1] = this.calculate(valueAsArray[i+1]);
-      //     }
-
-      //     // Pull the two values you're calculating out of the array and compute them
-      //     const operation1 = valueAsArray.splice(i,1)[0];
-      //     const operation2 = valueAsArray.splice(i,1)[0];
-    
-      //     const arrayValue1 = operation1?.value as number;
-      //     const arrayValue2 = operation2?.value as number;
-
-      //     // console.log(`${arrayValue1} | ${arrayValue2}`);
-    
-      //     let calculatedNumber = 0;
-      //     calculatedNumber = arrayValue1 * arrayValue2;
-
-      //     // Once the values have been computed, put them back in the spot they were taken from
-      //     valueAsArray.splice(i, 0, Operation.singleValue(calculatedNumber, operation2.operationSymbol));
-      //   }
-      // }
-
       // Second pass for addition/subtraction. Basically the same as before, but without the multiplication/division check.
       for(let i = 0; i < valueAsArray.length-1; i++) {
         if(!valueAsArray[i].isNumber) {
