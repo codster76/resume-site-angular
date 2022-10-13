@@ -1,6 +1,6 @@
 <p>Autocomplete Demo</p>
 <input type="text" #textInput matInput [matAutocomplete]="auto">
-<input type="number" min="1" value="1" #numberOfSuggestions>
+<input type="number" min="1" value="5" #numberOfSuggestions>
 
 <mat-autocomplete #auto="matAutocomplete">
     <ng-container *ngIf="autocompleteOptions | async as options">
