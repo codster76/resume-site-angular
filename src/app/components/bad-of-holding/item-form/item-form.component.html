@@ -24,7 +24,11 @@
             <input type="number" formControlName="quantity" required />
         </div>
 
-        <button type="button" (click)="modalService.close(itemFormID)">Cancel</button>
+        <button type="button" (click)="cancelButton()">Cancel</button>
         
         <input [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
+
+        <div *ngIf="formType === 'edit'">
+            <button type="button" (click)="onDelete()">Delete Item</button>
+        </div>
 </form>

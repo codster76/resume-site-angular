@@ -20,8 +20,8 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() widthInPercent: number = 0;
   @Input() heightInPercent: number = 0;
 
-  marginWidth = '70%';
-  marginHeight = '90%';
+  marginWidth: string = '70%';
+  marginHeight: string = '90%';
 
   modalOpen = false;
 
@@ -36,7 +36,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modalService.add(this);
 
     this.marginWidth = `${(100 - this.widthInPercent) / 2}%`;
-    this.marginHeight = `${(100 - this.heightInPercent) / 2}%`;
+    this.marginHeight = `${(100 - this.heightInPercent) / 4}%`;
   }
 
   ngOnDestroy() {

@@ -27,7 +27,7 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     weight: [(a: Item, b: Item) => a.weight - b.weight, (a: Item, b: Item) => b.weight - a.weight],
     quantity: [(a: Item, b: Item) => a.quantity - b.quantity, (a: Item, b: Item) => b.quantity - a.quantity]
   }
-  lastSort: string = '';
+  lastSort: string[] = ['', ''];
 
   constructor(public backendCalls: BackendCallsService, public modalService: ModalService) { }
 
@@ -40,12 +40,19 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
   }
 
   sortBy(sortingType: string) {
-    if(this.lastSort !== sortingType) {
+    // If the column is unsorted
+    if(this.lastSort[0] !== sortingType) {
       this.itemSubject.next(this.itemSubject.getValue().sort(this.sortingFunctions[sortingType as keyof typeof this.sortingFunctions][0]));
-      this.lastSort = sortingType;
+      this.lastSort = [sortingType, 'ascending'];
     } else {
-      this.itemSubject.next(this.itemSubject.getValue().sort(this.sortingFunctions[sortingType as keyof typeof this.sortingFunctions][1]));
-      this.lastSort = '';
+      // If the column is sorted, toggle between ascending and descending
+      if(this.lastSort[1] === 'ascending') {
+        this.itemSubject.next(this.itemSubject.getValue().sort(this.sortingFunctions[sortingType as keyof typeof this.sortingFunctions][1]));
+        this.lastSort = [sortingType, 'descending'];
+      } else {
+        this.itemSubject.next(this.itemSubject.getValue().sort(this.sortingFunctions[sortingType as keyof typeof this.sortingFunctions][0]));
+        this.lastSort = [sortingType, 'ascending'];
+      }
     }
   }
 
@@ -53,6 +60,7 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     this.backendCalls.addItem(itemToAdd);
     // Add to display
     this.itemSubject.getValue().push(itemToAdd);
+    this.modalService.close('itemForm');
   }
 
   editItem(itemToUpdateWith: Item, IDOfItemToReplace: string) {
@@ -73,5 +81,19 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     this.backendCalls.deleteItem(idToDelete);
     // Delete from display
     this.itemSubject.next(this.itemSubject.getValue().filter(arrayItem => arrayItem.id !== idToDelete));
+    this.modalService.close(idToDelete);
+  }
+
+  // Adds sorting icons to headings based on the last sort performed
+  generateHeading(headingName: string) {
+    if(headingName === this.lastSort[0]) {
+      if(this.lastSort[1] === 'ascending') {
+        return headingName.charAt(0).toUpperCase() + headingName.slice(1) + "↑";
+      } else {
+        return headingName.charAt(0).toUpperCase() + headingName.slice(1) + "↓";
+      }
+    } else {
+      return headingName.charAt(0).toUpperCase() + headingName.slice(1);
+    }
   }
 }

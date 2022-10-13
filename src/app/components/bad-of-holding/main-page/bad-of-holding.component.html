@@ -1,10 +1,10 @@
 <button (click)="modalService.open('itemForm')">Add Item</button>
 <div fxLayout="row" fxLayoutAlign="space-around start">
-    <div class="heading" fxFlex="1" (click)="sortBy('name')">Name</div>
-    <div class="heading" fxFlex="30" (click)="sortBy('description')">Description</div>
-    <div class="heading" fxFlex="1" (click)="sortBy('value')">Value</div>
-    <div class="heading" fxFlex="1" (click)="sortBy('weight')">Weight</div>
-    <div class="heading" fxFlex="1" (click)="sortBy('quantity')">Quantity</div>
+    <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
+    <div class="heading" fxFlex="30" (click)="sortBy('description')">{{generateHeading('description')}}</div>
+    <div class="heading" fxFlex="1" (click)="sortBy('value')">{{generateHeading('value')}}</div>
+    <div class="heading" fxFlex="1" (click)="sortBy('weight')">{{generateHeading('weight')}}</div>
+    <div class="heading" fxFlex="1" (click)="sortBy('quantity')">{{generateHeading('quantity')}}</div>
 </div>
 <ng-container *ngIf="itemSubject | async as items">
     <div *ngFor="let item of items">
@@ -17,11 +17,21 @@
                 <div fxFlex="1">{{item.quantity}}</div>
             </div>
         </div>
-        <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90">
-            <app-item-form [itemFormID]="item.id" [itemToDisplay]="item" (formSubmittedEvent)="editItem($event, item.id)"></app-item-form>
+        <app-modal [id]="item.id" [widthInPercent]="40" [heightInPercent]="50">
+            <app-item-form
+                [modalID]="item.id"
+                [itemToDisplay]="item"
+                (formSubmittedEvent)="editItem($event, item.id)"
+                (itemDeletedEvent)="deleteItem($event)"
+                formType="edit">
+            </app-item-form>
         </app-modal>
     </div>
 </ng-container>
 <app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90">
-    <app-item-form itemFormID="itemForm" (formSubmittedEvent)="addNewItem($event)"></app-item-form>
+    <app-item-form
+        modalID="itemForm"
+        (formSubmittedEvent)="addNewItem($event)"
+        formType="add">
+    </app-item-form>
 </app-modal>

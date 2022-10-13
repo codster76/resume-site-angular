@@ -19,17 +19,17 @@ export class ItemFormComponent implements OnInit {
     quantity: 0,
   };
 
+  @Input() formType: TypeOfForm = "add";
+  @Input() modalID: string = '';
+
   itemFormResults: FormGroup = new FormGroup({});
 
-  // For opening and closing modals
-  @Input() itemFormID: string = 'itemForm';
-
   @Output() formSubmittedEvent= new EventEmitter<Item>();
+  @Output() itemDeletedEvent = new EventEmitter<string>();
 
   constructor(private formBuilder: FormBuilder, public modalService: ModalService) {}
 
   ngOnInit(): void {
-    console.log(this.itemFormID);
     this.itemFormResults = this.formBuilder.group({
       id: [this.itemToDisplay.id],
       name: [this.itemToDisplay.name, [Validators.required]],
@@ -69,6 +69,10 @@ export class ItemFormComponent implements OnInit {
     this.formSubmittedEvent.emit(this.itemFormResults.value as Item);
   }
 
+  onDelete() {
+    this.itemDeletedEvent.emit(this.itemFormResults.value.id);
+  }
+
   resetForm() {
     this.itemFormResults = this.formBuilder.group({
       id: [this.itemToDisplay.id],
@@ -80,7 +84,10 @@ export class ItemFormComponent implements OnInit {
     });
   }
 
-  testFunction(id: string) {
-    console.log(id);
+  cancelButton() {
+    this.modalService.close(this.modalID);
+    this.resetForm();
   }
 }
+
+type TypeOfForm = "add" | "edit";
