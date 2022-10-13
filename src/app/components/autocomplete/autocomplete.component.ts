@@ -13,19 +13,17 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
 
   @ViewChild('textInput') input?: ElementRef;
   @ViewChild('numberOfSuggestions') numberOfSuggestions?: ElementRef;
+
   inputSubscription?: Subscription;
   autocompleteOptions: Observable<string[]> = this.backendCalls.getAutocomplete(' ',0);
 
   constructor(private backendCalls: BackendCallsService) {}
 
-  myControl = new FormControl();
-
   ngAfterViewInit() {
     if(this.input) {
       this.inputSubscription = fromEvent(this.input.nativeElement, 'keyup').pipe(
         debounceTime(600),
-        distinctUntilChanged(),
-        // tap((text) => console.log(this.input?.nativeElement.value))
+        distinctUntilChanged()
       ).subscribe((data) => {
         if(this.input?.nativeElement.value === '') {
           this.autocompleteOptions = this.backendCalls.getAutocomplete(' ', this.numberOfSuggestions?.nativeElement.value);
@@ -41,8 +39,5 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-  }
-
-  doSomething() {
   }
 }
