@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageTemplateComponent implements OnInit {
 
+  sidenavOpen: boolean = true;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleSidenav() {
+    this.sidenavOpen = !this.sidenavOpen;
   }
 
 }

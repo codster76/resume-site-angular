@@ -1,9 +1,20 @@
 <div fxLayout="row" fxLayoutAlign=" stretch" style="height: 100vh">
-  <div style="background-color: red; width: 150px; height: 100vh">sidebar</div>
-  <perfect-scrollbar class="scrollingContent" fxLayout="column" fxLayoutAlign="space-between stretch" style="background-color: yellow; min-height: 90vh">
-    <div style="background-color: aqua; min-height: 10vh">Header</div>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="sidenav" mode="side" [opened]="sidenavOpen">
+      <button class="nav-button" routerLink="calculator">Calculator</button>
+      <button class="nav-button" routerLink="autocomplete">Autocomplete Demo</button>
+      <button class="nav-button" routerLink="bad-of-holding">Bad of Holding</button>
+    </mat-sidenav>
+  </mat-sidenav-container>
+  <perfect-scrollbar class="scrollingContent" fxLayout="column" fxLayoutAlign="space-between stretch" style="background-color: yellow; min-height: 90vh;">
+    <div fxLayout="row" fxLayoutAlign="start center" style="background-color: aqua; min-height: 10vh">
+      <button (click)="toggleSidenav()" style="width: 50px">Open</button>
+      <div>Header</div>
+    </div>
     <div style="height: 100vh">
-      <ng-content></ng-content>
+      <perfect-scrollbar>
+        <ng-content></ng-content>
+      </perfect-scrollbar>
     </div>
     <div style="background-color: green; padding-top: 50px"> footer </div>
   </perfect-scrollbar>

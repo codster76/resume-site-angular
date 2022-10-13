@@ -20,6 +20,7 @@ import { ItemComponent } from './components/bad-of-holding/item/item.component';
 import { ItemFormComponent } from './components/bad-of-holding/item-form/item-form.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatAutocompleteModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
