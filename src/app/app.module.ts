@@ -7,7 +7,9 @@ import { AppComponent } from './app.component';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 // My components
 import { PageTemplateComponent } from './components/page-template/page-template.component';
@@ -44,6 +46,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     NoopAnimationsModule,
     MatAutocompleteModule,
     MatSidenavModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

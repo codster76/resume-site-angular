@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageTemplateComponent implements OnInit {
 
-  sidenavOpen: boolean = true;
+  sidenavOpen: boolean = false;
 
   constructor() { }
 

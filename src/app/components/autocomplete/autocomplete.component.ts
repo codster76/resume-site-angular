@@ -15,10 +15,10 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
   @ViewChild('numberOfSuggestions') numberOfSuggestions?: ElementRef;
   inputSubscription?: Subscription;
   autocompleteOptions: Observable<string[]> = this.backendCalls.getAutocomplete(' ',0);
-  autocompleteFormControl: FormControl = new FormControl();
-  listOfThings: string[] = [];
 
   constructor(private backendCalls: BackendCallsService) {}
+
+  myControl = new FormControl();
 
   ngAfterViewInit() {
     if(this.input) {
@@ -28,18 +28,9 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
         // tap((text) => console.log(this.input?.nativeElement.value))
       ).subscribe((data) => {
         if(this.input?.nativeElement.value === '') {
-          this.backendCalls.getAutocomplete(' ', this.numberOfSuggestions?.nativeElement.value).subscribe(
-            (something) => {
-              this.listOfThings = something;
-            }
-          );
+          this.autocompleteOptions = this.backendCalls.getAutocomplete(' ', this.numberOfSuggestions?.nativeElement.value);
         } else {
-          this.backendCalls.getAutocomplete(this.input?.nativeElement.value, this.numberOfSuggestions?.nativeElement.value).subscribe(
-            (something) => {
-              // this.autocompleteFormControl.reset(something);
-              this.listOfThings = something;
-            }
-          );
+          this.autocompleteOptions = this.backendCalls.getAutocomplete(this.input?.nativeElement.value, this.numberOfSuggestions?.nativeElement.value);
         }
       });
     }
@@ -50,18 +41,8 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.backendCalls.getAutocomplete(' ', 1).subscribe(
-      (something) => {
-        this.autocompleteFormControl.reset(something);
-      }
-    );
   }
 
   doSomething() {
-    this.backendCalls.getAutocomplete('a', 1).subscribe(
-      (something) => {
-        this.autocompleteFormControl.reset(something);
-      }
-    );
   }
 }

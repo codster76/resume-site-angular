@@ -1,33 +1,34 @@
 <p>Autocomplete Demo</p>
-<!-- <input type="text" #textInput> -->
-<input type="number" #numberOfSuggestions>
+<!-- <input type="text" #textInput matInput> -->
+<!-- <input type="text" #elementToTarget> -->
+<!-- <input type="number" #numberOfSuggestions>
     <input type="text"
     #textInput
     placeholder="Pick one"
     aria-label="Number"
     matInput
-    [matAutocomplete]="auto">
+    [matAutocomplete]="auto"> -->
 
-<mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let option of listOfThings" [value]="option">
-        {{option}}
-    </mat-option>
-</mat-autocomplete>
-<!-- <ng-container *ngIf="autocompleteOptions | async as options">
-    <div *ngFor="let word of options">
+    <!-- <div *ngFor="let word of options">
         <div>{{word}}</div>
-    </div>
-    <input type="text"
-    #textInput
-    placeholder="Pick one"
-    aria-label="Number"
-    matInput
-    [matAutocomplete]="auto"
-    [formControl]="autocompleteFormControl">
+    </div> -->
+    <input type="text" #textInput matInput [matAutocomplete]="auto">
 
     <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of options" [value]="option">
-            {{option}}
-        </mat-option>
+        <ng-container *ngIf="autocompleteOptions | async as options">
+            <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+            </mat-option>
+        </ng-container>
     </mat-autocomplete>
-</ng-container> -->
+
+<!-- <mat-form-field>
+    <input #textInput type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+        <ng-container *ngIf="autocompleteOptions | async as options">
+            <mat-option *ngFor="let option of options" [value]="option">
+                {{option}}
+            </mat-option>
+        </ng-container>
+   </mat-autocomplete>
+</mat-form-field> -->
