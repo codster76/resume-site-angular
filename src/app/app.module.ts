@@ -22,6 +22,10 @@ import { ItemFormComponent } from './components/bad-of-holding/item-form/item-fo
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { RankerComponent } from './components/ranker/ranker.component';
+import { DoneInTheFungeonComponent } from './components/done-in-the-fungeon/done-in-the-fungeon.component';
+import { ArtAndMusicComponent } from './components/art-and-music/art-and-music.component';
+import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-echoes.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     ModalComponent,
     BadOfHoldingComponent,
     ItemFormComponent,
+    RankerComponent,
+    DoneInTheFungeonComponent,
+    ArtAndMusicComponent,
+    MegaManEchoesComponent,
   ],
   imports: [
     BrowserModule,

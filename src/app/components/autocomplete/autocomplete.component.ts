@@ -56,7 +56,7 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
     if(this.input?.nativeElement.value === '') {
       this.autocompleteOptions = this.backendCalls.getAutocomplete(' ', this.numberOfSuggestions?.nativeElement.value);
     } else {
-      this.autocompleteOptions = this.backendCalls.getAutocomplete(this.input?.nativeElement.value, this.numberOfSuggestions?.nativeElement.value);
+      this.autocompleteOptions = this.backendCalls.getAutocomplete(this.input?.nativeElement.value.toLowerCase(), this.numberOfSuggestions?.nativeElement.value);
     }
   }
 }

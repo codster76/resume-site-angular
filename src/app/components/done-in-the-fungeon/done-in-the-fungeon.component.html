@@ -1,0 +1,45 @@
+<p>Done in the Fungeon</p>
+<iframe frameborder="0" src="https://itch.io/embed-upload/2941810?color=333333" allowfullscreen="" width="1280" height="720"><a href="https://codster76.itch.io/done-in-the-fungeon">Play Done in the Fungeon on itch.io</a></iframe>
+<div>Sorry, mobileusers, but this game is only functional on desktops.</div>
+<br />
+<div>
+    Controls:<br />
+    WASD = Move<br />
+    Space = Dash (Has iframes at the beginning)<br />
+    Left Shift (Hold) = Charged Attack<br />
+    P = Basic Combo<br />
+    R = Reset the ball in golf rooms<br />
+
+    Tips:<br />
+    - You can dash further by moving before you dash.<br />
+    - Orange hitboxes can be dashed through. Red cannot.<br />
+    - The charged attack has a very long range and strong knockback.<br />
+    - All of your attacks can pierce walls.<br />
+    - After each level, you are given a choice between three items. Attack up, HP up or instant healing. You can only pick one.<br />
+
+    Note:<br />
+    - Some of the settings can crash the game in this build.
+</div>
+<br />
+
+<div>What is it?</div>
+<div>This was the capstone project for my university course, where we had to design and create our own games over the course of around 6 months.</div>
+<br />
+
+<div>Design and Development Retrospective</div>
+<div>Programming</div>
+<div>The entire project was made using the Unity game engine, with C# as the scripting language. I made all of the player controls, enemy behaviour, interactive objects, stage hazards and puzzles from scratch.</div>
+<br />
+<div>In particular, I’d like to note the pathfinding system. I had created a node system using Unity’s collision and physics engine and allowed enemies to path find towards a target based on a breadth-first search of the current room. The breadth-first search always returned the shortest path to the target, which allowed enemies to path around obstacles and through mazes without getting stuck. While this method of pathfinding is rather outdated and becomes extremely inefficient at larger scales (breadth-first search is not very efficient for large search spaces), it’s simple to implement and worked well for the single rooms they were confined to in this game.</div>
+<br />
+<div>Another area of note is the player’s character, which is controlled using a finite state machine, basically allowing the player to only be in a single state at any given time.</div>
+<br />
+
+<div>Design</div>
+<div>The overarching idea for this game was to present a large variety of things to the player while keeping the player’s ability to interact with it consistent (attacks, evasion, movement). It was inspired by the WarioWare series, which uses a similar principles for when and how it presents its minigames, generally grouping them based on the control scheme you’re intended to use.</div>
+<br />
+<div>The other part of the game’s design I had to work with were the constraints, which were primarily the physical space, assets and time. The entire game was to take place on a small grid of squares, where elements could not be any more granular than a single grid, which informed a lot of the level and puzzle design, it acted to keep things fairly simple. As for the asset and time limitations, I was creating almost all of the assets from scratch, so it was important to make effective use of each one. It also works as a player teaching tool to reuse familiar mechanics.</div>
+<br />
+
+<div>Assets</div>
+<div>Aside from the music and UI elements, I had created all of the sprites and sound effects myself using Krita to make the sprites and FamiTracker to create the sound effects. The art style of this game was inspired by classic NES games, primarily The Legend of Zelda. The style presents a simple and clean view of the game so that players could easily see what was going on. The grid-based nature of the game also kept everything at a reasonable scale to design around and for players to see.</div>

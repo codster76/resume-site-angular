@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/services/modal.service';
 
 // Recursion hell
 
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculatorComponent implements OnInit {
   currentOperation: Operation = Operation.createTop();
-  currentValue: string = '0';
+  currentValue: string = '';
   valueToDisplay: string = '0';
 
   operation1: Operation = Operation.operationArray([Operation.operationArray([
@@ -98,7 +99,7 @@ export class CalculatorComponent implements OnInit {
       Operation.singleValue(6, OperationType.None),
     ]);
 
-  constructor() { }
+  constructor(public modalService: ModalService) { }
 
   ngOnInit(): void {
   }
@@ -336,6 +337,7 @@ export class CalculatorComponent implements OnInit {
 
   calculate(operationToCalculate: Operation) {
     if(operationToCalculate.isNumber) {
+      console.log('does this ever run?')
       return operationToCalculate;
     }
 
@@ -346,7 +348,13 @@ export class CalculatorComponent implements OnInit {
     }
 
     if(valueAsArray.length === 1) {
-      return Operation.singleValue(valueAsArray[0].value as number, valueAsArray[0].operationSymbol);
+      // If the only value is a set of brackets
+      if(!valueAsArray[0].isNumber) {
+        const operationToReturn: Operation = this.calculate(valueAsArray[0]);
+        return Operation.singleValue(operationToReturn.value as number, valueAsArray[0].operationSymbol);
+      } else {
+        return Operation.singleValue(valueAsArray[0].value as number, valueAsArray[0].operationSymbol);
+      }
     }
 
     while(valueAsArray.length > 1) {
