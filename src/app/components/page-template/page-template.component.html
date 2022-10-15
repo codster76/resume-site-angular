@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign=" stretch" style="height: 100vh">
+<!-- <div fxLayout="row" fxLayoutAlign=" stretch" style="height: 100vh">
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav class="sidenav" mode="side" [opened]="sidenavOpen">
       <button class="nav-button" routerLink="">Home</button>
@@ -23,4 +23,42 @@
     </div>
     <div style="background-color: green; padding-top: 50px"> footer </div>
   </perfect-scrollbar>
-</div>
+</div> -->
+
+<mat-toolbar>
+  <button (click)="toggleSidenav()" style="width: 100px">Open Navbar</button>
+  <div>Header</div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container" style="min-height: 100%">
+  <mat-sidenav class="sidenav" mode="side" [opened]="sidenavOpen">
+    <div fxLayout="column">
+      <hr style="width: 90%" />
+      <div class="nav-button" routerLink="" style="padding-left: 10px">Home</div>
+      <hr style="width: 90%" />
+      <div class="nav-title">Web Apps</div>
+      <div class="nav-button" routerLink="calculator">Calculator</div>
+      <div class="nav-button" routerLink="autocomplete">Autocomplete</div>
+      <div class="nav-button" routerLink="bad-of-holding">Bad of Holding</div>
+      <hr style="width: 90%" />
+      <br />
+      <hr style="width: 90%" />
+      <div class="nav-title">Game Development</div>
+      <div class="nav-button" routerLink="done-in-the-fungeon">Done in the Fungeon</div>
+      <div class="nav-button" routerLink="mega-man-echoes">Mega Man Echoes</div>
+      <hr style="width: 90%" />
+      <br />
+      <hr style="width: 90%" />
+      <div class="nav-title">Other</div>
+      <div class="nav-button" routerLink="ranker">Ranker</div>
+      <div class="nav-button" routerLink="art-and-music">Art and Music</div>
+      <hr style="width: 90%" />
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" style="min-height: 1000px">
+      <ng-content></ng-content>
+      <div style="background-color: green; padding-top: 50px"> footer </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

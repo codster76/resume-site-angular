@@ -7,18 +7,19 @@
 }
 
 .sidenav {
-    background-color: white;
     width: 150px;
 }
 
-.sidenav-content {
-    width: 100px;
-    background-color: red;
+.nav-title {
+    padding: 5px;
 }
 
 .nav-button {
-    padding: 0;
-    margin: 0;
-    width: 100px;
-    height: 50px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.nav-button:hover {
+    background-color: grey;
+    padding-left: 15px;
 }

@@ -10,6 +10,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 // My components
 import { PageTemplateComponent } from './components/page-template/page-template.component';
@@ -54,7 +55,8 @@ import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-ec
     MatSidenavModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent],
