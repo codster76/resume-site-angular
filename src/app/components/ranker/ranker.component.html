@@ -22,7 +22,10 @@
     <img src="../../../assets/item-ranker-trace.png" width="1000px" style="cursor: pointer" (click)="modalService.open('item-ranker-trace')" />
 </div>
 <app-modal id="item-ranker-trace" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-    <img src="../../../assets/item-ranker-trace.png" width="1980px"/>
+    <div fxLayout="column" fxLayoutAlign="start center">
+        <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('item-ranker-trace')" fxFlexAlign="end">close</mat-icon>
+        <img src="../../../assets/item-ranker-trace.png" width="1980px"/>
+    </div>
 </app-modal>
 <br />
 

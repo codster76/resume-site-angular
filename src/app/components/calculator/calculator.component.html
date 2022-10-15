@@ -77,8 +77,11 @@
   <img src="../../../assets/calculator-data-structure.png" width="200" style="cursor: pointer" (click)="modalService.open('data-structure-image')" />
 </div>
 <app-modal id="data-structure-image" [widthInPercent]="50" [heightInPercent]="90" [reactiveModal]="true">
+  <div fxLayout="column" fxLayoutAlign="start center">
+    <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('data-structure-image')" fxFlexAlign="end">close</mat-icon>
     <img src="../../../assets/calculator-data-structure.png" width="vw"/>
-  </app-modal>
+  </div>
+</app-modal>
 <br />
 
 <div>Once a set of operations is built, it can then be fed into the recursive calculate function. Essentially, 
@@ -105,5 +108,8 @@
   <img src="../../../assets/calculator-trace.png" width="200" style="cursor: pointer" (click)="modalService.open('calculator-trace-image')" />
 </div>
 <app-modal id="calculator-trace-image" [widthInPercent]="50" [heightInPercent]="90" [reactiveModal]="true">
+  <div fxLayout="column" fxLayoutAlign="start center">
+    <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('calculator-trace-image')" fxFlexAlign="end">close</mat-icon>
     <img src="../../../assets/calculator-trace.png" width="1200"/>
-  </app-modal>
+  </div>
+</app-modal>

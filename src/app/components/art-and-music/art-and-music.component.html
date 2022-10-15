@@ -15,7 +15,10 @@
             <img src="../../../assets/archie-ray-rowman.png" width="200" style="cursor: pointer" (click)="modalService.open('archie-ray-rowman')" />
         </div>
         <app-modal id="archie-ray-rowman" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-            <img src="../../../assets/archie-ray-rowman.png" width="1000" />
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('archie-ray-rowman')" fxFlexAlign="end">close</mat-icon>
+                <img src="../../../assets/archie-ray-rowman.png" width="1000" />
+            </div>
         </app-modal>
     </div>
     <div>
@@ -24,7 +27,10 @@
             <img src="../../../assets/ganyu.png" width="200" style="cursor: pointer; margin-top:50px;" (click)="modalService.open('ganyu')" />
         </div>
         <app-modal id="ganyu" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-            <img src="../../../assets/ganyu.png" width="1000" />
+            <div fxLayout="column" fxLayoutAlign="start center">
+                <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('ganyu')" fxFlexAlign="end">close</mat-icon>
+                <img src="../../../assets/ganyu.png" width="1000" />
+            </div>
         </app-modal>
     </div>
 </div>
@@ -43,7 +49,10 @@
         </div>
         <app-modal id="mega-man-7-cover" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
             <div fxLayout="column" fxLayoutAlign="center center">
-                <img src="../../../assets/mega-man-7-cover.png" width="1400px" />
+                <div fxLayout="column" fxLayoutAlign="start center">
+                    <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('mega-man-7-cover')" fxFlexAlign="end">close</mat-icon>
+                    <img src="../../../assets/mega-man-7-cover.png" width="1400px" />
+                </div>
             </div>
         </app-modal>
     </div>
@@ -54,7 +63,11 @@
         </div>
         <app-modal id="mega-man-7-mugshots" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
             <div fxLayout="column" fxLayoutAlign="center center">
-                <img src="../../../assets/mega-man-7-mugshots.png" width="800px" />
+                <div fxLayout="column" fxLayoutAlign="start center">
+                    <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('mega-man-7-mugshots')" fxFlexAlign="end">close</mat-icon>
+                    <img src="../../../assets/mega-man-7-mugshots.png" width="800px" />
+                </div>
+                
             </div>
         </app-modal>
     </div>
@@ -65,7 +78,10 @@
         </div>
         <app-modal id="ruined-highway" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
             <div fxLayout="column" fxLayoutAlign="center center">
-                <img src="../../../assets/ruined-highway.png" width="900px" />
+                <div fxLayout="column" fxLayoutAlign="start center">
+                    <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('ruined-highway')" fxFlexAlign="end">close</mat-icon>
+                    <img src="../../../assets/ruined-highway.png" width="900px" />
+                </div>
             </div>
         </app-modal>
     </div>

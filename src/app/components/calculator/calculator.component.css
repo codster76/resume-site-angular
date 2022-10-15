@@ -30,3 +30,11 @@
 .buttonGroup {
     width: calc(var(--button-size) * 4);
 }
+
+.close-button {
+    border-radius: 5px;
+}
+
+.close-button:hover {
+    background-color: grey;
+}
