@@ -39,10 +39,10 @@
     code with HLSL (Unity’s shader language). You generally don’t want to be holding lots of 
     variables or performing lots of complex calculations for graphics code, so the solution I 
     settled on was using a reference texture to get colours from (basically like a lookup table). 
-    On my main sprites, I’d use the red colour value of each pixel to reference a location on the 
-    colour texture (e.g. a red value of 1 on a pixel in the main sprite would map to an x-coordinate 
-    of 1 in the colour texture). I could then offset the coordinate values on the colour texture if 
-    I wanted to swap colour palettes at any point.</div>
+    On my main sprites, I’d use the red colour value (from the RGB value) of each pixel to reference 
+    a location on the colour texture (e.g. a red value of 1 on a pixel in the main sprite would map 
+    to an x-coordinate of 1 in the colour texture). I could then offset the coordinate values on the 
+    colour texture if I wanted to swap colour palettes at any point.</div>
 <br />
 
 <h3>Object Pooling</h3>
@@ -51,7 +51,7 @@
     is to reduce the number of times short-lived, numerous objects are created and destroyed. 
     Instead of creating new projectiles every time you attempt to shoot, then deleting them every 
     time they go off-screen or hit something, you create a pool of invisible and intangible 
-    projectiles on initialisation of the game, then you activate and teleport them over to your 
+    projectiles upon initialisation of the game, then you activate and teleport them over to your 
     position whenever you need them. When they are supposed to be destroyed, you just make them 
     invisible and intangible again. While this kind of optimisation is hardly necessary for a game 
     as light as this one, it is an interesting pattern to use and could be useful in the future.</div>

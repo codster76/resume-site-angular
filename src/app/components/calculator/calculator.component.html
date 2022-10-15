@@ -3,34 +3,34 @@
   <div class="result">{{valueToDisplay}}</div>
   <div class="buttons" fxLayout="column" fxLayoutAlign="start center">
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton" (click)="buttonPressed('1')">1</button>
-      <button class="inputButton" (click)="buttonPressed('2')">2</button>
-      <button class="inputButton" (click)="buttonPressed('3')">3</button>
-      <button class="inputButton" (click)="buttonPressed('+')">+</button>
+      <button class="input-button" (click)="buttonPressed('1')">1</button>
+      <button class="input-button" (click)="buttonPressed('2')">2</button>
+      <button class="input-button" (click)="buttonPressed('3')">3</button>
+      <button class="input-button" (click)="buttonPressed('+')">+</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton" (click)="buttonPressed('4')">4</button>
-      <button class="inputButton" (click)="buttonPressed('5')">5</button>
-      <button class="inputButton" (click)="buttonPressed('6')">6</button>
-      <button class="inputButton" (click)="buttonPressed('-')">-</button>
+      <button class="input-button" (click)="buttonPressed('4')">4</button>
+      <button class="input-button" (click)="buttonPressed('5')">5</button>
+      <button class="input-button" (click)="buttonPressed('6')">6</button>
+      <button class="input-button" (click)="buttonPressed('-')">-</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton" (click)="buttonPressed('7')">7</button>
-      <button class="inputButton" (click)="buttonPressed('8')">8</button>
-      <button class="inputButton" (click)="buttonPressed('9')">9</button>
-      <button class="inputButton" (click)="buttonPressed('*')">x</button>
+      <button class="input-button" (click)="buttonPressed('7')">7</button>
+      <button class="input-button" (click)="buttonPressed('8')">8</button>
+      <button class="input-button" (click)="buttonPressed('9')">9</button>
+      <button class="input-button" (click)="buttonPressed('*')">x</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="inputButton" (click)="buttonPressed('0')">0</button>
-      <button class="inputButton" (click)="buttonPressed('(')">(</button>
-      <button class="inputButton" (click)="buttonPressed(')')">)</button>
-      <button class="inputButton" (click)="buttonPressed('/')">/</button>
+      <button class="input-button" (click)="buttonPressed('0')">0</button>
+      <button class="input-button" (click)="buttonPressed('(')">(</button>
+      <button class="input-button" (click)="buttonPressed(')')">)</button>
+      <button class="input-button" (click)="buttonPressed('/')">/</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="space-between start">
-      <button class="inputButton" (click)="clear()">C</button>
-      <button class="inputButton" (click)="buttonPressed('+-')">+-</button>
-      <button class="inputButton" (click)="buttonPressed('.')">.</button>
-      <button class="inputButton" (click)="performCalculation()">=</button>
+      <button class="input-button" (click)="clear()">C</button>
+      <button class="input-button" (click)="buttonPressed('+-')">+-</button>
+      <button class="input-button" (click)="buttonPressed('.')">.</button>
+      <button class="input-button" (click)="performCalculation()">=</button>
     </div>
   </div>
 </div>
@@ -61,11 +61,11 @@
   in the right order. These operations are made using a data structure that contains two things:</div>
 <br />
 
-<div>The contents of the operation: This can either be a singular number or another entire operation. This 
+<div>&nbsp;&nbsp;&nbsp;The contents of the operation: This can either be a singular number or another entire operation. This 
   sub-operation represents the contents of any brackets.</div>
 <br />
 
-<div>The operation symbol: The type of operation to perform between the contents and the next operation 
+<div>&nbsp;&nbsp;&nbsp;The operation symbol: The type of operation to perform between the contents and the next operation 
   (add, subtract, multiply, divide).</div>
 <br />
 

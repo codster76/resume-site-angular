@@ -10,10 +10,21 @@
     width: 15em;
 }
 
-.inputButton {
+.input-button {
     width: var(--button-size);
     height: var(--button-size);
     --button-size: 30px;
+    background-color: rgb(224, 224, 224);
+    border: 1px black solid;
+    border-radius: 3px;
+}
+
+.input-button:hover {
+    cursor: pointer;
+}
+
+.input-button:active {
+    background-color: rgb(170, 170, 170);
 }
 
 .buttonGroup {

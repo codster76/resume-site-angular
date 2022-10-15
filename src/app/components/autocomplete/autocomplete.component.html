@@ -24,34 +24,35 @@
 <h2>What is it?</h2>
 <div>This is a demo of an implementation of autocomplete. It was made to efficiently search very large data sets of 
     strings. It takes a text input and returns a specified number of words containing that input. The data set used 
-    for searching can be found at https://www.mit.edu/~ecprice/wordlist.10000.</div>
+    for searching can be found at <a href="https://www.mit.edu/~ecprice/wordlist.10000">https://www.mit.edu/~ecprice/wordlist.10000</a>.</div>
 <br />
 <h2>How it Works</h2>
-<div>It uses an implementation of the trie data structure to facilitate efficient searching of a very large number 
-    of strings. A trie is a type of tree where each node is a key of some kind. In this case, each node is a single 
-    character. Each letter of a word exists as a chain of nodes in the tree (e.g. “cat” would have “c” as the child of 
-    the root node, “a” as the child of “c” and “t” as the child of “a”). The end of a word is signified with a boolean 
-    flag.</div>
+<div>It uses an implementation of the trie data structure to faciliate these efficient searches. A trie is a type of 
+    tree where each node is a key of some kind. In this case, each node is a single character. Each word exists as a 
+    chain of letter nodes in the trie (e.g. “cat” would have “c” as the child of the root node, “a” as the child 
+    of “c” and “t” as the child of “a”). The end of a word is signified with a boolean flag.</div>
 <br />
-<div>Each node is essentially just an array with a length corresponding to however many characters exist in the search 
-    space (in my case, 26) and the end flag. When a child is added to a node, it is added to its corresponding index in 
-    the parent’s array (the index can be determined by a lookup table or using ascii codes). Because of this automatic 
-    sorting and the tree structure, traversal of the trie is extremely efficient, making insertion and searching extremely 
-    efficient.</div>
+
+<div>Each node is essentially just an array with a length corresponding to however many characters are possible in the search 
+    space (in my case, 26) and an end flag. When a child is added to a node, it is inserted in its corresponding index in 
+    the parent’s array (the index can be determined by a lookup table or using ascii codes). Because of the tree structure and 
+    the fact that nodes are automatically sorted upon insertion, traversal of the trie is extremely efficient, thereby making insertion 
+    and searching extremely efficient.</div>
 <br />
 
 <div fxLayout="column" fxLayoutAlign="center center">
-    <img src="../../../assets/trie-data-structure.png" width="200" style="cursor: pointer" (click)="modalService.open('data-structure-image')" />
+    <img src="../../../assets/trie-data-structure.png" width="400" style="cursor: pointer" (click)="modalService.open('data-structure-image')" />
 </div>
 <app-modal id="data-structure-image" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-    <img src="../../../assets/trie-data-structure.png" width="vw"/>
+    <img src="../../../assets/trie-data-structure.png" width="1200"/>
 </app-modal>
-
-<div>From here, autocomplete just requires traversal up to a certain point in the trie, then a depth-first search on the 
-    last node of that traversal. In my implementation, you are able to specify a maximum number of suggestions, which can 
-    stop the search after a point, further increasing efficiency.</div>
 <br />
-<div>The entire trie structure and data set is hosted on my backend and served via 
+
+<div>Once a trie is established, autocomplete just requires traversal up to a certain point in that trie, then a depth-first 
+    search on the last node of that traversal. In my implementation, you are able to specify a maximum number of suggestions, 
+    which can stop the search after a point, further increasing efficiency, as the depth-first search does not always need to finish.</div>
+<br />
+<div>The trie and data set is hosted on my backend and served via 
     <a href="https://resume-site-backend.herokuapp.com/api/autocomplete">https://resume-site-backend.herokuapp.com/api/autocomplete</a>.
 </div>
 <br />

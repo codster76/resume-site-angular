@@ -1,5 +1,18 @@
+mat-toolbar {
+    background-color: rgb(161, 161, 161);
+}
+
+mat-sidenav {
+    background-color: white;
+}
+
 .title:hover {
     cursor: pointer;
+}
+
+.footer {
+    background-color: rgb(161, 161, 161);
+    padding-top: 70px;
 }
 
 .open-sidenav:hover {

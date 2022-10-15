@@ -20,9 +20,9 @@
     - All of your attacks can pierce walls.<br />
     - After each level, you are given a choice between three items. Attack up, HP up 
     or instant healing. You can only pick one.<br />
+    <br />
 
-    Note:<br />
-    - Some of the settings can crash the game in this build.
+    Note: Some of the settings can crash the game in this build.
 </div>
 <br />
 
@@ -40,15 +40,11 @@
 <div>In particular, I’d like to note the pathfinding system. I had created a node system 
     using Unity’s collision and physics engine and allowed enemies to path find towards a 
     target based on a breadth-first search of the current room. The breadth-first search 
-    always returned the shortest path to the target, which allowed enemies to path around 
+    always returned the shortest viable path to the target, which allowed enemies to path around 
     obstacles and through mazes without getting stuck. While this method of pathfinding is 
     rather outdated and becomes extremely inefficient at larger scales (breadth-first search 
-    is not very efficient for large search spaces), it’s simple to implement and worked well 
-    for the single rooms they were confined to in this game.</div>
-<br />
-<div>Another area of note is the player’s character, which is controlled using a finite 
-    state machine, basically allowing the player to only be in a single state at any given 
-    time.</div>
+    is not very efficient for large search spaces), it was simple to implement and worked well 
+    for the single rooms it was confined to in this game.</div>
 <br />
 
 <h3>Design</h3>

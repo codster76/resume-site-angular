@@ -32,9 +32,9 @@
         </div>
         
         <div fxLayout="row" fxLayoutAlign="space-between start" fxFlexAlign="end" style="width: 100%; padding-top: 10px">
-            <input [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
+            <input class="input-button" [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
             <div *ngIf="formType === 'edit'">
-                <button type="button" (click)="onDelete()">Delete Item</button>
+                <button class="input-button" type="button" (click)="onDelete()">Delete Item</button>
             </div>
         </div>
     </form>

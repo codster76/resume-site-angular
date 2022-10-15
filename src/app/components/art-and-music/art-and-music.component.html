@@ -1,4 +1,114 @@
-<p>art-and-music works!</p>
-<audio controls>
-    <source src="../../../assets/Mega Man 7 VRC6 Full - Track 25 (Wily 1).wav" type="audio/mp3">
+<h2>Art and Music Demo</h2>
+<div>Here’s a small showing of some of my artistic endeavours. Over quite a few years, 
+    I’ve been learning this for the express purpose of making Mega Man Echoes eventually.</div>
+<br />
+
+<h2>Pixel Art</h2>
+<div>I used to make vector art using Adobe Flash, of all things, but these days, I only make 
+    pixel art. I use Microsoft Paint and Krita to create my artworks.</div>
+<br />
+
+<div fxLayout="row wrap" fxLayoutAlign="space-around start">
+    <div>
+        <div>Archie, my D&D character</div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/archie-ray-rowman.png" width="200" style="cursor: pointer" (click)="modalService.open('archie-ray-rowman')" />
+        </div>
+        <app-modal id="archie-ray-rowman" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <img src="../../../assets/archie-ray-rowman.png" width="1000" />
+        </app-modal>
+    </div>
+    <div>
+        <div>Ganyu from Genshin Impact</div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/ganyu.png" width="200" style="cursor: pointer; margin-top:50px;" (click)="modalService.open('ganyu')" />
+        </div>
+        <app-modal id="ganyu" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <img src="../../../assets/ganyu.png" width="1000" />
+        </app-modal>
+    </div>
+</div>
+<br />
+
+<h3>Artwork for My Mega Man 7 Project</h3>
+<div>These are for an art/music project where I am recreating the entire Mega Man 7 
+    soundtrack in 8-bit (it was originally on the Super Nintendo Entertainment System, 
+    which is a 16-bit system). All of the music is complete, I just have to finish a bit 
+    more art and edit everything together.</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+    <div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/mega-man-7-cover.png" width="300px" style="cursor: pointer; max-width: 500px" (click)="modalService.open('mega-man-7-cover')" />
+        </div>
+        <app-modal id="mega-man-7-cover" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <img src="../../../assets/mega-man-7-cover.png" width="1400px" />
+            </div>
+        </app-modal>
+    </div>
+    
+    <div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/mega-man-7-mugshots.png" width="300px" style="cursor: pointer" (click)="modalService.open('mega-man-7-mugshots')" />
+        </div>
+        <app-modal id="mega-man-7-mugshots" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <img src="../../../assets/mega-man-7-mugshots.png" width="800px" />
+            </div>
+        </app-modal>
+    </div>
+    
+    <div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/ruined-highway.png" width="300px" style="cursor: pointer" (click)="modalService.open('ruined-highway')" />
+        </div>
+        <app-modal id="ruined-highway" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <div fxLayout="column" fxLayoutAlign="center center">
+                <img src="../../../assets/ruined-highway.png" width="900px" />
+            </div>
+        </app-modal>
+    </div>
+</div>
+
+<h2>Music</h2>
+<div>My primary musical skill is transcription, which is what I use to make covers of songs. 
+    I use this to make 8-bit versions of songs, using a tool called FamiTracker. It 
+    simulates the limitations of the Nintendo Entertainment System’s audio, allowing for 
+    authentic 8-bit music. It’s a bit cumbersome to use, but some great chiptunes have come 
+    out of it (the soundtrack of the game Shovel Knight was made using this if you want to see 
+    an example of professional usage of it). I also transcribe music into a tool called 
+    Musescore, used for writing musical scores for various instruments. I primarily use piano 
+    (though, I can’t actually play the instrument). Here are some pieces I’ve created. The first
+    two songs are from the aforementioned Mega Man 7 Project.
+</div>
+<br />
+
+<h3>Mega Man 7 - Junk Man (Chiptune)</h3>
+<audio controls style="width: 100%">
+    <source src="../../../assets/junk-man.mp3" type="audio/mp3">
+</audio>
+<br /><br />
+
+<h3>Mega Man 7 - Wily 1 (Chiptune)</h3>
+<audio controls style="width: 100%">
+    <source src="../../../assets/wily1.mp3" type="audio/mp3">
+</audio>
+<br /><br />
+
+<h3>Mega Man & Bass - Robot Museum (Chiptune)</h3>
+<audio controls style="width: 100%">
+    <source src="../../../assets/robot-museum.mp3" type="audio/mp3">
+</audio>
+<br /><br />
+
+<h3>Mega Man X - Storm Eagle (Chiptune)</h3>
+<audio controls style="width: 100%">
+    <source src="../../../assets/storm-eagle.mp3" type="audio/mp3">
+</audio>
+<br /><br />
+
+<h3>Mega Man X6 - Infinity Mijinion (Piano and Drums)</h3>
+<audio controls style="width: 100%">
+    <source src="../../../assets/infinity-mijionion.mp3" type="audio/mp3">
 </audio>

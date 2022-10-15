@@ -1,5 +1,5 @@
 <h2>Bad of Holding</h2>
-<button (click)="modalService.open('itemForm')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
+<button class="input-button" (click)="modalService.open('itemForm')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
 <div fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
     <div class="heading" fxFlex="30" (click)="sortBy('description')">{{generateHeading('description')}}</div>
@@ -39,11 +39,17 @@
 
 <br />
 <h2>What is it?</h2>
-<div>This is a simple item tracker for Dungeons & Dragons. The silly name is an inside joke between a friend and I. It was made as a learning exercise for creating and connecting a backend to my frontend.</div>
+<div>This is a simple item tracker for Dungeons & Dragons. The silly name is an inside joke between a 
+    friend and I. It was made as a learning exercise for React, as well as for creating a backend and 
+    connecting it to a frontend.</div>
 <br />
 <h2>How it Works</h2>
-<div>It’s quite simple. I have a REST API in the backend that serves JSON containing the items to display on the frontend. I don’t have a database to use, so the items are stored in memory, meaning the data isn’t persistent. Despite this, though, all of the data serving and display functionality is there.</div>
+<div>It’s quite simple. I have a REST API in the backend that serves JSON containing the items to 
+    display on the frontend. I don’t have a database to use, so the items are stored in memory, meaning 
+    the data isn’t persistent. Despite this, though, all of the data serving and display functionality 
+    is here.</div>
 <br />
 <div>The API is able to handle getting, adding, deleting and modifying items.</div>
 <br />
-<div>On the frontend, retrieved items are simply displayed in various ways, with a UI for viewing, sorting, adding, editing and deleting items.</div>
+<div>On the frontend, retrieved items are simply displayed in various ways, with a UI for viewing, 
+    sorting, adding, editing and deleting items.</div>

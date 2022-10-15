@@ -6,7 +6,7 @@
   <div class="title" style="padding-left: 1em" routerLink="">Cody Liu</div>
 </mat-toolbar>
 
-<mat-sidenav-container class="sidenav-container" style="min-height: 100%">
+<mat-sidenav-container style="min-height: 100%">
   <mat-sidenav class="sidenav" mode="side" [opened]="sidenavOpen">
     <div fxLayout="column">
       <hr style="width: 90%" />
@@ -36,7 +36,7 @@
       <div class="main-content" fxFlexAlign="center">
         <ng-content></ng-content>
       </div>
-      <div style="background-color: green; padding-top: 50px"> footer </div>
+      <div class="footer"></div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
