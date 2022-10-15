@@ -1,3 +1,4 @@
+<div>Bad of Holding</div>
 <button (click)="modalService.open('itemForm')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
 <div fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
@@ -17,7 +18,7 @@
                 <div fxFlex="1">{{item.quantity}}</div>
             </div>
         </div>
-        <app-modal [id]="item.id" [widthInPercent]="20" [heightInPercent]="50">
+        <app-modal [id]="item.id" [widthInPercent]="20" [heightInPercent]="50" [reactiveModal]="true">
             <app-item-form
                 [modalID]="item.id"
                 [itemToDisplay]="item"
@@ -28,7 +29,7 @@
         </app-modal>
     </div>
 </ng-container>
-<app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90">
+<app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
     <app-item-form
         modalID="itemForm"
         (formSubmittedEvent)="addNewItem($event)"

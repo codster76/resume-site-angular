@@ -23,9 +23,9 @@
 <div>Each node is essentially just an array with a length corresponding to however many characters exist in the search space (in my case, 26) and the end flag. When a child is added to a node, it is added to its corresponding index in the parent’s array (the index can be determined by a lookup table or using ascii codes). Because of this automatic sorting and the tree structure, traversal of the trie is extremely efficient, making insertion and searching extremely efficient.</div>
 <br />
 
-<div style="margin-left: 50%;">
+<div style="margin-left: 40%; width: 20%; margin-right: 40%">
     <img src="../../../assets/trie-data-structure.png" width="200" style="cursor: pointer" (click)="modalService.open('data-structure-image')" />
-    <app-modal id="data-structure-image" [widthInPercent]="60" [heightInPercent]="90">
+    <app-modal id="data-structure-image" [widthInPercent]="80" [heightInPercent]="90">
         <img src="../../../assets/trie-data-structure.png" width="vw"/>
     </app-modal>
 </div>

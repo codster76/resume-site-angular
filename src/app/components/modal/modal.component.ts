@@ -20,8 +20,12 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() widthInPercent: number = 0;
   @Input() heightInPercent: number = 0;
 
-  @Input() width: string = '100px';
-  @Input() height: string = '100px';
+  // If you want to scale the modal based on screen size
+  @Input() reactiveModal: boolean = false;
+
+  // Smallest screen size I will support
+  smallestExpectedScreenWidth: number = 400;
+  largestExpectedScreenWidth: number = 1920;
 
   marginWidth: string = '70%';
   marginHeight: string = '90%';
@@ -44,13 +48,12 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     this.modalService.add(this);
 
-    if(this.widthInPercent > 0 && this.heightInPercent > 0) {
-      this.marginWidth = `${(100 - this.widthInPercent) / 2}%`;
-      this.marginHeight = `${(100 - this.heightInPercent) / 4}%`;
+    if(this.reactiveModal) {
+      this.marginWidth = `${((100 - this.widthInPercent) / 2) * (window.innerWidth/this.largestExpectedScreenWidth)}%`;
     } else {
-      this.marginWidth = this.width;
-      this.marginHeight = this.height;
+      this.marginWidth = `${(100 - this.widthInPercent) / 2}%`;
     }
+    this.marginHeight = `${(100 - this.heightInPercent) / 4}%`;
   }
 
   ngOnDestroy() {
