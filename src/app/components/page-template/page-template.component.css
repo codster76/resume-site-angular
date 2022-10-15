@@ -23,3 +23,13 @@
     background-color: grey;
     padding-left: 15px;
 }
+
+.main-content {
+    width: 80%;
+}
+
+@media (max-width: 800px){
+    .main-content {
+        width: 100%;
+    }
+}

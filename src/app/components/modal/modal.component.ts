@@ -7,7 +7,7 @@ To open/close the modal from anywhere, just call the open/close method of the Mo
 constructor and pass the appropriate ID in.
 */
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -20,12 +20,19 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() widthInPercent: number = 0;
   @Input() heightInPercent: number = 0;
 
+  @Input() width: string = '100px';
+  @Input() height: string = '100px';
+
   marginWidth: string = '70%';
   marginHeight: string = '90%';
 
   modalOpen = false;
 
-  constructor(private modalService: ModalService) {}
+  private element: any;
+
+  constructor(private modalService: ModalService, private modalElement: ElementRef) {
+    this.element = modalElement.nativeElement;
+  }
 
   ngOnInit(): void {
     if (this.id === undefined) {
@@ -33,10 +40,17 @@ export class ModalComponent implements OnInit, OnDestroy {
       return;
     }
 
+    document.body.appendChild(this.element);
+
     this.modalService.add(this);
 
-    this.marginWidth = `${(100 - this.widthInPercent) / 2}%`;
-    this.marginHeight = `${(100 - this.heightInPercent) / 4}%`;
+    if(this.widthInPercent > 0 && this.heightInPercent > 0) {
+      this.marginWidth = `${(100 - this.widthInPercent) / 2}%`;
+      this.marginHeight = `${(100 - this.heightInPercent) / 4}%`;
+    } else {
+      this.marginWidth = this.width;
+      this.marginHeight = this.height;
+    }
   }
 
   ngOnDestroy() {

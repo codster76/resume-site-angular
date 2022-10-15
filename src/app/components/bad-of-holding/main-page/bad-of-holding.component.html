@@ -1,4 +1,4 @@
-<button (click)="modalService.open('itemForm')">Add Item</button>
+<button (click)="modalService.open('itemForm')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
 <div fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
     <div class="heading" fxFlex="30" (click)="sortBy('description')">{{generateHeading('description')}}</div>
@@ -17,7 +17,7 @@
                 <div fxFlex="1">{{item.quantity}}</div>
             </div>
         </div>
-        <app-modal [id]="item.id" [widthInPercent]="40" [heightInPercent]="50">
+        <app-modal [id]="item.id" [widthInPercent]="20" [heightInPercent]="50">
             <app-item-form
                 [modalID]="item.id"
                 [itemToDisplay]="item"
@@ -36,6 +36,7 @@
     </app-item-form>
 </app-modal>
 
+<br />
 <div>What is it?</div>
 <div>This is a simple item tracker for Dungeons & Dragons. The silly name is an inside joke between a friend and I. It was made as a learning exercise for creating and connecting a backend to my frontend.</div>
 <br />

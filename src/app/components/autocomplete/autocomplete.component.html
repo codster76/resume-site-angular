@@ -1,5 +1,7 @@
 <p>Autocomplete Demo</p>
+<label>Type Here: </label>
 <input type="text" #textInput matInput [matAutocomplete]="auto">
+<label style="padding-left:10px;">Number of Results: </label>
 <input type="number" min="1" value="5" #numberOfSuggestions>
 
 <mat-autocomplete #auto="matAutocomplete">
@@ -10,6 +12,8 @@
     </ng-container>
 </mat-autocomplete>
 
+<br />
+<br />
 <div>What is it?</div>
 <div>This is a demo of an implementation of autocomplete. It was made to efficiently search very large data sets of strings. It takes a text input and returns a specified number of words containing that input. The data set used for searching can be found at https://www.mit.edu/~ecprice/wordlist.10000.</div>
 <br />
@@ -18,8 +22,16 @@
 <br />
 <div>Each node is essentially just an array with a length corresponding to however many characters exist in the search space (in my case, 26) and the end flag. When a child is added to a node, it is added to its corresponding index in the parent’s array (the index can be determined by a lookup table or using ascii codes). Because of this automatic sorting and the tree structure, traversal of the trie is extremely efficient, making insertion and searching extremely efficient.</div>
 <br />
+
+<div style="margin-left: 50%;">
+    <img src="../../../assets/trie-data-structure.png" width="200" style="cursor: pointer" (click)="modalService.open('data-structure-image')" />
+    <app-modal id="data-structure-image" [widthInPercent]="60" [heightInPercent]="90">
+        <img src="../../../assets/trie-data-structure.png" width="vw"/>
+    </app-modal>
+</div>
+
 <div>From here, autocomplete just requires traversal up to a certain point in the trie, then a depth-first search on the last node of that traversal. In my implementation, you are able to specify a maximum number of suggestions, which can stop the search after a point, further increasing efficiency.</div>
 <br />
-<div>The entire trie structure and data set is hosted on my backend and served via https://resume-site-backend.herokuapp.com/api/autocomplete.</div>
+<div>The entire trie structure and data set is hosted on my backend and served via <a href="https://resume-site-backend.herokuapp.com/api/autocomplete">https://resume-site-backend.herokuapp.com/api/autocomplete</a>.</div>
 
 

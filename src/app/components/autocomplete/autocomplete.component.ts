@@ -3,6 +3,7 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { BackendCallsService } from 'src/app/services/backend-calls.service';
 import { merge } from 'rxjs';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-autocomplete',
@@ -18,7 +19,7 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
   numberChangeSubscription?: Subscription;
   autocompleteOptions: Observable<string[]> = this.backendCalls.getAutocomplete(' ',0);
 
-  constructor(private backendCalls: BackendCallsService) {}
+  constructor(private backendCalls: BackendCallsService, public modalService: ModalService) {}
 
   ngAfterViewInit() {
     if(this.input) {

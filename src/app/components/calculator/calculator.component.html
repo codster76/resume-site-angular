@@ -1,7 +1,7 @@
 <div>Calculator</div>
-<div>
+<div style="width: 20%; margin-left: 40%; margin-right: 40%">
   <div class="result">{{valueToDisplay}}</div>
-  <div fxLayout="column" fxLayoutAlign="start start" style="width: 120px;">
+  <div class="buttons" fxLayout="column" fxLayoutAlign="start center">
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
       <button class="inputButton" (click)="buttonPressed('1')">1</button>
       <button class="inputButton" (click)="buttonPressed('2')">2</button>
@@ -34,27 +34,45 @@
     </div>
   </div>
 </div>
+<br />
 
 <div>Note: My operation builder function has a bit of trouble with consecutive closing brackets, 
   so I’ve made it automatically insert *1 after every closing bracket. This has no effect on any 
   of the calculations.</div>
 <br />
+
 <div>What is it?</div>
-<div>This is a recreation of an experiment of mine from when I first started learning JavaScript. It’s a calculator that can perform calculations with the correct order of operations and with respect to brackets.</div>
+<div>This is a recreation of an experiment of mine from when I first started learning JavaScript. 
+  It’s a calculator that can perform calculations with the correct order of operations and with 
+  respect to brackets.</div>
 <br />
-<div>Originally, I had the idea to try this because vanilla JavaScript had no type enforcement, meaning that I could include both numbers and sets of operations (for brackets) within a single array. The version shown here doesn’t rely on the lack of type enforcement anymore, but uses the same principles to perform its calculations.</div>
+
+<div>Originally, I had the idea to try this because vanilla JavaScript had no type enforcement, 
+  meaning that I could include both numbers and sets of operations (for brackets) within a single array. 
+  The version shown here doesn’t rely on the lack of type enforcement anymore, but uses the same 
+  principles to perform its calculations.</div>
 <br />
+
 <div>How it Works</div>
 <div>It’s a bit complicated with how it works, so I’ll try to keep it simple.</div>
 <br />
-<div>Basically, the main functionality of this webapp is to build operations out so that they can be read in the right order. These operations are made using a data structure that contains two things:</div>
+
+<div>Basically, the main functionality of this webapp is to build operations out so that they can be read 
+  in the right order. These operations are made using a data structure that contains two things:</div>
 <br />
-<div>The contents of the operation: This can either be a singular number or another entire operation. This sub-operation represents the contents of any brackets.</div>
+
+<div>The contents of the operation: This can either be a singular number or another entire operation. This 
+  sub-operation represents the contents of any brackets.</div>
 <br />
-<div>The operation symbol: The type of operation to perform between the contents and the next operation (add, subtract, multiply, divide).</div>
+
+<div>The operation symbol: The type of operation to perform between the contents and the next operation 
+  (add, subtract, multiply, divide).</div>
 <br />
-<div>Using this structure, you can pretty much represent any simple operation with arbitrarily deep levels of brackets (e.g. 1 + (2 + 3 + (4 + 5) + (6 + (7)) + 8) ).</div>
+
+<div>Using this structure, you can pretty much represent any simple operation with arbitrarily deep levels 
+  of brackets (e.g. 1 + (2 + 3 + (4 + 5) + (6 + (7)) + 8) ).</div>
 <br />
+
 <div>
   <img src="../../../assets/calculator-data-structure.png" width="200" style="cursor: pointer" (click)="modalService.open('data-structure-image')" />
   <app-modal id="data-structure-image" [widthInPercent]="50" [heightInPercent]="90">
@@ -62,14 +80,26 @@
   </app-modal>
 </div>
 <br />
-<div>Once a set of operations is built, it can then be fed into the recursive calculate function. Essentially, all it does is look at the first two operations in the set of operations and attempt to combine them together, repeating this until there is only a singular number left.</div>
+
+<div>Once a set of operations is built, it can then be fed into the recursive calculate function. Essentially, 
+  all it does is look at the first two operations in the set of operations and attempt to combine them together, 
+  repeating this until there is only a singular number left.</div>
 <br />
-<div>If the function encounters a set of brackets, it will take one step down the recursion stack and run itself on the operation within the brackets (e.g. calculate(1+(2+3)) will become calculate(1 + calculate(2+3)) ). This recursion is what allows the function to respect brackets and work correctly for an arbitrary number of brackets.</div>
+
+<div>If the function encounters a set of brackets, it will take one step down the recursion stack and run itself 
+  on the operation within the brackets (e.g. calculate(1+(2+3)) will become calculate(1 + calculate(2+3)) ). This 
+  recursion is what allows the function to respect brackets and work correctly for an arbitrary number of brackets.</div>
 <br />
-<div>To preserve the correct order of operations, the calculate function performs two passes: one where it will collapse all brackets and perform any multiplication/division simultaneously and another where it will perform all addition/subtraction (e.g. 1 + 2 + 3 * (2 + 2) / 3 –collapse brackets→ 1 + 2 + 3 * 4 / 3 –multiplication/division→ 1 + 2 + 4 –addition/subtraction→ 7, brackets collapsed separately for clarity).</div>
+
+<div>To preserve the correct order of operations, the calculate function performs two passes: one where it will 
+  collapse all brackets and perform any multiplication/division simultaneously and another where it will perform all 
+  addition/subtraction (e.g. 1 + 2 + 3 * (2 + 2) / 3 –collapse brackets→ 1 + 2 + 3 * 4 / 3 –multiplication/division→ 1 + 2 + 
+  4 –addition/subtraction→ 7, brackets collapsed separately for clarity).</div>
 <br />
+
 <div>I’ve simplified things here by quite a bit, but these are the core concepts that make this calculator work.</div>
 <br />
+
 <div>Example trace:</div>
 <div>
   <img src="../../../assets/calculator-trace.png" width="200" style="cursor: pointer" (click)="modalService.open('calculator-trace-image')" />

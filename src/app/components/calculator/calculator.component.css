@@ -1,6 +1,13 @@
 .result {
-    width: 500px;
     border: black solid 2px;
+    width: 15em;
+    height: 3em;
+    overflow-wrap: anywhere;
+    overflow: auto;
+}
+
+.buttons {
+    width: 15em;
 }
 
 .inputButton {

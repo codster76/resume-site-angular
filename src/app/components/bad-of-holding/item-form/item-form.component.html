@@ -1,34 +1,36 @@
-<form [formGroup]="itemFormResults" (ngSubmit)="onSubmit()">
-        <div>
+<div style="padding: 10px;" fxLayout="column" fxLayoutAlign="start start">
+    <button type="button" (click)="cancelButton()" fxFlexAlign="end">X</button>
+    <form [formGroup]="itemFormResults" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
+        <div class="input-group">
             <label>Name*: </label>
-            <input type="text" formControlName="name" required />
+            <br />
+            <input class="item-input" type="text" formControlName="name" required />
         </div>
-
-        <div>
+        <div class="input-group">
             <label>Description: </label>
-            <textarea formControlName="description"></textarea>
+            <br />
+            <textarea class="item-input" formControlName="description"></textarea>
         </div>
-
-        <div>
+        <div class="input-group">
             <label>Value: </label>
-            <input type="number" formControlName="value" required />
+            <br />
+            <input class="item-input" type="number" formControlName="value" required />
         </div>
-
-        <div>
+        <div class="input-group">
             <label>Weight: </label>
-            <input type="number" formControlName="weight" required />
+            <br />
+            <input class="item-input" type="number" formControlName="weight" required />
         </div>
-
-        <div>
+        <div class="input-group">
             <label>Quantity: </label>
-            <input type="number" formControlName="quantity" required />
+            <br />
+            <input class="item-input" type="number" formControlName="quantity" required />
         </div>
-
-        <button type="button" (click)="cancelButton()">Cancel</button>
         
         <input [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
 
         <div *ngIf="formType === 'edit'">
             <button type="button" (click)="onDelete()">Delete Item</button>
         </div>
-</form>
+    </form>
+</div>
