@@ -1,6 +1,9 @@
 <mat-toolbar>
-  <button (click)="toggleSidenav()" style="width: 100px">Open Navbar</button>
-  <div>Header</div>
+  <div *ngIf="sidenavOpen; else elseBlock">
+    <mat-icon class="open-sidenav" style="margin-top: 8px" (click)="toggleSidenav()">close</mat-icon>
+  </div>
+  <ng-template #elseBlock><mat-icon class="open-sidenav" (click)="toggleSidenav()">menu</mat-icon></ng-template>
+  <div class="title" style="padding-left: 1em" routerLink="">Cody Liu</div>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container" style="min-height: 100%">

@@ -1,4 +1,4 @@
-<div>Bad of Holding</div>
+<h2>Bad of Holding</h2>
 <button (click)="modalService.open('itemForm')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
 <div fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
@@ -9,7 +9,7 @@
 </div>
 <ng-container *ngIf="itemSubject | async as items">
     <div *ngFor="let item of items">
-        <div (click)="modalService.open(item.id)">
+        <div class="item-row" (click)="modalService.open(item.id)">
             <div fxLayout="row" fxLayoutAlign="space-around start">
                 <div fxFlex="1">{{item.name}}</div>
                 <div fxFlex="30">{{item.description}}</div>
@@ -18,7 +18,7 @@
                 <div fxFlex="1">{{item.quantity}}</div>
             </div>
         </div>
-        <app-modal [id]="item.id" [widthInPercent]="20" [heightInPercent]="50" [reactiveModal]="true">
+        <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
             <app-item-form
                 [modalID]="item.id"
                 [itemToDisplay]="item"
@@ -38,10 +38,10 @@
 </app-modal>
 
 <br />
-<div>What is it?</div>
+<h2>What is it?</h2>
 <div>This is a simple item tracker for Dungeons & Dragons. The silly name is an inside joke between a friend and I. It was made as a learning exercise for creating and connecting a backend to my frontend.</div>
 <br />
-<div>How it Works</div>
+<h2>How it Works</h2>
 <div>It’s quite simple. I have a REST API in the backend that serves JSON containing the items to display on the frontend. I don’t have a database to use, so the items are stored in memory, meaning the data isn’t persistent. Despite this, though, all of the data serving and display functionality is there.</div>
 <br />
 <div>The API is able to handle getting, adding, deleting and modifying items.</div>

@@ -32,7 +32,10 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
   constructor(public backendCalls: BackendCallsService, public modalService: ModalService) { }
 
   ngOnInit(): void {
-    this.itemSubscription = this.backendCalls.getItemList().subscribe((value) => this.itemSubject.next(value));
+    this.itemSubscription = this.backendCalls.getItemList().subscribe((value) => {
+      this.itemSubject.next(value);
+      this.sortBy('name');
+    });
   }
 
   ngOnDestroy(): void {

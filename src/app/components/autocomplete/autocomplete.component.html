@@ -1,8 +1,15 @@
-<p>Autocomplete Demo</p>
-<label>Type Here: </label>
-<input type="text" #textInput matInput [matAutocomplete]="auto">
-<label style="padding-left:10px;">Number of Results: </label>
-<input type="number" min="1" value="5" #numberOfSuggestions>
+<h2>Autocomplete Demo</h2>
+<div fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-between start" style="width: 23em">
+        <label style="padding-left:10px;">Number of Results: </label>
+        <input type="number" min="1" value="5" #numberOfSuggestions>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between start" style="width: 23em">
+        <label style="padding-left:10px;" fxFlexAlign="3">Type Here: </label>
+        <input type="text" fxFlexAlign="3" #textInput matInput [matAutocomplete]="auto">
+    </div>
+</div>
+
 
 <mat-autocomplete #auto="matAutocomplete">
     <ng-container *ngIf="autocompleteOptions | async as options">
@@ -14,24 +21,77 @@
 
 <br />
 <br />
-<div>What is it?</div>
-<div>This is a demo of an implementation of autocomplete. It was made to efficiently search very large data sets of strings. It takes a text input and returns a specified number of words containing that input. The data set used for searching can be found at https://www.mit.edu/~ecprice/wordlist.10000.</div>
+<h2>What is it?</h2>
+<div>This is a demo of an implementation of autocomplete. It was made to efficiently search very large data sets of 
+    strings. It takes a text input and returns a specified number of words containing that input. The data set used 
+    for searching can be found at https://www.mit.edu/~ecprice/wordlist.10000.</div>
 <br />
-<div>How it Works</div>
-<div>It uses an implementation of the trie data structure to facilitate efficient searching of a very large number of strings. A trie is a type of tree where each node is a key of some kind. In this case, each node is a single character. Each letter of a word exists as a chain of nodes in the tree (e.g. “cat” would have “c” as the child of the root node, “a” as the child of “c” and “t” as the child of “a”). The end of a word is signified with a boolean flag.</div>
+<h2>How it Works</h2>
+<div>It uses an implementation of the trie data structure to facilitate efficient searching of a very large number 
+    of strings. A trie is a type of tree where each node is a key of some kind. In this case, each node is a single 
+    character. Each letter of a word exists as a chain of nodes in the tree (e.g. “cat” would have “c” as the child of 
+    the root node, “a” as the child of “c” and “t” as the child of “a”). The end of a word is signified with a boolean 
+    flag.</div>
 <br />
-<div>Each node is essentially just an array with a length corresponding to however many characters exist in the search space (in my case, 26) and the end flag. When a child is added to a node, it is added to its corresponding index in the parent’s array (the index can be determined by a lookup table or using ascii codes). Because of this automatic sorting and the tree structure, traversal of the trie is extremely efficient, making insertion and searching extremely efficient.</div>
+<div>Each node is essentially just an array with a length corresponding to however many characters exist in the search 
+    space (in my case, 26) and the end flag. When a child is added to a node, it is added to its corresponding index in 
+    the parent’s array (the index can be determined by a lookup table or using ascii codes). Because of this automatic 
+    sorting and the tree structure, traversal of the trie is extremely efficient, making insertion and searching extremely 
+    efficient.</div>
 <br />
 
-<div style="margin-left: 40%; width: 20%; margin-right: 40%">
+<div fxLayout="column" fxLayoutAlign="center center">
     <img src="../../../assets/trie-data-structure.png" width="200" style="cursor: pointer" (click)="modalService.open('data-structure-image')" />
-    <app-modal id="data-structure-image" [widthInPercent]="80" [heightInPercent]="90">
-        <img src="../../../assets/trie-data-structure.png" width="vw"/>
-    </app-modal>
 </div>
+<app-modal id="data-structure-image" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+    <img src="../../../assets/trie-data-structure.png" width="vw"/>
+</app-modal>
 
-<div>From here, autocomplete just requires traversal up to a certain point in the trie, then a depth-first search on the last node of that traversal. In my implementation, you are able to specify a maximum number of suggestions, which can stop the search after a point, further increasing efficiency.</div>
+<div>From here, autocomplete just requires traversal up to a certain point in the trie, then a depth-first search on the 
+    last node of that traversal. In my implementation, you are able to specify a maximum number of suggestions, which can 
+    stop the search after a point, further increasing efficiency.</div>
 <br />
-<div>The entire trie structure and data set is hosted on my backend and served via <a href="https://resume-site-backend.herokuapp.com/api/autocomplete">https://resume-site-backend.herokuapp.com/api/autocomplete</a>.</div>
+<div>The entire trie structure and data set is hosted on my backend and served via 
+    <a href="https://resume-site-backend.herokuapp.com/api/autocomplete">https://resume-site-backend.herokuapp.com/api/autocomplete</a>.
+</div>
+<br />
 
-
+<h2>Function Examples</h2>
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
+    <div>
+        <div>Insert example:</div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/autocomplete-insert.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-insert')" />
+        </div>
+        <app-modal id="autocomplete-insert" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <img src="../../../assets/autocomplete-insert.png" width="1000" />
+        </app-modal>
+    </div>
+    <div>
+        <div>Search fail example:</div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/autocomplete-search-fail.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-search-fail')" />
+        </div>
+        <app-modal id="autocomplete-search-fail" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <img src="../../../assets/autocomplete-search-fail.png" width="1000" />
+        </app-modal>
+    </div>
+    <div>
+        <div>Search success example:</div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/autocomplete-search-success.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-search-success')" />
+        </div>
+        <app-modal id="autocomplete-search-success" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <img src="../../../assets/autocomplete-search-success.png" width="1000" />
+        </app-modal>
+    </div>
+    <div>
+        <div>Full autocomplete example:</div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <img src="../../../assets/autocomplete-demo.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-demo')" />
+        </div>
+        <app-modal id="autocomplete-demo" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+            <img src="../../../assets/autocomplete-demo.png" width="1000" />
+        </app-modal>
+    </div>
+</div>

@@ -1,9 +1,11 @@
-.content {
-    background-color: greenyellow;
+.title:hover {
+    cursor: pointer;
 }
 
-.sidenav-container {
-    background-color: white;
+.open-sidenav:hover {
+    background-color: gray;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .sidenav {

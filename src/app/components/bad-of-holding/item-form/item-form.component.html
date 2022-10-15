@@ -1,5 +1,9 @@
-<div style="padding: 10px;" fxLayout="column" fxLayoutAlign="start start">
-    <button type="button" (click)="cancelButton()" fxFlexAlign="end">X</button>
+<div style="padding: 10px; height: 100%" fxLayout="column" fxLayoutAlign="start start">
+    <div fxLayout="row" fxLayoutAlign="space-between start" style="width: 100%">
+        <div *ngIf="formType === 'edit'; else elseBlock"><h2>Edit Item</h2></div>
+        <ng-template #elseBlock><h2>Add Item</h2></ng-template>
+        <mat-icon class="close-button" style="padding-top: 3px" (click)="cancelButton()">close</mat-icon>
+    </div>
     <form [formGroup]="itemFormResults" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
         <div class="input-group">
             <label>Name*: </label>
@@ -27,10 +31,11 @@
             <input class="item-input" type="number" formControlName="quantity" required />
         </div>
         
-        <input [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
-
-        <div *ngIf="formType === 'edit'">
-            <button type="button" (click)="onDelete()">Delete Item</button>
+        <div fxLayout="row" fxLayoutAlign="space-between start" fxFlexAlign="end" style="width: 100%; padding-top: 10px">
+            <input [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
+            <div *ngIf="formType === 'edit'">
+                <button type="button" (click)="onDelete()">Delete Item</button>
+            </div>
         </div>
     </form>
 </div>

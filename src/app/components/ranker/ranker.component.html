@@ -1,9 +1,29 @@
-<div>Ranker</div>
-<div>What is it?</div>
-<div>A tool to help you rank a list of things. I made it before I knew how to make webapps, so this one was made using Unity and C#. It was made to help my friends and I determine a priority list of items in Minecraft (hence the data set). I may make this usable through the browser on this site at some point.</div>
+<h2>Ranker</h2>
+<h2>What is it?</h2>
+<div>A tool to help you rank a list of things. I made it before I knew how to make webapps, so 
+    this one was made using Unity and C#. It was made to help my friends and I determine a priority 
+    list of items in Minecraft (hence the data set). I may make this usable through the browser on 
+    this site at some point.</div>
 <br />
 
-<div>How it Works</div>
-<div>It takes your data set and presents each item to you in randomised batches. You then pick any number of those items (I generally recommend picking half or less of each batch) to prioritise, compared to the other items in the batch. After you get through every batch, your choices are split into two different sets, based on which ones were and were not picked. You are then presented with randomised batches of the chosen items from the first round. This repeats on each chosen until batch sizes are reduced to 1, after which, they are added to the final list in order. This then repeats for the items that were not chosen. This process will eventually generate an ordered priority list.</div>
+<h2>How it Works</h2>
+<div>It takes your data set and presents each item to you in randomised batches. You then pick any 
+    number of those items (I generally recommend picking half or less of each batch) to prioritise, 
+    compared to the other items in the batch. After you get through every batch, your choices are split 
+    into two different sets, based on which ones were and were not picked. You are then presented with 
+    randomised batches of the chosen items from the first round. This repeats on each chosen until batch 
+    sizes are reduced to 1, after which, they are added to the final list in order. This then repeats for 
+    the items that were not chosen. This process will eventually generate an ordered priority list.</div>
+<br />
 
-<div>Image here</div>
+<div>Example trace:</div>
+<div>Blue numbers represent the order to follow, red numbers represent the final ranking</div>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <img src="../../../assets/item-ranker-trace.png" width="1000px" style="cursor: pointer" (click)="modalService.open('item-ranker-trace')" />
+</div>
+<app-modal id="item-ranker-trace" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
+    <img src="../../../assets/item-ranker-trace.png" width="1980px"/>
+</app-modal>
+<br />
+
+<div>Download it and try it for yourself here (only executable in windows): <a href="https://drive.google.com/file/d/1Laf2_Nqn9vIFyJ-chiOoYFIXg-A7T9_0/view?usp=sharing">https://drive.google.com/file/d/1Laf2_Nqn9vIFyJ-chiOoYFIXg-A7T9_0/view?usp=sharing</a></div>
