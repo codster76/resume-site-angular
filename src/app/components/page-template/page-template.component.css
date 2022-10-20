@@ -1,5 +1,6 @@
 mat-toolbar {
     background-color: rgb(161, 161, 161);
+    height: 60px;
 }
 
 mat-sidenav {

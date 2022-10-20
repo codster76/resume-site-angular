@@ -28,6 +28,7 @@ import { RankerComponent } from './components/ranker/ranker.component';
 import { DoneInTheFungeonComponent } from './components/done-in-the-fungeon/done-in-the-fungeon.component';
 import { ArtAndMusicComponent } from './components/art-and-music/art-and-music.component';
 import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-echoes.component';
+import { Modal2Component } from './components/modal2/modal2.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-ec
     DoneInTheFungeonComponent,
     ArtAndMusicComponent,
     MegaManEchoesComponent,
+    Modal2Component,
   ],
   imports: [
     BrowserModule,

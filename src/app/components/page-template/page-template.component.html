@@ -6,7 +6,7 @@
   <div class="title" style="padding-left: 1em" routerLink="">Cody Liu</div>
 </mat-toolbar>
 
-<mat-sidenav-container style="min-height: 100%">
+<!-- <mat-sidenav-container style="min-height: 100%">
   <mat-sidenav class="sidenav" mode="side" [opened]="sidenavOpen">
     <div fxLayout="column">
       <hr style="width: 90%" />
@@ -39,4 +39,38 @@
       <div class="footer"></div>
     </div>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> -->
+
+<button (click)="modalService.open('nav')">Poop</button>
+
+<app-modal2 id="nav" [distanceFromLeft]="0" [distanceFromTop]="60" [width]="300" [height]="viewportHeightToNumber(100)">
+  <div fxLayout="column">
+    <hr style="width: 90%" />
+    <div class="nav-button" routerLink="" style="padding-left: 10px">Home</div>
+    <hr style="width: 90%" />
+    <div class="nav-title">Web Apps</div>
+    <div class="nav-button" routerLink="calculator">Calculator</div>
+    <div class="nav-button" routerLink="autocomplete">Autocomplete</div>
+    <div class="nav-button" routerLink="bad-of-holding">Bad of Holding</div>
+    <hr style="width: 90%" />
+    <br />
+    <hr style="width: 90%" />
+    <div class="nav-title">Game Development</div>
+    <div class="nav-button" routerLink="done-in-the-fungeon">Done in the Fungeon</div>
+    <div class="nav-button" routerLink="mega-man-echoes">Mega Man Echoes</div>
+    <hr style="width: 90%" />
+    <br />
+    <hr style="width: 90%" />
+    <div class="nav-title">Other</div>
+    <div class="nav-button" routerLink="ranker">Ranker</div>
+    <div class="nav-button" routerLink="art-and-music">Art and Music</div>
+    <hr style="width: 90%" />
+  </div>
+</app-modal2>
+
+<div fxLayout="column" fxLayoutAlign="space-between" style="min-height: 1000px;background-color: white;">
+  <div class="main-content" fxFlexAlign="center">
+    <ng-content></ng-content>
+  </div>
+  <div class="footer"></div>
+</div>
