@@ -7,3 +7,8 @@ export interface Item {
     quantity: number,
     tags?: string[]
 }
+
+export interface BagDetails {
+    bagName: string,
+    bagPassword: string
+}

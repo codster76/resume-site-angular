@@ -1,0 +1,9 @@
+<form [formGroup]="bagDetailsFormResults" (ngSubmit)="onSubmit()">
+    <label>Bag Name: </label>
+    <input type="text" formControlName="bagName" required />
+
+    <label>Bag Password: </label>
+    <input type="text" formControlName="bagPassword" required />
+    
+    <input class="input-button" [disabled]="bagDetailsFormResults.invalid" type="submit" value="Save Item"/>
+</form>

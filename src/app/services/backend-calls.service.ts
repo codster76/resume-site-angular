@@ -7,55 +7,44 @@ import { Item } from '../model/data-model';
 })
 export class BackendCallsService {
 
-  // APIUrl = 'http://localhost:5000/api/items';
-  APIUrl = 'https://resume-site-backend.herokuapp.com/api';
+  APIUrl = 'http://localhost:5000/api';
+  // APIUrl = 'https://resume-site-backend.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 
   // Get items
-  getItemList() {
-    return this.http.get<Item[]>(`${this.APIUrl}/items`);
+  getItemList(bagName: string, bagPassword: string) {
+    return this.http.get<Item[]>(`${this.APIUrl}/items/${bagName}/${bagPassword}`);
   }
 
   // Update item
-  async updateItem(itemToReplaceWith: Item, IDOfItemToReplace: string) {
-    // Because JSON.stringify converts numbers to strings and zod in the backend can't read the numbers when they're strings, I have to build my own JSON to send.
-    const stringToSend = 
-    `{
-      "id":"${itemToReplaceWith.id}",
-      "name":"${itemToReplaceWith.name}",
-      "description":"${itemToReplaceWith.description}",
-      "value":${itemToReplaceWith.value},
-      "weight":${itemToReplaceWith.weight},
-      "quantity":${itemToReplaceWith.quantity}
-    }`;
-    console.log(stringToSend);
+  async updateItem(bagName: string, bagPassword: string, itemToReplaceWith: Item) {
     const header = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: stringToSend,
+      body: JSON.stringify(itemToReplaceWith),
     };
-    const response = await fetch(`${this.APIUrl}/items/${IDOfItemToReplace}`, header);
+    const response = await fetch(`${this.APIUrl}/items/${bagName}/${bagPassword}`, header);
     const data = await response.json();
     console.log(`Item Updated: ${data}`);
   }
 
-  async addItem(itemToAdd: Item) {
+  async addItem(bagName: string, bagPassword: string, itemToAdd: Item) {
     const header = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...itemToAdd }),
     };
-    const response = await fetch(`${this.APIUrl}/items`, header);
+    const response = await fetch(`${this.APIUrl}/items/${bagName}/${bagPassword}`, header);
     const data = await response.json();
     console.log(`Item Added: ${data}`);
   }
 
-  async deleteItem(idToDelete: string) {
+  async deleteItem(bagName: string, bagPassword: string, idToDelete: string) {
     const header = {
       method: 'DELETE',
     };
-    const response = await fetch(`${this.APIUrl}/items/${idToDelete}`, header);
+    const response = await fetch(`${this.APIUrl}/items/${bagName}/${bagPassword}/${idToDelete}`, header);
     const data = await response.json();
     console.log(`Item Deleted: ${data}`);
   }

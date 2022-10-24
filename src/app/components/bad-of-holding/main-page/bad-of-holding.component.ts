@@ -3,6 +3,7 @@ import { BackendCallsService } from 'src/app/services/backend-calls.service';
 import { Item } from 'src/app/model/data-model';
 import { map, Observable, tap, BehaviorSubject, Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal.service';
+import { BagDetails } from 'src/app/model/data-model';
 
 @Component({
   selector: 'app-bad-of-holding',
@@ -10,6 +11,11 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./bad-of-holding.component.css']
 })
 export class BadOfHoldingComponent implements OnInit, OnDestroy {
+  currentBagDetails: BagDetails = {
+    bagName: '',
+    bagPassword: ''
+  }
+
   defaultItem: Item = {
     id: '',
     name: '',
@@ -32,7 +38,7 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
   constructor(public backendCalls: BackendCallsService, public modalService: ModalService) { }
 
   ngOnInit(): void {
-    this.itemSubscription = this.backendCalls.getItemList().subscribe((value) => {
+    this.itemSubscription = this.backendCalls.getItemList(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword).subscribe((value) => {
       this.itemSubject.next(value);
       this.sortBy('name');
     });
@@ -60,14 +66,14 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
   }
 
   addNewItem(itemToAdd: Item) {
-    this.backendCalls.addItem(itemToAdd);
+    this.backendCalls.addItem(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword, itemToAdd);
     // Add to display
     this.itemSubject.getValue().push(itemToAdd);
     this.modalService.close('itemForm');
   }
 
   editItem(itemToUpdateWith: Item, IDOfItemToReplace: string) {
-    this.backendCalls.updateItem(itemToUpdateWith, IDOfItemToReplace);
+    this.backendCalls.updateItem(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword, itemToUpdateWith);
     this.itemSubject.getValue().map((item) => {
       if(item.id === IDOfItemToReplace) {
         item.name = itemToUpdateWith.name;
@@ -81,10 +87,11 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
   }
 
   deleteItem(idToDelete: string) {
-    this.backendCalls.deleteItem(idToDelete);
-    // Delete from display
-    this.itemSubject.next(this.itemSubject.getValue().filter(arrayItem => arrayItem.id !== idToDelete));
     this.modalService.close(idToDelete);
+    this.backendCalls.deleteItem(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword, idToDelete);
+    // Delete from display
+    // Issue with deleting items here
+    this.itemSubject.next(this.itemSubject.getValue().filter(arrayItem => arrayItem.id !== idToDelete));
   }
 
   // Adds sorting icons to headings based on the last sort performed
@@ -98,5 +105,15 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     } else {
       return headingName.charAt(0).toUpperCase() + headingName.slice(1);
     }
+  }
+
+  loggedIntoBag(bagDetails: BagDetails) {
+    this.currentBagDetails.bagName = bagDetails.bagName;
+    this.currentBagDetails.bagPassword = bagDetails.bagPassword;
+
+    this.itemSubscription = this.backendCalls.getItemList(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword).subscribe((value) => {
+      this.itemSubject.next(value);
+      this.sortBy('name');
+    });
   }
 }

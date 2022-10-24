@@ -1,4 +1,10 @@
 <h2>Bad of Holding</h2>
+<app-bag-login-form (formSubmittedEvent)="loggedIntoBag($event)"></app-bag-login-form>
+<br />
+
+<div *ngIf="currentBagDetails.bagName === ''; else elseBlock"><h3>No Bag Selected</h3></div>
+<ng-template #elseBlock><h3>{{currentBagDetails.bagName}}</h3></ng-template>
+
 <button class="input-button" (click)="modalService.open('itemForm')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
 <div fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>

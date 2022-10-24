@@ -29,6 +29,7 @@ import { DoneInTheFungeonComponent } from './components/done-in-the-fungeon/done
 import { ArtAndMusicComponent } from './components/art-and-music/art-and-music.component';
 import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-echoes.component';
 import { Modal2Component } from './components/modal2/modal2.component';
+import { BagLoginFormComponent } from './components/bad-of-holding/bag-login-form/bag-login-form.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { Modal2Component } from './components/modal2/modal2.component';
     ArtAndMusicComponent,
     MegaManEchoesComponent,
     Modal2Component,
+    BagLoginFormComponent,
   ],
   imports: [
     BrowserModule,
