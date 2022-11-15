@@ -61,3 +61,19 @@ ul {
     background-color: grey;
     cursor: pointer;
 }
+
+.other-page-button {
+    background-color: rgb(161, 161, 161);
+    width: 10em;
+    height: 3em;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.other-page-button:hover {
+    background-color: grey;
+    cursor: pointer;
+}

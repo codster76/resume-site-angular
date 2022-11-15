@@ -8,6 +8,7 @@ import { RankerComponent } from './components/ranker/ranker.component';
 import { DoneInTheFungeonComponent } from './components/done-in-the-fungeon/done-in-the-fungeon.component';
 import { ArtAndMusicComponent } from './components/art-and-music/art-and-music.component';
 import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-echoes.component';
+import { ZanatharsGuideComponent } from './components/zanathars-guide/zanathars-guide.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'done-in-the-fungeon', component: DoneInTheFungeonComponent },
   { path: 'art-and-music', component: ArtAndMusicComponent },
   { path: 'mega-man-echoes', component: MegaManEchoesComponent },
+  { path: 'zanathars-guide', component: ZanatharsGuideComponent },
 ];
 
 // RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'});

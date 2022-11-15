@@ -12,7 +12,7 @@ mat-sidenav {
 
 .footer {
     background-color: rgb(161, 161, 161);
-    padding-top: 70px;
+    padding: 30px;
 }
 
 .open-sidenav:hover {
