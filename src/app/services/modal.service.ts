@@ -28,7 +28,6 @@ export class ModalService {
   }
 
   close(id: string) {
-    console.log(this.modals);
     const modalToClose = this.modals.find((modal) => {
       if (modal.id === id) {
         return modal;

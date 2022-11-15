@@ -37,7 +37,7 @@ export class BackendCallsService {
     };
     const response = await fetch(`${this.APIUrl}/items/${bagName}/${bagPassword}`, header);
     const data = await response.json();
-    console.log(`Item Added: ${data}`);
+    return data;
   }
 
   async deleteItem(bagName: string, bagPassword: string, idToDelete: string) {

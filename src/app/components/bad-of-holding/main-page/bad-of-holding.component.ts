@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { BackendCallsService } from 'src/app/services/backend-calls.service';
 import { Item } from 'src/app/model/data-model';
 import { map, Observable, tap, BehaviorSubject, Subscription } from 'rxjs';
@@ -65,10 +65,11 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     }
   }
 
-  addNewItem(itemToAdd: Item) {
-    this.backendCalls.addItem(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword, itemToAdd);
+  async addNewItem(itemToAdd: Item) {
+    const newItem = await this.backendCalls.addItem(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword, itemToAdd);
     // Add to display
-    this.itemSubject.getValue().push(itemToAdd);
+    this.itemSubject.getValue().push(newItem);
+
     this.modalService.close('itemForm');
   }
 
@@ -86,11 +87,13 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     this.modalService.close(IDOfItemToReplace);
   }
 
-  deleteItem(idToDelete: string) {
+  async deleteItem(idToDelete: string) {
+    // await new Promise((resolve, reject) => resolve(() => this.modalService.close(idToDelete))).then();
     this.modalService.close(idToDelete);
+    this.modalService.remove(idToDelete);
     this.backendCalls.deleteItem(this.currentBagDetails.bagName, this.currentBagDetails.bagPassword, idToDelete);
     // Delete from display
-    // Issue with deleting items here
+    await new Promise(f => setTimeout(f, 0.1)); // It's hacky, but I just can't figure out why updating the display messes my modals up so badly and at this point, I've been stuck on this for too long.
     this.itemSubject.next(this.itemSubject.getValue().filter(arrayItem => arrayItem.id !== idToDelete));
   }
 
