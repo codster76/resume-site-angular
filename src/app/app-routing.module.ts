@@ -20,6 +20,8 @@ const routes: Routes = [
   { path: 'mega-man-echoes', component: MegaManEchoesComponent },
 ];
 
+// RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'});
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

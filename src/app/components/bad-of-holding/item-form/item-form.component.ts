@@ -2,7 +2,6 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from 'src/app/services/modal.service';
 import { Item } from 'src/app/model/data-model';
-import { uid } from 'uid';
 
 @Component({
   selector: 'app-item-form',
@@ -65,7 +64,6 @@ export class ItemFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.itemFormResults.value.id = uid();
     this.formSubmittedEvent.emit(this.itemFormResults.value as Item);
   }
 

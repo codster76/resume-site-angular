@@ -1,11 +1,184 @@
-<h2>Home Page</h2>
-<div>
-    Welcome to my resume/portfolio site. My name is Cody Liu and I am primarily a programmer, with a mix of other skills, 
-    like digital art and music. This site was made as a portfolio of some of my personal projects. I've included a 
-    demonstration and some explanations on each page. The “What is it?” sections of each page provde a basic summary of each thing.
-    The rest is there if you want more detail, so I hope you find it interesting.
+<div fxLayout="column" fxLayoutAlign="start stretch">
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <div style="max-width:500px">
+            <h2>Home Page</h2>
+            <div>
+                Welcome to my portfolio site! My name is Cody Liu and I am a software developer. I've got a mix of skills in a few different
+                areas and I'm always trying to expand into new ones. This site is here to showcase a bunch of my personal projects. I've included
+                demonstrations and detailed explanations on each page, so please enjoy your visit.
+            </div>
+        </div>
+        <br />
+        <div style="max-width:500px">
+            <div>
+                <img src="../../../assets/Black Screen.png" style="max-width:500px; height:auto;" />
+            </div>
+        </div>
+    </div>
+    <br /><br />
+
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <div>
+            <h2>Skills</h2>
+        </div>
+
+        <div class="skill">
+            <div style="max-width:500px">
+                <h2>Web Development</h2>
+                <div>
+                    <div>
+                        Most of my web development experience is on the frontend with Angular, but I've dabbled in the full stack.
+                    </div>
+                    <br />
+                    <div>Technologies:</div>
+                    <div>Frontend: Angular and React</div>
+                    <div>Backend: Node and Express</div>
+                    <div>Database: PostgreSQL powered by Prisma</div>
+                </div>
+            </div>
+            <div style="max-width:500px">
+                <div>
+                    <img src="../../../assets/Black Screen.png" style="max-width:500px; height:auto;" />
+                </div>
+            </div>
+        </div>
+        <br />
+    
+        <div class="skill-reverse">
+            <div style="max-width:500px">
+                <h2>C# and Game Development</h2>
+                <div>
+                    Game development has always been my main interest. It is the reason I became a software developer in the first
+                    place. Over the years, I've had quite a bit of experience with C# through the Unity game engine.
+                </div>
+            </div>
+            <div style="max-width:500px">
+                <div>
+                    <img src="../../../assets/Black Screen.png" style="max-width:500px; height:auto;" />
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="skill">
+            <div style="max-width:500px">
+                <h2>Other Programming Languages</h2>
+                <div>
+                    <div>
+                        Other things I've learned and played with. I'm not extremely experienced in any of these, but I know
+                        the basics and would be more than capable of picking them up quickly.
+                    </div>
+                    <br />
+
+                    <div>Languages:</div>
+                    <div>Java</div>
+                    <div>Python</div>
+                    <div>C</div>
+                    <div>HLSL</div>
+                </div>
+            </div>
+            <div style="max-width:500px">
+                <div>
+                    <img src="../../../assets/Black Screen.png" style="max-width:500px; height:auto" />
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="skill-reverse">
+            <div style="max-width:500px">
+                <h2>Other Skills and Interests</h2>
+                <div>
+                    As I've mentioned, I have always wanted to be a game developer since I was very young, so before I knew
+                    how to code, I learned how to draw and work with music. I've tried to become as well-rounded of a developer
+                    as possible.
+
+                    <br /><br />
+
+                    As for interests outside of software development, I enjoy playing video games and tabletop RPGs. I create
+                    homebrew for Dungeons & Dragons 5e and I'm currently writing a joke module called Zanathar's Guide to a Few Things.
+                </div>
+            </div>
+            <div style="max-width:500px">
+                <div>
+                    <img src="../../../assets/Black Screen.png" style="max-width:500px; height:auto;" />
+                </div>
+            </div>
+        </div>
+        <br />
+
+    </div>
+    <br /><br />
+
+    <div fxLayout="column" fxLayoutAlign="start center">
+        <h1>This Site</h1>
+        <div>This site was written in Angular and hosted on Vercel. It also has a backend written in Express and hosted on Heroku.</div>
+    </div>
+    <br /><br />
+
+    <div fxLayout="column" fxLayoutAlign="center center">
+        <h2>Webapps</h2>
+        <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="width:100%">
+            <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="calculator">
+                <h3>Calculator</h3>
+                <div>A calculator that respects order of operations and brackets.</div>
+                <br />
+                <div fxFlexAlign="end">Visit page</div>
+            </div>
+            <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="autocomplete">
+                <h3>Autocomplete Demo</h3>
+                <div>An implementation of autocomplete using a Trie.</div>
+                <br />
+                <div fxFlexAlign="end">Visit page</div>
+            </div>
+            <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="bad-of-holding">
+                <h3>Bad of Holding</h3>
+                <div>A basic item tracker for Dungeons & Dragons.  </div>
+                <br />
+                <div fxFlexAlign="end">Visit page</div>
+            </div>
+        </div>
+    </div>
+    <br /><br /><br />
+
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <div fxLayout="column" fxLayoutAlign="start start" style="width:500px">
+            <h2>Games</h2>
+            <div>
+                Two examples of games I've worked on. The first is my university capstone project Done in the Fungeon. It is a 
+                complete game. The other is Mega Man Echoes, a long-term side project of mine.
+            </div>
+            <br />
+            <div fxLayout="row" fxLayoutAlign="space-between center" style="width:500px">
+                <div class="game-button" routerLink="mega-man-echoes">Mega Man Echoes ></div>
+                <div class="game-button" routerLink="done-in-the-fungeon">Done in the Fungeon ></div>
+            </div>
+        </div>
+        <br />
+        <div style="max-width:500px">
+            <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                <img src="../../../assets/Black Screen.png" style="width:500px; height:auto;" />
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    <div>
+        <h2>Other Things</h2>
+    </div>
+</div>
+
+<div style="background-color:red">
+    <h2>Home Page</h2>
+    <div>
+        Welcome to my resume/portfolio site. My name is Cody Liu and I am primarily a programmer, with a mix of other skills, 
+        like digital art and music. This site was made as a portfolio of some of my personal projects. I've included a 
+        demonstration and some explanations on each page. The “What is it?” sections of each page provde a basic summary of each thing.
+        The rest is there if you want more detail, so I hope you find it interesting.
+    </div>
 </div>
 <br />
+
+<div></div>
 
 <div fxLayout="row wrap" fxLayoutAlign="start start">
     <div style="padding-right: 1em">
