@@ -8,7 +8,7 @@ import { Item } from '../model/data-model';
 export class BackendCallsService {
 
   // APIUrl = 'http://localhost:5000/api/items';
-  APIUrl = 'https://resume-site-backend.herokuapp.com/api';
+  APIUrl = 'https://cody-resume-site-backend.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 
