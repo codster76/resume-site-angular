@@ -1,0 +1,9 @@
+.close-button:hover {
+    background-color: grey;
+}
+
+.top-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}

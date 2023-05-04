@@ -33,6 +33,7 @@ import { ZanatharsGuideComponent } from './components/zanathars-guide/zanathars-
 import { OnlineClassComponent } from './components/online-class/online-class.component';
 import { ModalTestComponent } from './components/modal-test/modal-test.component';
 import { ModalContentTestComponent } from './components/modal-content-test/modal-content-test.component';
+import { ImageModalComponent } from './components/image-modal/image-modal.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ModalContentTestComponent } from './components/modal-content-test/modal
     OnlineClassComponent,
     ModalTestComponent,
     ModalContentTestComponent,
+    ImageModalComponent,
   ],
   imports: [
     BrowserModule,

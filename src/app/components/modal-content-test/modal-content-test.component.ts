@@ -11,7 +11,7 @@ export class ModalContentTestComponent implements OnInit {
   @Output() testEvent = new EventEmitter<number>();
 
   onTestEvent() {
-    this.testEvent.emit(3);
+    this.testEvent.emit(window.innerWidth);
   }
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {title: string, body: string}) { }
