@@ -7,14 +7,21 @@ import { Item } from '../model/data-model';
 })
 export class BackendCallsService {
 
-  // APIUrl = 'http://localhost:5000/api/items';
-  APIUrl = 'https://cody-resume-site-backend.onrender.com/api';
+  APIUrl = 'http://localhost:5000/api';
+  // APIUrl = 'https://cody-resume-site-backend.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 
   // Get items
-  getItemList() {
-    return this.http.get<Item[]>(`${this.APIUrl}/items`);
+  async getItemList() {
+    const response = await fetch(`${this.APIUrl}/items`, { credentials: "include" });
+    const data = await response.json();
+    const itemList = [];
+    for(let item of data) {
+      itemList.push(item);
+    }
+    return itemList as Item[];
+    // return this.http.get<Item[]>(`${this.APIUrl}/items`);
   }
 
   // Update item

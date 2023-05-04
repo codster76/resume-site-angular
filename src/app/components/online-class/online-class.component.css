@@ -4,6 +4,8 @@
     width: 7em;
     border-radius: 5px;
     text-align: center;
+    color: black;
+    text-decoration: none;
 }
 
 .button:hover {

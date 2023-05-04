@@ -1,41 +1,43 @@
 <div style="padding: 10px; height: 100%" fxLayout="column" fxLayoutAlign="start start">
-    <div fxLayout="row" fxLayoutAlign="space-between start" style="width: 100%">
+    <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between start" style="width: 100%">
         <div *ngIf="formType === 'edit'; else elseBlock"><h2>Edit Item</h2></div>
-        <ng-template #elseBlock><h2>Add Item</h2></ng-template>
-        <mat-icon class="close-button" style="padding-top: 3px" (click)="cancelButton()">close</mat-icon>
+        <ng-template #elseBlock><h2 mat-dialog-title>Add Item</h2></ng-template>
+        <mat-icon mat-dialog-close class="close-button" style="padding-top: 3px">close</mat-icon>
     </div>
-    <form [formGroup]="itemFormResults" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
-        <div class="input-group">
-            <label>Name*: </label>
-            <br />
-            <input class="item-input" type="text" formControlName="name" required />
-        </div>
-        <div class="input-group">
-            <label>Description: </label>
-            <br />
-            <textarea class="item-input" formControlName="description"></textarea>
-        </div>
-        <div class="input-group">
-            <label>Value: </label>
-            <br />
-            <input class="item-input" type="number" formControlName="value" required />
-        </div>
-        <div class="input-group">
-            <label>Weight: </label>
-            <br />
-            <input class="item-input" type="number" formControlName="weight" required />
-        </div>
-        <div class="input-group">
-            <label>Quantity: </label>
-            <br />
-            <input class="item-input" type="number" formControlName="quantity" required />
-        </div>
-        
-        <div fxLayout="row" fxLayoutAlign="space-between start" fxFlexAlign="end" style="width: 100%; padding-top: 10px">
-            <input class="input-button" [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
-            <div *ngIf="formType === 'edit'">
-                <button class="input-button" type="button" (click)="onDelete()">Delete Item</button>
+    <mat-dialog-content class="modal-content">
+        <form [formGroup]="itemFormResults" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center" style="width: 100%">
+            <div class="input-group">
+                <label>Name*: </label>
+                <br />
+                <input class="item-input" type="text" formControlName="name" required />
             </div>
-        </div>
-    </form>
+            <div class="input-group">
+                <label>Description: </label>
+                <br />
+                <textarea class="item-input" formControlName="description"></textarea>
+            </div>
+            <div class="input-group">
+                <label>Value: </label>
+                <br />
+                <input class="item-input" type="number" formControlName="value" required />
+            </div>
+            <div class="input-group">
+                <label>Weight: </label>
+                <br />
+                <input class="item-input" type="number" formControlName="weight" required />
+            </div>
+            <div class="input-group">
+                <label>Quantity: </label>
+                <br />
+                <input class="item-input" type="number" formControlName="quantity" required />
+            </div>
+            
+            <div fxLayout="row" fxLayoutAlign="space-between start" fxFlexAlign="end" style="width: 100%; padding-top: 10px">
+                <input class="input-button" [disabled]="itemFormResults.invalid" type="submit" value="Save Item"/>
+                <div *ngIf="formType === 'edit'">
+                    <button class="input-button" type="button" (click)="onDelete()">Delete Item</button>
+                </div>
+            </div>
+        </form>
+    </mat-dialog-content>
 </div>

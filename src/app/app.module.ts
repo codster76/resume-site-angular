@@ -14,6 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // My components
 import { PageTemplateComponent } from './components/page-template/page-template.component';
@@ -30,6 +31,8 @@ import { ArtAndMusicComponent } from './components/art-and-music/art-and-music.c
 import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-echoes.component';
 import { ZanatharsGuideComponent } from './components/zanathars-guide/zanathars-guide.component';
 import { OnlineClassComponent } from './components/online-class/online-class.component';
+import { ModalTestComponent } from './components/modal-test/modal-test.component';
+import { ModalContentTestComponent } from './components/modal-content-test/modal-content-test.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,8 @@ import { OnlineClassComponent } from './components/online-class/online-class.com
     MegaManEchoesComponent,
     ZanatharsGuideComponent,
     OnlineClassComponent,
+    ModalTestComponent,
+    ModalContentTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +68,7 @@ import { OnlineClassComponent } from './components/online-class/online-class.com
     MatInputModule,
     MatToolbarModule,
     MatIconModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

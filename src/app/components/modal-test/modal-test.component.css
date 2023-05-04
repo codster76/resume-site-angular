@@ -1,0 +1,5 @@
+.mat-dialog-container {
+    overflow: unset;
+    display: flex;
+    flex-direction: column;
+}

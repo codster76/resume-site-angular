@@ -1,7 +1,7 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalService } from 'src/app/services/modal.service';
 import { Item } from 'src/app/model/data-model';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-item-form',
@@ -19,16 +19,17 @@ export class ItemFormComponent implements OnInit {
   };
 
   @Input() formType: TypeOfForm = "add";
-  @Input() modalID: string = '';
 
   itemFormResults: FormGroup = new FormGroup({});
 
   @Output() formSubmittedEvent= new EventEmitter<Item>();
   @Output() itemDeletedEvent = new EventEmitter<string>();
 
-  constructor(private formBuilder: FormBuilder, public modalService: ModalService) {}
+  constructor(private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: {item: Item, formType: TypeOfForm}) {}
 
   ngOnInit(): void {
+    this.itemToDisplay = this.data.item;
+
     this.itemFormResults = this.formBuilder.group({
       id: [this.itemToDisplay.id],
       name: [this.itemToDisplay.name, [Validators.required]],
@@ -37,6 +38,8 @@ export class ItemFormComponent implements OnInit {
       weight: [this.itemToDisplay.weight],
       quantity: [this.itemToDisplay.quantity]
     });
+
+    this.formType = this.data.formType;
   }
 
   get id() {
@@ -80,11 +83,6 @@ export class ItemFormComponent implements OnInit {
       weight: [this.itemToDisplay.weight],
       quantity: [this.itemToDisplay.quantity]
     });
-  }
-
-  cancelButton() {
-    this.modalService.close(this.modalID);
-    this.resetForm();
   }
 }
 

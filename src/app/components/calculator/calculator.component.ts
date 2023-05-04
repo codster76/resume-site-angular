@@ -119,6 +119,7 @@ export class CalculatorComponent implements OnInit {
 
   performCalculation() {
     if(this.currentValue !== "") {
+      // Take the current number you've typed and insert it into the operation, whatever it is
       this.insertAtDeepestLevel(this.currentOperation, Operation.singleValue(parseFloat(this.currentValue), OperationType.Multiply));
       this.currentValue = "";
     }
@@ -329,6 +330,7 @@ export class CalculatorComponent implements OnInit {
   closeBracket(operationToTraverse: Operation) {
     const operationToTraverseAsArray: Operation[] = operationToTraverse.value as Operation[];
     if(!operationToTraverseAsArray[operationToTraverseAsArray.length-1].isNumber) {
+      // Move back through the array, looking for a bracket to close
       this.closeBracket(operationToTraverseAsArray[operationToTraverseAsArray.length-1]);
     } else {
       operationToTraverse.bracketClosed = true;
@@ -392,7 +394,7 @@ export class CalculatorComponent implements OnInit {
 
           // Once the values have been computed, put them back in the spot they were taken from
           valueAsArray.splice(i, 0, Operation.singleValue(calculatedNumber, operation2.operationSymbol));
-          i--;
+          i--; // Make sure to iterate back, since the array has been shortened
         }
       }
 
@@ -436,6 +438,7 @@ export class Operation {
   isTop: boolean = false;
   hidden: boolean = false; // For invisible *1s
 
+  // Constructors
   static singleValue(value: number, operationType: OperationType): Operation {
     const operation = new Operation();
     operation.value = value;

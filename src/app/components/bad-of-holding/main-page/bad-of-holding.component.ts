@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BackendCallsService } from 'src/app/services/backend-calls.service';
 import { Item } from 'src/app/model/data-model';
 import { map, Observable, tap, BehaviorSubject, Subscription } from 'rxjs';
-import { ModalService } from 'src/app/services/modal.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ItemFormComponent } from '../item-form/item-form.component'; 
 
 @Component({
   selector: 'app-bad-of-holding',
@@ -18,6 +19,9 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     weight: 0,
     quantity: 0
   }
+
+  itemList: Item[] = [this.defaultItem];
+
   itemSubject: BehaviorSubject<Item[]> = new BehaviorSubject([this.defaultItem]);
   itemSubscription: Subscription = new Subscription;
   sortingFunctions = {
@@ -29,13 +33,21 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
   }
   lastSort: string[] = ['', ''];
 
-  constructor(public backendCalls: BackendCallsService, public modalService: ModalService) { }
+  currentDialog?: MatDialogRef<ItemFormComponent, any>;
+
+  constructor(public backendCalls: BackendCallsService, public dialogService: MatDialog) { }
 
   ngOnInit(): void {
-    this.itemSubscription = this.backendCalls.getItemList().subscribe((value) => {
-      this.itemSubject.next(value);
-      this.sortBy('name');
-    });
+    this.getAllItems();
+  }
+
+  async getAllItems() {
+    try {
+      this.itemList = await this.backendCalls.getItemList();
+      this.itemSubject.next(this.itemList);
+    } catch (e) {
+      console.error("Could not fetch quotes");
+    }
   }
 
   ngOnDestroy(): void {
@@ -63,7 +75,7 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     this.backendCalls.addItem(itemToAdd);
     // Add to display
     this.itemSubject.getValue().push(itemToAdd);
-    this.modalService.close('itemForm');
+    this.currentDialog?.close();
   }
 
   editItem(itemToUpdateWith: Item, IDOfItemToReplace: string) {
@@ -77,14 +89,14 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
         item.weight = itemToUpdateWith.weight;
       }
     })
-    this.modalService.close(IDOfItemToReplace);
+    this.currentDialog?.close();
   }
 
   deleteItem(idToDelete: string) {
     this.backendCalls.deleteItem(idToDelete);
     // Delete from display
     this.itemSubject.next(this.itemSubject.getValue().filter(arrayItem => arrayItem.id !== idToDelete));
-    this.modalService.close(idToDelete);
+    this.currentDialog?.close();
   }
 
   // Adds sorting icons to headings based on the last sort performed
@@ -98,5 +110,26 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     } else {
       return headingName.charAt(0).toUpperCase() + headingName.slice(1);
     }
+  }
+
+  openModal(item: Item, formType: string) {
+    this.currentDialog = this.dialogService.open(ItemFormComponent, { data: { item: item, formType: formType } });
+
+    const formSubmit = this.currentDialog.componentInstance.formSubmittedEvent.subscribe((event: Item) => {
+      if(this.currentDialog!.componentInstance.formType === "add") {
+        this.addNewItem(event);
+      } else {
+        this.editItem(event, item.id);
+      }
+    });
+
+    const itemDeleted = this.currentDialog.componentInstance.itemDeletedEvent.subscribe((event: string) => {
+      this.deleteItem(event);
+    });
+
+    this.currentDialog.afterClosed().subscribe(() => {
+      formSubmit.unsubscribe();
+      itemDeleted.unsubscribe();
+    });
   }
 }

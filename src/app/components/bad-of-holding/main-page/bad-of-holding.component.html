@@ -1,5 +1,5 @@
 <h2>Bad of Holding</h2>
-<button class="input-button" (click)="modalService.open('itemForm')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
+<button class="input-button" (click)="openModal(defaultItem, 'add')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
 <div fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
     <div class="heading" fxFlex="30" (click)="sortBy('description')">{{generateHeading('description')}}</div>
@@ -9,7 +9,7 @@
 </div>
 <ng-container *ngIf="itemSubject | async as items">
     <div *ngFor="let item of items">
-        <div class="item-row" (click)="modalService.open(item.id)">
+        <div class="item-row" (click)="openModal(item, 'edit')">
             <div fxLayout="row" fxLayoutAlign="space-around start">
                 <div fxFlex="1">{{item.name}}</div>
                 <div fxFlex="30">{{item.description}}</div>
@@ -18,7 +18,7 @@
                 <div fxFlex="1">{{item.quantity}}</div>
             </div>
         </div>
-        <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
+        <!-- <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
             <app-item-form
                 [modalID]="item.id"
                 [itemToDisplay]="item"
@@ -26,16 +26,16 @@
                 (itemDeletedEvent)="deleteItem($event)"
                 formType="edit">
             </app-item-form>
-        </app-modal>
+        </app-modal> -->
     </div>
 </ng-container>
-<app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
+<!-- <app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
     <app-item-form
         modalID="itemForm"
         (formSubmittedEvent)="addNewItem($event)"
         formType="add">
     </app-item-form>
-</app-modal>
+</app-modal> -->
 
 <div>Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take a long time to load.</div>
 

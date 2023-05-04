@@ -10,6 +10,7 @@ import { ArtAndMusicComponent } from './components/art-and-music/art-and-music.c
 import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-echoes.component';
 import { ZanatharsGuideComponent } from './components/zanathars-guide/zanathars-guide.component';
 import { OnlineClassComponent } from './components/online-class/online-class.component';
+import { ModalTestComponent } from './components/modal-test/modal-test.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'art-and-music', component: ArtAndMusicComponent },
   { path: 'mega-man-echoes', component: MegaManEchoesComponent },
   { path: 'zanathars-guide', component: ZanatharsGuideComponent },
+  { path: 'modal-test', component: ModalTestComponent }
 ];
 
 // RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'});
