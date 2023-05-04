@@ -41,14 +41,8 @@
 <br />
 
 <div fxLayout="column" fxLayoutAlign="center center">
-    <img src="../../../assets/trie-data-structure.png" style="max-width:80%; height:auto; cursor:pointer;" (click)="modalService.open('data-structure-image')" />
+    <img src="../../../assets/trie-data-structure.png" style="max-width:80%; height:auto; cursor:pointer;" (click)="openImageModal('../../../assets/trie-data-structure.png')" />
 </div>
-<app-modal id="data-structure-image" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-    <div fxLayout="column" fxLayoutAlign="start center">
-        <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('data-structure-image')" fxFlexAlign="end">close</mat-icon>
-        <img src="../../../assets/trie-data-structure.png" width="1200"/>
-    </div>
-</app-modal>
 <br />
 
 <div>Once a trie is established, autocomplete just requires traversal up to a certain point in that trie, then a depth-first 
@@ -67,49 +61,25 @@
     <div>
         <div>Insert example:</div>
         <div fxLayout="column" fxLayoutAlign="center center">
-            <img src="../../../assets/autocomplete-insert.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-insert')" />
+            <img src="../../../assets/autocomplete-insert.png" width="200" style="cursor: pointer" (click)="openImageModal('../../../assets/autocomplete-insert.png')" />
         </div>
-        <app-modal id="autocomplete-insert" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-            <div fxLayout="column" fxLayoutAlign="start center">
-                <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('autocomplete-insert')" fxFlexAlign="end">close</mat-icon>
-                <img src="../../../assets/autocomplete-insert.png" width="1000" />
-            </div>
-        </app-modal>
     </div>
     <div>
         <div>Search fail example:</div>
         <div fxLayout="column" fxLayoutAlign="center center">
-            <img src="../../../assets/autocomplete-search-fail.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-search-fail')" />
+            <img src="../../../assets/autocomplete-search-fail.png" width="200" style="cursor: pointer" (click)="openImageModal('../../../assets/autocomplete-search-fail.png')" />
         </div>
-        <app-modal id="autocomplete-search-fail" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-            <div fxLayout="column" fxLayoutAlign="start center">
-                <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('autocomplete-search-fail')" fxFlexAlign="end">close</mat-icon>
-                <img src="../../../assets/autocomplete-search-fail.png" width="1000" />
-            </div>
-        </app-modal>
     </div>
     <div>
         <div>Search success example:</div>
         <div fxLayout="column" fxLayoutAlign="center center">
-            <img src="../../../assets/autocomplete-search-success.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-search-success')" />
+            <img src="../../../assets/autocomplete-search-success.png" width="200" style="cursor: pointer" (click)="openImageModal('../../../assets/autocomplete-search-success.png')" />
         </div>
-        <app-modal id="autocomplete-search-success" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-            <div fxLayout="column" fxLayoutAlign="start center">
-                <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('autocomplete-search-success')" fxFlexAlign="end">close</mat-icon>
-                <img src="../../../assets/autocomplete-search-success.png" width="1000" />
-            </div>
-        </app-modal>
     </div>
     <div>
         <div>Full autocomplete example:</div>
         <div fxLayout="column" fxLayoutAlign="center center">
-            <img src="../../../assets/autocomplete-demo.png" width="200" style="cursor: pointer" (click)="modalService.open('autocomplete-demo')" />
+            <img src="../../../assets/autocomplete-demo.png" width="200" style="cursor: pointer" (click)="openImageModal('../../../assets/autocomplete-demo.png')" />
         </div>
-        <app-modal id="autocomplete-demo" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-            <div fxLayout="column" fxLayoutAlign="start center">
-                <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('autocomplete-demo')" fxFlexAlign="end">close</mat-icon>
-                <img src="../../../assets/autocomplete-demo.png" width="1000" />
-            </div>
-        </app-modal>
     </div>
 </div>

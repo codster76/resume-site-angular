@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalService } from 'src/app/services/modal.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageModalComponent } from '../image-modal/image-modal.component';
 
 // Recursion hell
 
@@ -99,7 +100,7 @@ export class CalculatorComponent implements OnInit {
       Operation.singleValue(6, OperationType.None),
     ]);
 
-  constructor(public modalService: ModalService) { }
+  constructor(public dialogService: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -428,6 +429,11 @@ export class CalculatorComponent implements OnInit {
 
     return Operation.singleValue(valueAsArray[0].value as number, valueAsArray[0].operationSymbol);
   }
+
+  openImageModal(imageUrl: string) {
+    let width = window.innerWidth/(2 - (1 - ((Math.min(window.innerWidth, 1920))/1920)));
+    this.dialogService.open(ImageModalComponent, { width: `${width}px`, data: { imageUrl: imageUrl, width: width } });
+  }
 }
 
 export class Operation {
@@ -473,7 +479,7 @@ export class Operation {
     operation.value = values;
     operation.bracketClosed = true;
     return operation;
-  } 
+  }
 }
 
 export enum OperationType {

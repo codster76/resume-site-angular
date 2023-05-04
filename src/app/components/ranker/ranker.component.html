@@ -19,14 +19,8 @@
 <div>Example trace:</div>
 <div>Blue numbers represent the order to follow, red numbers represent the final ranking</div>
 <div fxLayout="column" fxLayoutAlign="center center">
-    <img src="../../../assets/item-ranker-trace.png" width="90%" style="cursor: pointer" (click)="modalService.open('item-ranker-trace')" />
+    <img src="../../../assets/item-ranker-trace.png" width="90%" style="cursor: pointer" (click)="openImageModal('../../../assets/item-ranker-trace.png')" />
 </div>
-<app-modal id="item-ranker-trace" [widthInPercent]="80" [heightInPercent]="90" [reactiveModal]="true">
-    <div fxLayout="column" fxLayoutAlign="start center">
-        <mat-icon class="close-button" style="padding-top: 3px" (click)="modalService.close('item-ranker-trace')" fxFlexAlign="end">close</mat-icon>
-        <img src="../../../assets/item-ranker-trace.png" width="1980px"/>
-    </div>
-</app-modal>
 <br />
 
 <div>Download it and try it for yourself here (only executable in windows): <a href="https://drive.google.com/file/d/1Laf2_Nqn9vIFyJ-chiOoYFIXg-A7T9_0/view?usp=sharing">https://drive.google.com/file/d/1Laf2_Nqn9vIFyJ-chiOoYFIXg-A7T9_0/view?usp=sharing</a></div>

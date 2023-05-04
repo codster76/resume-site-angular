@@ -3,7 +3,8 @@ import { fromEvent, Observable, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { BackendCallsService } from 'src/app/services/backend-calls.service';
 import { merge } from 'rxjs';
-import { ModalService } from 'src/app/services/modal.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ImageModalComponent } from '../image-modal/image-modal.component';
 
 @Component({
   selector: 'app-autocomplete',
@@ -19,7 +20,7 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
   numberChangeSubscription?: Subscription;
   autocompleteOptions: Observable<string[]> = this.backendCalls.getAutocomplete(' ',0);
 
-  constructor(private backendCalls: BackendCallsService, public modalService: ModalService) {}
+  constructor(private backendCalls: BackendCallsService, public dialogService: MatDialog) {}
 
   ngAfterViewInit() {
     if(this.input) {
@@ -59,5 +60,10 @@ export class AutocompleteComponent implements OnInit, OnDestroy {
     } else {
       this.autocompleteOptions = this.backendCalls.getAutocomplete(this.input?.nativeElement.value.toLowerCase(), this.numberOfSuggestions?.nativeElement.value);
     }
+  }
+
+  openImageModal(imageUrl: string) {
+    let width = window.innerWidth/(2 - (1 - ((Math.min(window.innerWidth, 1920))/1920)));
+    this.dialogService.open(ImageModalComponent, { width: `${width}px`, data: { imageUrl: imageUrl, width: width } });
   }
 }
