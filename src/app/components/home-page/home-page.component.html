@@ -22,7 +22,8 @@
                 <h2>Web Development</h2>
                 <div>
                     <div>
-                        Most of my web development experience is on the frontend with Angular, but I've dabbled in the full stack.
+                        For web development, I primarily use the PEAN stack (I know, funny name, but it means PostgreSQL, Express, Angular, Node). 
+                        I've also got some experience developing with Google Cloud Platform and some of their other services/APIs.
                     </div>
                     <br />
                     <div>Technologies:</div>
@@ -114,36 +115,44 @@
     <div fxLayout="column" fxLayoutAlign="center center">
         <h2>Webapps</h2>
         <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="width:100%">
-            <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="calculator">
-                <h3>Calculator</h3>
-                <div>A calculator that respects order of operations and brackets.</div>
-                <br />
-                <div fxFlexAlign="end">Visit page</div>
+            <div class="webapp-button" routerLink="calculator">
+                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                    <h3>Calculator</h3>
+                    <div>A calculator that respects order of operations and brackets.</div>
+                    <br />
+                    <div fxFlexAlign="end">Visit page</div>
+                </div>
             </div>
-            <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="autocomplete">
-                <h3>Autocomplete Demo</h3>
-                <div>An implementation of autocomplete using a Trie.</div>
-                <br />
-                <div fxFlexAlign="end">Visit page</div>
+            <div class="webapp-button" routerLink="autocomplete">
+                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                    <h3>Autocomplete Demo</h3>
+                    <div>An implementation of autocomplete using a Trie.</div>
+                    <br />
+                    <div fxFlexAlign="end">Visit page</div>
+                </div>
             </div>
             <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="bad-of-holding">
-                <h3>Bad of Holding</h3>
-                <div>A basic item tracker for Dungeons & Dragons.  </div>
-                <br />
-                <div fxFlexAlign="end">Visit page</div>
+                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                    <h3>Bad of Holding</h3>
+                    <div>A basic item tracker for Dungeons & Dragons.  </div>
+                    <br />
+                    <div fxFlexAlign="end">Visit page</div>
+                </div>
             </div>
             <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="online-class">
-                <h3>Online Class</h3>
-                <div>A short activity made as a learning tool for one of my game design classes.</div>
-                <br />
-                <div fxFlexAlign="end">Visit page</div>
+                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                    <h3>Online Class</h3>
+                    <div>A short activity made as a learning tool for one of my game design classes.</div>
+                    <br />
+                    <div fxFlexAlign="end">Visit page</div>
+                </div>
             </div>
         </div>
     </div>
     <br /><br /><br />
 
     <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-        <div fxLayout="column" fxLayoutAlign="space-around center" style="width:500px">
+        <div fxLayout="column" fxLayoutAlign="space-around center" style="width:560px">
             <div fxLayout="column" fxLayoutAlign="start start">
                 <h2>Games</h2>
                 <div>
@@ -154,8 +163,8 @@
             </div>
 
             <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="width:100%">
-                <div class="game-button" routerLink="mega-man-echoes">Mega Man Echoes ></div>
-                <div class="game-button" routerLink="done-in-the-fungeon">Done in the Fungeon ></div>
+                <div class="game-button" routerLink="mega-man-echoes"><div class="game-button-content">Mega Man Echoes</div></div>
+                <div class="game-button" routerLink="done-in-the-fungeon"><div class="game-button-content">Done in the Fungeon</div></div>
             </div>
         </div>
         <br />
@@ -166,6 +175,28 @@
         </div>
     </div>
     <br /><br /><br /><br />
+    
+    <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+        <div style="max-width:500px">
+            <div fxLayout="row wrap" fxLayoutAlign="space-around center">
+                <img src="../../../assets/mega-man-7-cover.png" style="width:100%; height:auto;" />
+            </div>
+        </div>
+        <br />
+        <div fxLayout="column" fxLayoutAlign="space-around center" style="width:560px">
+            <div fxLayout="column" fxLayoutAlign="start start">
+                <h2>Art and Music</h2>
+                <div>
+                    My interests in game development led me to learning how to make my own assets, which includes art and music.
+                    Making things yourself can really help a project feel like your own. I can make 2D pixel art and 8-bit music.
+                </div>
+                <br />
+            </div>
+            <div class="other-page-button" routerLink="art-and-music"><div class="other-page-button-content">Art and Music</div></div>
+        </div>
+    </div>
+    <br /><br /><br /><br />
+
     <div fxLayout="row wrap" fxLayoutAlign="space-around center">
         <div fxLayout="column" fxLayoutAlign="start start" style="width:500px;">
             <h2>Other Pages</h2>
@@ -175,9 +206,8 @@
         </div>
         <div style="width:700px;">
             <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-                <div class="other-page-button" routerLink="ranker">Item Ranker ></div>
-                <div class="other-page-button" routerLink="art-and-music">Art and Music ></div>
-                <div class="other-page-button" routerLink="zanathars-guide">Zanathar's Guide ></div>
+                <div class="other-page-button" routerLink="ranker"><div class="other-page-button-content">Item Ranker</div></div>
+                <div class="other-page-button" routerLink="zanathars-guide"><div class="other-page-button-content">Zanathar's Guide</div></div>
             </div>
         </div>
     </div>

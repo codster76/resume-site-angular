@@ -1,9 +1,17 @@
 mat-toolbar {
-    background-color: rgb(161, 161, 161);
+    background-color: rgb(0, 64, 88);
+    color: white;
+    border-bottom: solid;
+    border-width: 3px;
+    border-color: black;
 }
 
 mat-sidenav {
-    background-color: white;
+    background-color: rgb(0, 64, 88);
+    color: white;
+    border-right: solid;
+    border-width: 3px;
+    border-color: black;
 }
 
 mat-sidenav-content {
@@ -45,8 +53,12 @@ mat-sidenav-content {
 }
 
 .footer {
-    background-color: rgb(161, 161, 161);
+    background-color: rgb(0, 64, 88);
     padding: 30px;
+    color: white;
+    border-top: solid;
+    border-width: 3px;
+    border-color: black;
 }
 
 .open-sidenav:hover {
@@ -76,7 +88,12 @@ mat-sidenav-content {
 .main-content {
     min-height: 100vh;
     width: 80%;
-    background-color: white;
+    background-color: rgb(0, 88, 248);
+    color: white;
+    border-left: solid;
+    border-right: solid;
+    border-color: black;
+    border-width: 3px;
 }
 
 @media (max-width: 800px){
