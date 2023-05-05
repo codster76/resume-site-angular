@@ -3,7 +3,7 @@
 <br /><br />
 <div class="heading-group" fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
-    <div class="heading" fxFlex="30" (click)="sortBy('description')">{{generateHeading('description')}}</div>
+    <div [ngClass]="{'heading': true, 'description': true}" fxFlex="30" (click)="sortBy('description')">{{generateHeading('description')}}</div>
     <div class="heading" fxFlex="1" (click)="sortBy('value')">{{generateHeading('value')}}</div>
     <div class="heading" fxFlex="1" (click)="sortBy('weight')">{{generateHeading('weight')}}</div>
     <div class="heading" fxFlex="1" (click)="sortBy('quantity')">{{generateHeading('quantity')}}</div>
@@ -12,8 +12,8 @@
     <div *ngFor="let item of items">
         <div class="item-row" (click)="openModal(item, 'edit')">
             <div fxLayout="row" fxLayoutAlign="space-around start">
-                <div class="item-property" fxFlex="1">{{cutLongString(item.name, 20)}}</div>
-                <div class="item-property" fxFlex="30">{{cutLongString(item.description, 60)}}</div>
+                <div class="item-property" fxFlex="1">{{cutLongString(item.name, 15)}}</div>
+                <div [ngClass]="{'item-property': true, 'description': true}" fxFlex="30">{{cutLongString(item.description, 60)}}</div>
                 <div class="item-property" fxFlex="1">{{item.value}}</div>
                 <div class="item-property" fxFlex="1">{{item.weight}}</div>
                 <div class="item-property" fxFlex="1">{{item.quantity}}</div>

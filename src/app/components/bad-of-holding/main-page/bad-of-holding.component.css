@@ -29,3 +29,9 @@
 .input-button:active {
     background-color: rgb(60, 188, 252);;
 }
+
+@media (max-width: 1200px) {
+    .description {
+        visibility: hidden;
+    }
+}
