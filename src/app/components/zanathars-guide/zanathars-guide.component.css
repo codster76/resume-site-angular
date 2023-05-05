@@ -1,20 +1,23 @@
 .class-card {
     width: 300px;
     height: auto;
-    padding: 10px;
+    padding: 15px;
     margin-top: 10px;
+    --pointer-events: none;
 }
 
 .spell-card {
     width: 450px;
     height: auto;
-    padding: 10px;
+    padding: 15px;
     margin-top: 10px;
+    --pointer-events: none;
 }
 
 .item-card {
     width: 450px;
     height: auto;
-    padding: 10px;
+    padding: 15px;
     margin-top: 10px;
+    --pointer-events: none;
 }

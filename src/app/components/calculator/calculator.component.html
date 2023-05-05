@@ -1,6 +1,6 @@
 <h2>Calculator</h2>
 <div fxLayout="column" fxLayoutAlign="center center">
-  <div class="result">{{valueToDisplay}}</div>
+  <div [ngClass]="{'pixel-border': true, 'result': true}"><div class="result-content">{{valueToDisplay}}</div></div>
   <div class="buttons" fxLayout="column" fxLayoutAlign="start center">
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
       <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('1')">1</button>

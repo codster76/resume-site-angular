@@ -116,7 +116,7 @@
         <h2>Webapps</h2>
         <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="width:100%">
             <div class="webapp-button" routerLink="calculator">
-                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                <div [ngClass]="{'webapp-button-content': true, 'pixel-border': true}" fxLayout="column" fxLayoutAlign="start start">
                     <h3>Calculator</h3>
                     <div>A calculator that respects order of operations and brackets.</div>
                     <br />
@@ -124,7 +124,7 @@
                 </div>
             </div>
             <div class="webapp-button" routerLink="autocomplete">
-                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                <div [ngClass]="{'webapp-button-content': true, 'pixel-border': true}" fxLayout="column" fxLayoutAlign="start start">
                     <h3>Autocomplete Demo</h3>
                     <div>An implementation of autocomplete using a Trie.</div>
                     <br />
@@ -132,7 +132,7 @@
                 </div>
             </div>
             <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="bad-of-holding">
-                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                <div [ngClass]="{'webapp-button-content': true, 'pixel-border': true}" fxLayout="column" fxLayoutAlign="start start">
                     <h3>Bad of Holding</h3>
                     <div>A basic item tracker for Dungeons & Dragons.  </div>
                     <br />
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class="webapp-button" fxLayout="column" fxLayoutAlign="start start" routerLink="online-class">
-                <div class="webapp-button-content" fxLayout="column" fxLayoutAlign="start start">
+                <div [ngClass]="{'webapp-button-content': true, 'pixel-border': true}" fxLayout="column" fxLayoutAlign="start start">
                     <h3>Online Class</h3>
                     <div>A short activity made as a learning tool for one of my game design classes.</div>
                     <br />
@@ -163,8 +163,12 @@
             </div>
 
             <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="width:100%">
-                <div class="game-button" routerLink="mega-man-echoes"><div class="game-button-content">Mega Man Echoes</div></div>
-                <div class="game-button" routerLink="done-in-the-fungeon"><div class="game-button-content">Done in the Fungeon</div></div>
+                <div class="game-button" routerLink="mega-man-echoes">
+                    <div [ngClass]="{'game-button-content': true, 'pixel-border': true}">Mega Man Echoes</div>
+                </div>
+                <div class="game-button" routerLink="done-in-the-fungeon">
+                    <div [ngClass]="{'game-button-content': true, 'pixel-border': true}">Done in the Fungeon</div>
+                </div>
             </div>
         </div>
         <br />
@@ -192,7 +196,9 @@
                 </div>
                 <br />
             </div>
-            <div class="other-page-button" routerLink="art-and-music"><div class="other-page-button-content">Art and Music</div></div>
+            <div class="other-page-button" routerLink="art-and-music">
+                <div [ngClass]="{'other-page-button-content': true, 'pixel-border': true}">Art and Music</div>
+            </div>
         </div>
     </div>
     <br /><br /><br /><br />
@@ -206,8 +212,12 @@
         </div>
         <div style="width:700px;">
             <div fxLayout="row wrap" fxLayoutAlign="space-around center">
-                <div class="other-page-button" routerLink="ranker"><div class="other-page-button-content">Item Ranker</div></div>
-                <div class="other-page-button" routerLink="zanathars-guide"><div class="other-page-button-content">Zanathar's Guide</div></div>
+                <div class="other-page-button" routerLink="ranker">
+                    <div [ngClass]="{'other-page-button-content': true, 'pixel-border': true}">Item Ranker</div>
+                </div>
+                <div class="other-page-button" routerLink="zanathars-guide">
+                    <div [ngClass]="{'other-page-button-content': true, 'pixel-border': true}">Zanathar's Guide</div>
+                </div>
             </div>
         </div>
     </div>

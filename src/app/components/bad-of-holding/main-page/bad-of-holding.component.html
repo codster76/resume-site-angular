@@ -37,7 +37,7 @@
     </app-item-form>
 </app-modal> -->
 
-<div>Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take a long time to load.</div>
+<div>Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take a minute or two to load to begin with.</div>
 
 <br />
 <h2>What is it?</h2>
@@ -46,10 +46,12 @@
     connecting it to a frontend.</div>
 <br />
 <h2>How it Works</h2>
-<div>It’s quite simple. I have a REST API in the backend that serves JSON containing the items to 
-    display on the frontend. I don’t have a database to use, so the items are stored in memory, meaning 
-    the data isn’t persistent. Despite this, though, all of the data serving and display functionality 
-    is here.</div>
+<div>
+    It’s quite simple. I have a REST API in the backend that serves JSON containing the items to 
+    display on the frontend. For simplicity and to avoid the need for maintenance, there isn't a real 
+    database tracking the items for this site and it's just simulated in memory. Adding a real 
+    database would not meaningfully change the functionality being demonstrated on this page.
+</div>
 <br />
 <div>The API is able to handle getting, adding, deleting and modifying items.</div>
 <br />
