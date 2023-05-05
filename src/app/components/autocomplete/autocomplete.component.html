@@ -1,5 +1,6 @@
-<h2>Autocomplete Demo</h2>
-<div fxLayout="column">
+<div class="page-heading">Autocomplete Demo</div>
+
+<div class="interactive-elements">
     <div fxLayout="row" fxLayoutAlign="space-between start" style="width: 23em">
         <label style="padding-left:10px;">Number of Results: </label>
         <input type="number" min="1" value="5" #numberOfSuggestions>
@@ -18,26 +19,36 @@
         </mat-option>
     </ng-container>
 </mat-autocomplete>
+<br />
+<div>
+    Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take a 
+    minute or two to load to begin with. It'll speed up significantly after loading once.
+</div>
 
 <br />
 <br />
 <h2>What is it?</h2>
-<div>This is a demo of an implementation of autocomplete. It was made to efficiently search very large data sets of 
-    strings. It takes a text input and returns a specified number of words containing that input. The data set used 
-    for searching can be found at <a href="https://www.mit.edu/~ecprice/wordlist.10000">https://www.mit.edu/~ecprice/wordlist.10000</a>.</div>
+<div>
+    This is a demo of an implementation of autocomplete. It was made to efficiently search very large data sets of 
+    strings. In this case, it's a data set of 10,000 words, which it can near-instantly search and suggest from. 
+    It takes a text input and returns a specified number of words containing that input. The data set used for 
+    searching can be found at <a href="https://www.mit.edu/~ecprice/wordlist.10000">https://www.mit.edu/~ecprice/wordlist.10000</a>.
+</div>
 <br />
 <h2>How it Works</h2>
-<div>It uses an implementation of the trie data structure to faciliate these efficient searches. A trie is a type of 
+<div>
+    It uses an implementation of the trie data structure to faciliate these efficient searches. A trie is a type of 
     tree where each node is a key of some kind. In this case, each node is a single character. Each word exists as a 
     chain of letter nodes in the trie (e.g. “cat” would have “c” as the child of the root node, “a” as the child 
     of “c” and “t” as the child of “a”). The end of a word is signified with a boolean flag.</div>
 <br />
 
-<div>Each node is essentially just an array with a length corresponding to however many characters are possible in the search 
+<div>
+    Each node is essentially just an array with a length corresponding to however many characters are possible in the search 
     space (in my case, 26) and an end flag. When a child is added to a node, it is inserted in its corresponding index in 
     the parent’s array (the index can be determined by a lookup table or using ascii codes). Because of the tree structure and 
     the fact that nodes are automatically sorted upon insertion, traversal of the trie is extremely efficient, thereby making insertion 
-    and searching extremely efficient.</div>
+    and searching extremely quick.</div>
 <br />
 
 <div fxLayout="column" fxLayoutAlign="center center">
@@ -45,18 +56,19 @@
 </div>
 <br />
 
-<div>Once a trie is established, autocomplete just requires traversal up to a certain point in that trie, then a depth-first 
-    search on the last node of that traversal. In my implementation, you are able to specify a maximum number of suggestions, 
-    which can stop the search after a point, further increasing efficiency, as the depth-first search does not always need to finish.</div>
+<div>
+    Once a trie is built, performing autocomplete just requires traversal up to a user-specified point in that trie using 
+    a depth-first search. In my implementation, you are able to specify a maximum number of suggestions, which will stop 
+    the search after the specified number of results are found.
+</div>
 <br />
 <div>The trie and data set is hosted on my backend and served via 
     <a href="https://cody-resume-site-backend.onrender.com/">https://cody-resume-site-backend.onrender.com/</a>.
 </div>
-<br />  
-<div>Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take quite a while to access this page.</div>
+
 <br />
 
-<h2>Function Examples</h2>
+<h2>Function Traces</h2>
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
     <div>
         <div>Insert example:</div>

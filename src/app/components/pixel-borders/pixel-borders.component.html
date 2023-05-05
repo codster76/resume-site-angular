@@ -1,0 +1,42 @@
+<div class="page-heading">Pixel Border System Demo</div>
+<div class="interactive-elements">
+    <div class="pixel-border" style="width: 50px; height: 50px" #elementToModify></div>
+    <br />
+    <div>↑</div>
+    <div>Enter a width and height to change the size of this box.</div>
+    <div class="input-box">
+        <div class="input-field">
+            <label>Width: </label>
+            <input type="number" min="1" max="1000" value="50" #width>
+        </div>
+        <div class="input-field">
+            <label>Height: </label>
+            <input type="number" min="1" max="1000" value="50" #height>
+        </div>
+        <button [ngClass]="{'pixel-border': true, 'confirm-button': true}" (click)="modifyElement()">Resize Box</button>
+    </div>
+</div>
+
+<h2>What is it?</h2>
+<div>
+    This is the system I used to create the pixel borders of all of the buttons and elements you 
+    see on this site. It's made using pure CSS and will work at any arbitary size, which you should 
+    be able to play with on this page. I'm a stickler for consistent pixel sizes, so I made this to 
+    ensure that all pixels on this site would be identical in size, no matter how large or small any 
+    element was.
+    <br /><br />
+    On a related note, you might notice the background dynamically resizes based on the height of the 
+    page. It works similarly.
+</div>
+<br />
+<h2>How it Works</h2>
+<div>
+    It's actually quite simple. I'm leveraging the ability to render and manipulate multiple background 
+    images in a single element. Basically, I have single pixel assets (literally just square images with 
+    a single colour) that are being rendered as background images. Singular pixels (the corners are the 
+    main example) can just be placed in positions relative to the element's edges. Lines can be drawn by 
+    taking advantage of background tiling. You might be wondering why I don't just use CSS borders and/or 
+    outlines, and that's because of the inability to draw them inside an element and their behaviour at 
+    corners, which meet at diagonals instead of overlapping. This seriously breaks the pixel art aesthetic. 
+    My approach is cleaner and opens up opportunities for even more intricate designs.
+</div>

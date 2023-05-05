@@ -1,6 +1,7 @@
-<h2>Bad of Holding</h2>
-<button class="input-button" (click)="openModal(defaultItem, 'add')" style="margin-left: 5%; margin-right: 5%; width: 90%; height: 2em;">Add Item</button>
-<div fxLayout="row" fxLayoutAlign="space-around start">
+<div class="page-heading">Bad of Holding</div>
+<button [ngClass]="{'input-button': true, 'pixel-border': true}" (click)="openModal(defaultItem, 'add')">Add Item</button>
+<br /><br />
+<div class="heading-group" fxLayout="row" fxLayoutAlign="space-around start">
     <div class="heading" fxFlex="1" (click)="sortBy('name')">{{generateHeading('name')}}</div>
     <div class="heading" fxFlex="30" (click)="sortBy('description')">{{generateHeading('description')}}</div>
     <div class="heading" fxFlex="1" (click)="sortBy('value')">{{generateHeading('value')}}</div>
@@ -18,42 +19,28 @@
                 <div fxFlex="1">{{item.quantity}}</div>
             </div>
         </div>
-        <!-- <app-modal [id]="item.id" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
-            <app-item-form
-                [modalID]="item.id"
-                [itemToDisplay]="item"
-                (formSubmittedEvent)="editItem($event, item.id)"
-                (itemDeletedEvent)="deleteItem($event)"
-                formType="edit">
-            </app-item-form>
-        </app-modal> -->
     </div>
 </ng-container>
-<!-- <app-modal id="itemForm" [widthInPercent]="30" [heightInPercent]="90" [reactiveModal]="true">
-    <app-item-form
-        modalID="itemForm"
-        (formSubmittedEvent)="addNewItem($event)"
-        formType="add">
-    </app-item-form>
-</app-modal> -->
-
-<div>Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take a minute or two to load to begin with.</div>
+<br />
+<div>
+    Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take a 
+    minute or two to load to begin with. It'll speed up significantly after loading once.
+</div>
 
 <br />
 <h2>What is it?</h2>
-<div>This is a simple item tracker for Dungeons & Dragons. The silly name is an inside joke between a 
-    friend and I. It was made as a learning exercise for React, as well as for creating a backend and 
-    connecting it to a frontend.</div>
+<div>
+    This is an item tracker for Dungeons & Dragons. The silly name is an inside joke between 
+    a friend and I. This is a showcase for a UI for manipulating and managing objects in a backend 
+    system/database. This could really be tracking anything, from job tickets, to stock, to D&D items. 
+    It's got the basic functionality of adding, removing, editing, sorting and viewing objects.
+</div>
 <br />
 <h2>How it Works</h2>
 <div>
-    It’s quite simple. I have a REST API in the backend that serves JSON containing the items to 
-    display on the frontend. For simplicity and to avoid the need for maintenance, there isn't a real 
-    database tracking the items for this site and it's just simulated in memory. Adding a real 
-    database would not meaningfully change the functionality being demonstrated on this page.
+    It’s quite simple. I have a REST API in the backend that serves and receives items. 
+    Changes/deletions/additions made on the frontend are reflected in the backend. For simplicity and 
+    to avoid the need for maintenance, there isn't a real database tracking the items for this site 
+    and it's just simulated in the server's memory. Adding a real database would certainly be possible, 
+    but it would not meaningfully change the functionality being demonstrated on this page.
 </div>
-<br />
-<div>The API is able to handle getting, adding, deleting and modifying items.</div>
-<br />
-<div>On the frontend, retrieved items are simply displayed in various ways, with a UI for viewing, 
-    sorting, adding, editing and deleting items.</div>

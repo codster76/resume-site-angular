@@ -1,14 +1,12 @@
 .button {
     padding: 1em;
-    background-color: rgb(161, 161, 161);
     width: 7em;
     border-radius: 5px;
     text-align: center;
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
 .button:hover {
-    background-color: gray;
     cursor: pointer;
 }

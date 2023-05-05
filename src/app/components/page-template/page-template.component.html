@@ -1,16 +1,17 @@
 <mat-toolbar>
   <div *ngIf="sidenavOpen; else elseBlock">
-    <mat-icon class="open-sidenav" style="margin-top: 8px" (click)="toggleSidenav()">close</mat-icon>
+    <div class="close-sidenav" (click)="toggleSidenav()"></div>
+    <!-- <mat-icon class="open-sidenav" style="margin-top: 8px" (click)="toggleSidenav()">close</mat-icon> -->
   </div>
-  <ng-template #elseBlock><mat-icon class="open-sidenav" (click)="toggleSidenav()">menu</mat-icon></ng-template>
-  <div class="title" style="padding-left: 1em" routerLink="">Cody Liu</div>
+  <ng-template #elseBlock><div class="open-sidenav" (click)="toggleSidenav()"></div></ng-template>
+  <div class="title" style="padding-left: 1em;" routerLink=""></div>
 </mat-toolbar>
 
 <mat-sidenav-container style="min-height: 100%">
   <mat-sidenav class="sidenav" mode="side" [opened]="sidenavOpen">
     <div fxLayout="column">
       <hr style="width: 90%" />
-      <div class="nav-button" routerLink="" style="padding-left: 10px">Home</div>
+      <div class="nav-button" routerLink="">Home</div>
       <hr style="width: 90%" />
       <div class="nav-title">Web Apps</div>
       <div class="nav-button" routerLink="calculator">Calculator</div>
@@ -27,9 +28,10 @@
       <br />
       <hr style="width: 90%" />
       <div class="nav-title">Other</div>
-      <div class="nav-button" routerLink="ranker">Ranker</div>
+      <div class="nav-button" routerLink="ranker">Item Ranker</div>
       <div class="nav-button" routerLink="art-and-music">Art and Music</div>
       <div class="nav-button" routerLink="zanathars-guide">Zanathar's Guide</div>
+      <div class="nav-button" routerLink="pixel-borders">Pixel Border System</div>
       <hr style="width: 90%" />
     </div>
   </mat-sidenav>

@@ -1,4 +1,4 @@
-<h1>Online Class</h1>
+<div class="page-heading">Online Class</div>
 <h2>What is it?</h2>
 <div>
     Short explanation: I used Unity and Angular to create an interactive lesson on game mechanics to make up for a cancelled class.
@@ -31,13 +31,13 @@
 <div fxLayout="row" fxLayoutAlign="center center">
     <div style="width:50%" fxLayout="column" fxLayoutAlign="start center">
         <div>You can access the lesson here:</div>
-        <a class="button" href="https://mechanics-demo-site.vercel.app/">Start Class</a>
+        <a [ngClass]="{'button': true, 'pixel-border': true}" href="https://mechanics-demo-site.vercel.app/">Start Class</a>
     </div>
     
     <div style="width:50%" fxLayout="column" fxLayoutAlign="start center">
         <div>If you'd like to skip to the end:</div>
         <div>(all pages are accessible from the sidenav)</div>
-        <a class="button" href="https://mechanics-demo-site.vercel.app/skip">Skip to the End</a>
+        <a [ngClass]="{'button': true, 'pixel-border': true}" href="https://mechanics-demo-site.vercel.app/skip">Skip to the End</a>
     </div>
 </div>
-<br /><br /><br /><br /><br />
+<br /><br />

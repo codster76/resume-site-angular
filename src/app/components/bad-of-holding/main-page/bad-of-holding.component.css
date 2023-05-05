@@ -2,14 +2,24 @@
     user-select: none;
 }
 
+.heading-group {
+    margin-bottom: 5px;
+}
+
+.item-row {
+    height: 25px;
+}
+
 .item-row:hover {
-    background-color: grey;
+    background-color: rgb(0,0,252);
 }
 
 .input-button {
-    background-color: rgb(224, 224, 224);
-    border: 1px black solid;
-    border-radius: 3px;
+    color: white;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    height: 40px;
 }
 
 .input-button:hover {
@@ -17,5 +27,5 @@
 }
 
 .input-button:active {
-    background-color: rgb(170, 170, 170);
+    background-color: rgb(60, 188, 252);;
 }

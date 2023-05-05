@@ -11,6 +11,7 @@ import { MegaManEchoesComponent } from './components/mega-man-echoes/mega-man-ec
 import { ZanatharsGuideComponent } from './components/zanathars-guide/zanathars-guide.component';
 import { OnlineClassComponent } from './components/online-class/online-class.component';
 import { ModalTestComponent } from './components/modal-test/modal-test.component';
+import { PixelBordersComponent } from './components/pixel-borders/pixel-borders.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'art-and-music', component: ArtAndMusicComponent },
   { path: 'mega-man-echoes', component: MegaManEchoesComponent },
   { path: 'zanathars-guide', component: ZanatharsGuideComponent },
+  { path: 'pixel-borders', component: PixelBordersComponent },
   { path: 'modal-test', component: ModalTestComponent }
 ];
 

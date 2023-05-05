@@ -34,6 +34,7 @@ import { OnlineClassComponent } from './components/online-class/online-class.com
 import { ModalTestComponent } from './components/modal-test/modal-test.component';
 import { ModalContentTestComponent } from './components/modal-content-test/modal-content-test.component';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
+import { PixelBordersComponent } from './components/pixel-borders/pixel-borders.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ImageModalComponent } from './components/image-modal/image-modal.compon
     ModalTestComponent,
     ModalContentTestComponent,
     ImageModalComponent,
+    PixelBordersComponent,
   ],
   imports: [
     BrowserModule,

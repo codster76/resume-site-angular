@@ -26,3 +26,7 @@
 .input-button:active {
     background-color: rgb(170, 170, 170);
 }
+
+textarea {
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
