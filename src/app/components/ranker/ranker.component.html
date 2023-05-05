@@ -7,13 +7,22 @@
 <br />
 
 <h2>How it Works</h2>
-<div>It takes your data set and presents each item to you in randomised batches. You then pick any 
+<div>
+    It takes your data set and presents each item to you in randomised batches. You then pick any 
     number of those items (I generally recommend picking half or less of each batch) to prioritise, 
     compared to the other items in the batch. After you get through every batch, your choices are split 
     into two different sets, based on which ones were and were not picked. You are then presented with 
     randomised batches of the chosen items from the first round. This repeats on each chosen until batch 
     sizes are reduced to 1, after which, they are added to the final list in order. This then repeats for 
-    the items that were not chosen. This process will eventually generate an ordered priority list.</div>
+    the items that were not chosen. This process will eventually generate an ordered priority list.
+    <br /><br />
+    As with any software solution, there are pros and cons when comparing different approaches. This is no 
+    exception. There are other rankers out there (I specifically have a Pokemon one in mind). Mine ends up 
+    ranking the highest-priority items first, while the other rankers I've seen rank them last. The advantage 
+    of mine is that you can stop at any point in the ranking process and have a workable list. Best for top # 
+    lists or when you only need a specific number of things ranked. The main disadvantage of this approach is 
+    that it takes a bit longer if you intend to build a comprehensive list out of a very large data set.
+</div>
 <br />
 
 <div>Example trace:</div>

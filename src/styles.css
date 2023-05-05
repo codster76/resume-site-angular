@@ -8,3 +8,47 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.pixel-border {
+    border: none;
+    background-color: rgb(0, 88, 248);
+    background-image:
+        url('./assets/Pixel-Blue-2.png'),
+        url('./assets/Pixel-Blue-2.png'),
+        url('./assets/Pixel-Blue-2.png'),
+        url('./assets/Pixel-Blue-2.png'),
+        url('./assets/Pixel-Black.png'),
+        url('./assets/Pixel-Black.png'),
+        url('./assets/Pixel-Black.png'),
+        url('./assets/Pixel-Black.png'),
+        url('./assets/Pixel-Blue-1.png'),
+        url('./assets/Pixel-Blue-1.png'),
+        url('./assets/Pixel-Blue-4.png'),
+        url('./assets//Pixel-Blue-4.png');
+    background-position:
+        top left,
+        top right,
+        bottom left,
+        bottom right,
+        top,
+        left,
+        right,
+        bottom,
+        0px 4px,
+        calc(100% - 4px) 4px,
+        0px calc(100% - 4px),
+        4px 4px;
+    background-repeat:
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        no-repeat,
+        repeat-x,
+        repeat-y,
+        repeat-y,
+        repeat-x,
+        repeat-x,
+        repeat-y,
+        repeat-x,
+        repeat-y;
+}

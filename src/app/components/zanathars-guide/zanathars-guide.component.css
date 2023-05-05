@@ -1,6 +1,20 @@
-.card {
-    background-color: rgb(161, 161, 161);
-    border-radius: 10px;
+.class-card {
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.spell-card {
+    width: 450px;
+    height: auto;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.item-card {
+    width: 450px;
+    height: auto;
     padding: 10px;
     margin-top: 10px;
 }

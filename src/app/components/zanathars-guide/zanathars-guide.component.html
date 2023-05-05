@@ -17,7 +17,7 @@
 </div>
 <br />
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
-    <div class="card" style="width:300px">
+    <div [ngClass]="{'class-card': true, 'pixel-border': true}">
         <h3>Barbarian: Berserkest</h3>
         <div>
             A barbarian with a tiered rage mechanic. The first tier is weaker than a regular rage, while the third is stronger. This subclass will
@@ -29,7 +29,7 @@
         </div>
     </div>
     
-    <div class="card" style="width:300px">
+    <div [ngClass]="{'class-card': true, 'pixel-border': true}">
         <h3>Bard: College of Memes</h3>
         <div>
             The meme in this context is an idea that spreads and mutates through a population of minds, though, there is no shortage of jokes pertaining to 
@@ -43,7 +43,7 @@
         </div>
     </div>
     
-    <div class="card" style="width:300px">
+    <div [ngClass]="{'class-card': true, 'pixel-border': true}">
         <h3>Rogue: Code of Shivalry</h3>
         <div>
             A subclass built around cheap tricks and dishonourable fighting. You've got tools like sucker punches, extra damage against weakened targets, and 
@@ -54,7 +54,7 @@
         </div>
     </div>
     
-    <div class="card" style="width:300px">
+    <div [ngClass]="{'class-card': true, 'pixel-border': true}">
         <h3>Sorcerer: The Raycaster</h3>
         <div>
             A caster subclass focused completely around spell attacks. It provides various benefits to them, like the ability to target creatures behind cover or 
@@ -71,7 +71,7 @@
 
 <h2>Spells</h2>
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
-    <div class="card" style="width:450px">
+    <div [ngClass]="{'spell-card': true, 'pixel-border': true}">
         <h3>Viscous Mockery</h3>
         <div>
             Evocation Cantrip <br />
@@ -86,7 +86,7 @@
         </div>
     </div>
 
-    <div class="card" style="width:450px">
+    <div [ngClass]="{'spell-card': true, 'pixel-border': true}">
         <h3>Magic Missiletoe</h3>
         <div>
             3rd level Evocation <br />
@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <div class="card" style="width:450px">
+    <div [ngClass]="{'spell-card': true, 'pixel-border': true}">
         <h3>The Problem Solver</h3>
         <div>
             4th level Transmutation <br />
@@ -124,7 +124,7 @@
 
 <h2>Magic Items</h2>
 <div fxLayout="row wrap" fxLayoutAlign="space-evenly stretch">
-    <div class="card" style="width:450px">
+    <div [ngClass]="{'item-card': true, 'pixel-border': true}">
         <h3>Cliff's Edge</h3>
         <div>
             +1 longsword <br /><br />
@@ -138,7 +138,7 @@
         </div>
     </div>
 
-    <div class="card" style="width:450px">
+    <div [ngClass]="{'item-card': true, 'pixel-border': true}">
         <h3>Multi-pliers</h3>
         <div>
             A seemingly normal pair of pliers. They were discovered to be magical when a guy bought them from a dodgy vendor and accidentally cloned his house after pulling 
@@ -152,7 +152,7 @@
         </div>
     </div>
 
-    <div class="card" style="width:450px">
+    <div [ngClass]="{'item-card': true, 'pixel-border': true}">
         <h3>Anecdote</h3>
         <div>
             The cure to uncertainty. Well, apparently. It’s a bottle of liquid, taken orally. Most people are pretty sceptical about it, but the guy who sold it

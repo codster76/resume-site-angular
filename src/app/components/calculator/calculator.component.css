@@ -1,5 +1,5 @@
 .result {
-    border: black solid 2px;
+    border: black solid 4px;
     width: 15em;
     height: 3em;
     overflow-wrap: anywhere;
@@ -11,12 +11,10 @@
 }
 
 .input-button {
-    width: var(--button-size);
-    height: var(--button-size);
-    --button-size: 30px;
-    background-color: rgb(224, 224, 224);
-    border: 1px black solid;
-    border-radius: 3px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    margin: 2px;
 }
 
 .input-button:hover {
@@ -24,7 +22,12 @@
 }
 
 .input-button:active {
-    background-color: rgb(170, 170, 170);
+    background-color: rgb(0, 0, 252);
+    border-left: 4px solid rgb(0, 88, 248);
+    border-bottom: 4px solid rgb(0, 88, 248);
+    border-top: 4px solid rgb(0, 0, 188);
+    border-right: 4px solid rgb(0, 0, 188);
+    outline: 2px solid black;
 }
 
 .buttonGroup {

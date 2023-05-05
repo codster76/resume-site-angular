@@ -3,34 +3,34 @@
   <div class="result">{{valueToDisplay}}</div>
   <div class="buttons" fxLayout="column" fxLayoutAlign="start center">
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="input-button" (click)="buttonPressed('1')">1</button>
-      <button class="input-button" (click)="buttonPressed('2')">2</button>
-      <button class="input-button" (click)="buttonPressed('3')">3</button>
-      <button class="input-button" (click)="buttonPressed('+')">+</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('1')">1</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('2')">2</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('3')">3</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('+')">+</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="input-button" (click)="buttonPressed('4')">4</button>
-      <button class="input-button" (click)="buttonPressed('5')">5</button>
-      <button class="input-button" (click)="buttonPressed('6')">6</button>
-      <button class="input-button" (click)="buttonPressed('-')">-</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('4')">4</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('5')">5</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('6')">6</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('-')">-</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="input-button" (click)="buttonPressed('7')">7</button>
-      <button class="input-button" (click)="buttonPressed('8')">8</button>
-      <button class="input-button" (click)="buttonPressed('9')">9</button>
-      <button class="input-button" (click)="buttonPressed('*')">x</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('7')">7</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('8')">8</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('9')">9</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('*')">x</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="start start">
-      <button class="input-button" (click)="buttonPressed('0')">0</button>
-      <button class="input-button" (click)="buttonPressed('(')">(</button>
-      <button class="input-button" (click)="buttonPressed(')')">)</button>
-      <button class="input-button" (click)="buttonPressed('/')">/</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('0')">0</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('(')">(</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed(')')">)</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('/')">/</button>
     </div>
     <div class="buttonGroup" fxLayout="row" fxLayoutAlign="space-between start">
-      <button class="input-button" (click)="clear()">C</button>
-      <button class="input-button" (click)="buttonPressed('+-')">+-</button>
-      <button class="input-button" (click)="buttonPressed('.')">.</button>
-      <button class="input-button" (click)="performCalculation()">=</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="clear()">C</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('+-')">+-</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="buttonPressed('.')">.</button>
+      <button [ngClass]="{'pixel-border': true, 'input-button': true}" (click)="performCalculation()">=</button>
     </div>
   </div>
 </div>
