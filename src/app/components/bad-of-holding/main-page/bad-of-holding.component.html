@@ -12,11 +12,11 @@
     <div *ngFor="let item of items">
         <div class="item-row" (click)="openModal(item, 'edit')">
             <div fxLayout="row" fxLayoutAlign="space-around start">
-                <div fxFlex="1">{{item.name}}</div>
-                <div fxFlex="30">{{item.description}}</div>
-                <div fxFlex="1">{{item.value}}</div>
-                <div fxFlex="1">{{item.weight}}</div>
-                <div fxFlex="1">{{item.quantity}}</div>
+                <div class="item-property" fxFlex="1">{{cutLongString(item.name, 20)}}</div>
+                <div class="item-property" fxFlex="30">{{cutLongString(item.description, 60)}}</div>
+                <div class="item-property" fxFlex="1">{{item.value}}</div>
+                <div class="item-property" fxFlex="1">{{item.weight}}</div>
+                <div class="item-property" fxFlex="1">{{item.quantity}}</div>
             </div>
         </div>
     </div>

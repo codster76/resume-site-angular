@@ -112,6 +112,14 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
     }
   }
 
+  cutLongString(stringToCut: string, maxLength: number) {
+    if(stringToCut.length < maxLength) {
+      return stringToCut;
+    }
+
+    return `${stringToCut.substring(0,maxLength)}...`;
+  }
+
   openModal(item: Item, formType: string) {
     this.currentDialog = this.dialogService.open(ItemFormComponent, { data: { item: item, formType: formType } });
 
