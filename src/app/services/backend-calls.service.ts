@@ -8,7 +8,8 @@ import { Item } from '../model/data-model';
 export class BackendCallsService {
 
   // APIUrl = 'http://localhost:5000/api';
-  APIUrl = 'https://cody-resume-site-backend.onrender.com/api';
+  // APIUrl = 'https://cody-resume-site-backend.onrender.com/api';
+  APIUrl = 'https://azqxc9ovvd.execute-api.ap-southeast-2.amazonaws.com/api';
 
   constructor(private http: HttpClient) { }
 
