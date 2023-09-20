@@ -35,6 +35,8 @@ import { ModalTestComponent } from './components/modal-test/modal-test.component
 import { ModalContentTestComponent } from './components/modal-content-test/modal-content-test.component';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
 import { PixelBordersComponent } from './components/pixel-borders/pixel-borders.component';
+import { ContactsUiComponent } from './components/contacts-ui/contacts-ui.component';
+import { KickBackYoureFiredComponent } from './components/kick-back-youre-fired/kick-back-youre-fired.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { PixelBordersComponent } from './components/pixel-borders/pixel-borders.
     ModalContentTestComponent,
     ImageModalComponent,
     PixelBordersComponent,
+    ContactsUiComponent,
+    KickBackYoureFiredComponent,
   ],
   imports: [
     BrowserModule,

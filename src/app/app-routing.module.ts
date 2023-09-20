@@ -12,6 +12,8 @@ import { ZanatharsGuideComponent } from './components/zanathars-guide/zanathars-
 import { OnlineClassComponent } from './components/online-class/online-class.component';
 import { ModalTestComponent } from './components/modal-test/modal-test.component';
 import { PixelBordersComponent } from './components/pixel-borders/pixel-borders.component';
+import { ContactsUiComponent } from './components/contacts-ui/contacts-ui.component';
+import { KickBackYoureFiredComponent } from './components/kick-back-youre-fired/kick-back-youre-fired.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -25,7 +27,9 @@ const routes: Routes = [
   { path: 'mega-man-echoes', component: MegaManEchoesComponent },
   { path: 'zanathars-guide', component: ZanatharsGuideComponent },
   { path: 'pixel-borders', component: PixelBordersComponent },
-  { path: 'modal-test', component: ModalTestComponent }
+  { path: 'modal-test', component: ModalTestComponent },
+  { path: 'contacts-ui', component: ContactsUiComponent },
+  { path: 'kick-back-youre-fired', component: KickBackYoureFiredComponent },
 ];
 
 // RouterModule.forRoot(routes, {scrollPositionRestoration: 'top'});

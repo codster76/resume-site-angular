@@ -1,0 +1,26 @@
+<div class="page-heading">Contacts UI</div>
+<h2>What is it?</h2>
+<div>
+    A small demo of a responsive UI using some sample data from JSONPlaceholder.
+</div>
+<br />
+<h2>How it Works</h2>
+<div>
+    This was a small demonstration of my usage of Angular and a bit of site design. 
+    Like I said above, this is a responsive UI, so it will adapt to your screen's size 
+    dynamically, so it should work quite well on both mobile and desktop. This site 
+    has a responsive UI as well, but it's a bit simpler.
+
+    Since it was supposed to be a contacts app, I also wanted profile pictures, but 
+    the API doesn't have them, so I took a page from Google's auto-generated default 
+    profile pictures and made my own. The background colours are generated deterministically 
+    based on the name of the contact. Similar names should yield similar colours. It basically 
+    splits the name into three substrings and uses an scaled average of the included letters 
+    to generate a RGB value.
+</div>
+<br />
+
+<br />
+<div style="width: 100%; display: flex; justify-content: center;">
+    <a [ngClass]="{'button': true, 'pixel-border': true}" href="https://contacts-demo-mu.vercel.app/">Go to Site</a>
+</div>
