@@ -13,7 +13,7 @@
         <div class="item-row" (click)="openModal(item, 'edit')">
             <div fxLayout="row" fxLayoutAlign="space-around start">
                 <div class="item-property" fxFlex="1">{{cutLongString(item.name, 15)}}</div>
-                <div [ngClass]="{'item-property': true, 'description': true}" fxFlex="30">{{cutLongString(item.description, 60)}}</div>
+                <div [ngClass]="{'item-property': true, 'description': true}" fxFlex="30">{{cutLongString(item.description, 40)}}</div>
                 <div class="item-property" fxFlex="1">{{item.value}}</div>
                 <div class="item-property" fxFlex="1">{{item.weight}}</div>
                 <div class="item-property" fxFlex="1">{{item.quantity}}</div>
@@ -22,11 +22,6 @@
     </div>
 </ng-container>
 <br />
-
-<div>
-    Note: Render will try to rebuild the backend if it hasn't been used for a while, so it can take a 
-    minute or two to load to begin with. It'll speed up significantly after loading once.
-</div>
 
 <br />
 <h2>What is it?</h2>
@@ -39,9 +34,9 @@
 <br />
 <h2>How it Works</h2>
 <div>
-    It’s quite simple. I have a REST API in the backend that serves and receives items. 
-    Changes/deletions/additions made on the frontend are reflected in the backend. For simplicity and 
-    to avoid the need for maintenance, there isn't a real database tracking the items for this site 
-    and it's just simulated in the server's memory. Adding a real database would certainly be possible, 
-    but it would not meaningfully change the functionality being demonstrated on this page.
+    It’s quite simple. I have a REST API in the backend that serves and receives items. Full disclosure: 
+    this isn't served by a real database, though, it makes no difference on the frontend, as it still makes 
+    the same requests to the server. I might add a real database eventually (I'd probably go for DynamoDB), 
+    but at the current moment, setting up the required permissions and security features to avoid incurring 
+    unintended costs is a bit beyond the scope of a small demonstration like this one.
 </div>
