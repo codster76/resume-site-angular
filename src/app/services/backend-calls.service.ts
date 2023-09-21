@@ -37,7 +37,6 @@ export class BackendCallsService {
       "weight":${itemToReplaceWith.weight},
       "quantity":${itemToReplaceWith.quantity}
     }`;
-    console.log(stringToSend);
     const header = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },

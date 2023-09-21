@@ -72,9 +72,17 @@ export class BadOfHoldingComponent implements OnInit, OnDestroy {
   }
 
   addNewItem(itemToAdd: Item) {
-    this.backendCalls.addItem(itemToAdd);
+    const itemToAddModified = itemToAdd;
+
+    // This is a stupid way to generate IDs (I should use UUID instead), but it works fine for demonstration purposes
+    let itemID = Math.floor(Math.random() * 100000000).toString();
+    while(this.itemSubject.getValue().some(item => item.id === itemID)) {
+      itemID = Math.floor(Math.random() * 100000000).toString();
+    }
+    itemToAddModified.id = itemID;
+    this.backendCalls.addItem(itemToAddModified);
     // Add to display
-    this.itemSubject.getValue().push(itemToAdd);
+    this.itemSubject.getValue().push(itemToAddModified);
     this.currentDialog?.close();
   }
 
